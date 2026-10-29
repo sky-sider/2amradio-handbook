@@ -1,6 +1,7 @@
 {
   "basis": "v4.9.22",
   "generated": "2026-10-29",
-  "pages": 36,
-  "scope": "public-deployable-development-documentation"
+  "pages": 39,
+  "scope": "public-deployable-development-documentation",
+  "handbookVersion": "v1.3"
 }

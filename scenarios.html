@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+
+<html lang="ja"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="#142538" name="theme-color"/><meta content="noindex,nofollow" name="robots"/><meta content="45種以上のリスナー変化・再登場・放送反応・交流・日常のシチュエーション例。ライター向け。" name="description"/><title>物語のシチュエーション図鑑｜午前二時の周波数 開発資料</title><link href="assets/style.css" rel="stylesheet"/></head>
+<body data-page="scenarios"><a class="skip" href="#main">本文へ移動</a><div class="layout"><header class="topbar"><a class="brand" href="index.html"><span class="brand-dot"></span><span><b>午前二時の周波数</b><small>SOMEWHERE ON AIR · DEV HANDBOOK</small></span></a><div class="top-actions"><button aria-label="テーマを切り替える" id="themeToggle" title="テーマを切り替え" type="button">◐</button><button aria-controls="sidebar" aria-expanded="false" id="menuToggle" type="button">☰ <span>目次</span></button></div></header>
+<aside class="sidebar" id="sidebar"><div class="side-head"><span>SPECIFICATION / v4.9.22</span><button aria-label="目次を閉じる" id="closeMenu" type="button">×</button></div><label class="search-label" for="siteSearch">資料を横断検索</label><input autocomplete="off" id="siteSearch" placeholder="例：simReplyImpact / しおり" type="search"/><div aria-live="polite" class="search-results" id="searchResults"></div><nav aria-label="ドキュメントのページ"><div class="nav-group"><div class="nav-heading">はじめに</div><a data-nav="index" href="index.html">開発資料の入口</a><a data-nav="getting-started" href="getting-started.html">開発参加・環境構築</a></div><div class="nav-group"><div class="nav-heading">物語</div><a data-nav="world" href="world.html">世界観・文体・企画哲学</a><a data-nav="chapters" href="chapters.html">第1〜4章と長期放送</a><a data-nav="specials" href="specials.html">特別放送・記念放送</a><a data-nav="special-writing" href="special-writing.html">特別放送 企画・お便り制作ガイド</a><a data-nav="finale" href="finale.html">第100夜以降の最終放送と閉局</a></div><div class="nav-group"><div class="nav-heading">人物</div><a data-nav="people" href="people.html">リスナー12人・人物設定一覧</a><a data-nav="writing-guide" href="writing-guide.html">シナリオ執筆ガイド</a><a data-nav="scenarios" href="scenarios.html">物語のシチュエーション図鑑</a><a data-nav="person-cat" href="person-cat.html">夜明けの猫｜詳細人物設定</a><a data-nav="person-clock" href="person-clock.html">古時計｜詳細人物設定</a><a data-nav="person-bread" href="person-bread.html">眠れないパン屋｜詳細人物設定</a><a data-nav="person-moon" href="person-moon.html">月の裏側｜詳細人物設定</a><a data-nav="person-driver" href="person-driver.html">午前3時の配達員｜詳細人物設定</a><a data-nav="person-fish" href="person-fish.html">透明な金魚｜詳細人物設定</a><a data-nav="person-sugar" href="person-sugar.html">砂糖を三杯｜詳細人物設定</a><a data-nav="person-anon" href="person-anon.html">名前はまだありません｜詳細人物設定</a><a data-nav="person-terminal" href="person-terminal.html">終点のひとつ前｜詳細人物設定</a><a data-nav="person-umbrella" href="person-umbrella.html">逆さまの傘｜詳細人物設定</a><a data-nav="person-triangle" href="person-triangle.html">三角定規｜詳細人物設定</a><a data-nav="person-fridge" href="person-fridge.html">冷蔵庫の明かり｜詳細人物設定</a></div><div class="nav-group"><div class="nav-heading">ゲーム進行</div><a data-nav="flow" href="flow.html">夜のゲームループと画面遷移</a><a data-nav="archive" href="archive.html">放送日誌・人物録・しおり</a></div><div class="nav-group"><div class="nav-heading">内部システム</div><a data-nav="state" href="state.html">内部状態とパラメーターの全体像</a><a data-nav="choices" href="choices.html">返答と内部パラメーターの変化</a><a data-nav="simulation" href="simulation.html">12人の自律生活AI</a><a data-nav="relationships" href="relationships.html">人間関係・生活世界・記憶</a></div><div class="nav-group"><div class="nav-heading">放送システム</div><a data-nav="modes" href="modes.html">3つの楽しみ方・操作範囲</a><a data-nav="auto-dj" href="auto-dj.html">聴くだけの夜：自動DJの詳細</a><a data-nav="station" href="station.html">放送演出・曲・DJの雰囲気</a></div><div class="nav-group"><div class="nav-heading">実装</div><a data-nav="architecture" href="architecture.html">アーキテクチャ・依存関係</a><a data-nav="letters" href="letters.html">お便り・返答・候補生成</a><a data-nav="save" href="save.html">セーブ・バックアップ・互換性</a></div><div class="nav-group"><div class="nav-heading">開発</div><a data-nav="qa" href="qa.html">テスト計画・受け入れ条件</a></div><div class="nav-group"><div class="nav-heading">運用</div><a data-nav="deploy" href="deploy.html">GitHub Pagesへの公開・保守</a></div><div class="nav-group"><div class="nav-heading">参考資料</div><a data-nav="glossary" href="glossary.html">用語集・キー一覧</a><a data-nav="changelog" href="changelog.html">開発資料の変更履歴</a><a data-nav="source-index" href="source-index.html">ソースコード関数索引</a></div></nav><p class="side-note">基準ゲーム v4.9.22 · 開発資料 v1.3</p></aside><div class="veil" id="veil"></div>
+<main class="main" id="main"><div class="kicker">人物 <span>/ シナリオライター向け</span></div><article class="prose"><h1>物語のシチュエーション図鑑 — 変化から生まれるお便り</h1>
+<p>特別放送の企画だけを集めた姉妹編は、<a href="special-writing.html">特別放送 企画・お便り制作ガイド</a>です。</p><blockquote>
+<p><strong>資料版 v1.2／基準ゲーム v4.9.22</strong>。シナリオライター・プランナー向け。「すでにある仕組み」と「追加原稿のアイデア」を明確に分けています。<strong>本文中の例文は創作例で、実際のゲームにそのまま登場するとは限りません。</strong></p>
+</blockquote>
+<h2>まず結論：パラメーターは、物語を「決定」するのでなく「起こりやすくする」</h2>
+<p>リスナーはラジオに投稿していない夜も暮らしています。返答で気持ちが動き、翌日の行動を選び、誰かと会い、何かを覚えます。<strong>その結果の一部だけが、後日の便箋になります。</strong></p>
+<blockquote>
+<p>DJができるのは、その夜届いた言葉に応えること。相手の心や人生を直接操作できるわけではありません。</p>
+</blockquote>
+<p><strong>使い方</strong>：まず下の種類一覧から「書きたい状況」を選ぶ → 各パターンの「起こるきっかけ」「作例」「注意」を読む → <a href="people.html">人物設定</a>で声を確かめる → <a href="writing-guide.html">執筆ガイド</a>で原稿化する。コード名は執筆には不要で、監修用に小さく添えています。</p>
+<h3>マークの意味</h3>
+<table>
+<thead>
+<tr>
+<th>表記</th>
+<th>意味</th>
+<th>ライターができること</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>現行</strong></td>
+<td>v4.9.22に、その種類の展開が実際に起きる仕組み／候補がある</td>
+<td>既存の演出を理解し、その条件に合った新作を考える</td>
+</tr>
+<tr>
+<td><strong>追加原稿</strong></td>
+<td>既存の記憶や行動を土台に書けるが、<strong>例の原稿や条件分岐は未実装</strong></td>
+<td>プランナーと条件を確認してから新規実装する</td>
+</tr>
+</tbody>
+</table>
+<p><strong>現行＝必ず出る、ではありません。</strong> 行動の抽選、候補への配達、最大3通の紹介、聴取の記録などが重なります。「ある夜に必ず二人の便箋が届く」などの演出には追加設計が必要です。</p>
+<h2>状態が変わると、どこが物語になる？</h2>
+<table>
+<thead>
+<tr>
+<th>人物の暮らしで動くもの</th>
+<th>ライター向けの言い換え</th>
+<th>生まれやすい場面</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>安心・不安・希望・孤独</td>
+<td>今日はどんな気持ちで夜を越えたか</td>
+<td>休む、話す、書きかけを閉じる、また書く</td>
+</tr>
+<tr>
+<td>主体性・振り返り</td>
+<td>自分で選ぶ／考え直す余裕があるか</td>
+<td>伝える、待つ、進路を迷う、小さな決断をする</td>
+</tr>
+<tr>
+<td>仕事・体調・自由時間</td>
+<td>生活の負荷や余白</td>
+<td>仕込みに追われる、帰って寝る、散歩する</td>
+</tr>
+<tr>
+<td>習慣と最近の行動</td>
+<td>繰り返すうちに、その人の日常になったこと</td>
+<td>同じ場所へ通う、制作を再開する</td>
+</tr>
+<tr>
+<td>他人への信頼・緊張と接触履歴</td>
+<td>誰と、どんな空気で話したか</td>
+<td>挨拶が増える、気まずさが残る、久しぶりに会う</td>
+</tr>
+<tr>
+<td>誰がどの放送を実際に聴いたか</td>
+<td>人の言葉が心に残ったか</td>
+<td>翌夜の感想、数十夜後の思い出、返歌</td>
+</tr>
+<tr>
+<td>投稿した／紹介された／局が知った</td>
+<td>情報がどこまで届いているか</td>
+<td>一方通行、遅い返答、すれ違い、沈黙</td>
+</tr>
+</tbody>
+</table>
+<h2>物語の種類一覧</h2>
+<p>以下の区分ごとに、<strong>現行の展開と、そこから広げられる原稿案</strong>を収録しています。番号はアイデアを打ち合わせで指し示すためのものです。</p>
+<ul>
+<li><a href="#a-patterns">A｜手紙が来ない夜と、戻ってくる声（6種）</a></li>
+<li><a href="#b-patterns">B｜放送を聴いて生まれる次の手紙（7種）</a></li>
+<li><a href="#c-patterns">C｜放送の外で起きる、リスナー同士の接点（11種）</a></li>
+<li><a href="#d-patterns">D｜日々の行動・習慣が、手紙の種になる（6種）</a></li>
+<li><a href="#e-patterns">E｜リスナーと身近な人の関係（6種）</a></li>
+<li><a href="#f-patterns">F｜選択の積み重ねで、人生の向きが変わる（7種）</a></li>
+<li><a href="#g-patterns">G｜手紙の届き方・番組が知ること（6種）</a></li>
+<li><a href="#h-patterns">H｜季節・番組の節目・余白（6種）</a></li>
+</ul>
+<h2>まずは3つの具体的な流れ</h2>
+<h3>①「手紙が来ない」→「生活は進む」→「また書く」</h3>
+<ol>
+<li>ある日、仕事・休息・考えごとなどに時間を使う。</li>
+<li>条件が合うと、その人だけ<strong>3〜6夜ほど投稿が止まる</strong>。番組には「休んでいます」という通知は来ない。</li>
+<li>その間も、仕事や散歩、感情、他者との関係は進む。</li>
+<li>再投稿の候補では「数日ぶり」「久しぶり」を実際の間隔に合わせて使い、直近の生活を少し書く。</li>
+<li>番組が紹介しなければ、<strong>DJはその近況をまだ知らない</strong>。</li>
+</ol>
+<p><strong>作例（眠れないパン屋）</strong>：「ご無沙汰しています。ここ数日は、お便りを書こうとすると、ちょうど生地が膨らみ始めてしまって。パンは待ってくれないですね。」</p>
+<p><strong>注意</strong>：休止理由は仕事・休息・内省などの大きな分類。過度に具体的な「病気で入院していた」は現行の休止からは導けません。</p>
+<h3>②「別の人の声を聴く」→「暮らしに入り込む」→「返事が届く」</h3>
+<ol>
+<li>月の裏側のお便りが<strong>実際に放送で紹介</strong>される。</li>
+<li>それを聴き、実際にパン作りをしたパン屋が、月の話から丸いパンを思いつく（初期夜の固有連鎖）。</li>
+<li>パン屋がその話を投稿する。さらにそれが放送で紹介されると、月の裏側が次の便箋で反応する場合がある。</li>
+</ol>
+<p><strong>作例</strong>：パン屋「月の形のパンを作ろうと思ったんです」／月の裏側「月面委員会が試食係を募集しています」。</p>
+<p><strong>注意</strong>：二通目は「投稿された」だけでは足りません。<strong>実際に紹介されたか</strong>が重要です。この連鎖を他の任意の二人へそのまま移すには新たな原稿と条件が必要です。</p>
+<h3>③「街で会う」→「気持ちは違う」→「別の便箋になる」</h3>
+<ol>
+<li>夜明けの猫が帰りにパン屋へ立ち寄り、同じ時間にパン屋が働いている。</li>
+<li>最初は「見かけた」、次は「会釈した」、何度か会うと「短く話す」こともある。</li>
+<li>猫は「少しうれしかった」、パン屋は「なんとなく気まずかった」と、<strong>同じ接触でも受け止め方は異なる</strong>。</li>
+<li>その出来事から、片方の投稿候補が生まれ、条件次第でもう一方から別の夜に便箋が届くこともある。</li>
+</ol>
+<p><strong>作例</strong>：猫「帰り道のパン屋さんに、名前を知らないまま少し話しかけました」／パン屋「夕方のお客さんが、焼き上がりを待っていてくれました」。</p>
+<p><strong>注意</strong>：ラジオではラジオネームを使いますが、街で会った二人は互いを<strong>常連リスナーだと認識しません</strong>。そして二通とも毎回出るわけではありません。</p>
+<h2 id="a-patterns">A｜手紙が来ない夜と、戻ってくる声</h2>
+<table>
+<thead>
+<tr>
+<th>番号</th>
+<th>物語の型</th>
+<th>状態</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A01</td>
+<td><a href="#a01">忙しくて数夜書かない</a></td>
+<td>現行</td>
+</tr>
+<tr>
+<td>A02</td>
+<td><a href="#a02">休息を優先して、また書く</a></td>
+<td>現行</td>
+</tr>
+<tr>
+<td>A03</td>
+<td><a href="#a03">考える時間が必要で、筆が止まる</a></td>
+<td>現行</td>
+</tr>
+<tr>
+<td>A04</td>
+<td><a href="#a04">好きなことに没頭して投稿を休む</a></td>
+<td>現行</td>
+</tr>
+<tr>
+<td>A05</td>
+<td><a href="#a05">戻ってきても大きな事件はない</a></td>
+<td>現行</td>
+</tr>
+<tr>
+<td>A06</td>
+<td><a href="#a06">沈黙の意味が変わる後日談</a></td>
+<td>追加原稿</td>
+</tr>
+</tbody>
+</table>
+<h3 id="a01">A01　忙しくて数夜書かない</h3>
+<p><strong>状態：現行</strong>　／　<strong>起こるきっかけ</strong>：仕事・用事のある日をきっかけに、投稿を休む期間が抽選される。</p>
+<blockquote>
+<p><strong>お便り・演出の作例</strong>：眠れないパン屋「仕込みはしていたんですが、書こうとすると朝になってしまって。数日ぶりです。」</p>
+</blockquote>
+<p><strong>書くときの注意</strong>：番組が休止理由を事前に把握しているように書かない。</p>
+<p><em>監修用の参照先：quietAfterDaily / quietReturnNote</em></p>
+<h3 id="a02">A02　休息を優先して、また書く</h3>
+<p><strong>状態：現行</strong>　／　<strong>起こるきっかけ</strong>：疲れや体調と日々の休息行動が、短い投稿の空白につながる。</p>
+<blockquote>
+<p><strong>お便り・演出の作例</strong>：冷蔵庫の明かり「厨房は動いていたんです。でも家では、眠るほうを選んでいました。」</p>
+</blockquote>
+<p><strong>書くときの注意</strong>：病名・入院など未記録の出来事を確定させない。</p>
+<p><em>監修用の参照先：quietReasonFromAction / quietReturnNote</em></p>
+<h3 id="a03">A03　考える時間が必要で、筆が止まる</h3>
+<p><strong>状態：現行</strong>　／　<strong>起こるきっかけ</strong>：内省の行動や不安の強い日が、書かない時間の理由になることがある。</p>
+<blockquote>
+<p><strong>お便り・演出の作例</strong>：透明な金魚「書かなかった数日にも、考えていたことはありました。」</p>
+</blockquote>
+<p><strong>書くときの注意</strong>：書かなかった＝落ち込んでいた、とは限らない。</p>
+<p><em>監修用の参照先：quietReasonFromAction / quietReturnNote</em></p>
+<h3 id="a04">A04　好きなことに没頭して投稿を休む</h3>
+<p><strong>状態：現行</strong>　／　<strong>起こるきっかけ</strong>：創作に集中した日から休止が始まることがある。</p>
+<blockquote>
+<p><strong>お便り・演出の作例</strong>：夜明けの猫「鉛筆を持っている間、ラジオに文章を送るのを忘れていました。」</p>
+</blockquote>
+<p><strong>書くときの注意</strong>：描いていた作品の完成は行動・履歴で裏づける。</p>
+<p><em>監修用の参照先：quietReasonFromAction / quietReturnNote</em></p>
+<h3 id="a05">A05　戻ってきても大きな事件はない</h3>
+<p><strong>状態：現行</strong>　／　<strong>起こるきっかけ</strong>：休止の終わりには再投稿候補が優先され、前日の実行済み行動を添えられる。</p>
+<blockquote>
+<p><strong>お便り・演出の作例</strong>：古時計「何か特別なことがあったわけではありません。今日はまた少し書きたくなりました。」</p>
+</blockquote>
+<p><strong>書くときの注意</strong>：3〜6夜程度の休止。数十夜にわたる失踪を同じ仕組みとみなさない。</p>
+<p><em>監修用の参照先：quietWaitingToReturn / createRegularLetters</em></p>
+<h3 id="a06">A06　沈黙の意味が変わる後日談</h3>
+<p><strong>状態：追加原稿</strong>　／　<strong>起こるきっかけ</strong>：休止履歴と別の実行済み生活行動を条件にした新しい便箋。</p>
+<blockquote>
+<p><strong>お便り・演出の作例</strong>：終点のひとつ前「送らない間に、いつもの駅へ寄らない日が一度だけありました。」</p>
+</blockquote>
+<p><strong>書くときの注意</strong>：現行の復帰文にこの具体的な出来事が必ず出るわけではない。</p>
+<p><em>監修用の参照先：quiet.history / simState.people.daily</em></p>
+<h2 id="b-patterns">B｜放送を聴いて生まれる次の手紙</h2>
+<table>
+<thead>
+<tr>
+<th>番号</th>
+<th>物語の型</th>
+<th>状態</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B01</td>
+<td><a href="#b01">自分の手紙が読まれた翌日の感想</a></td>
+<td>現行</td>
+</tr>
+<tr>
+<td>B02</td>
+<td><a href="#b02">他人の言葉が翌日に残る</a></td>
+<td>現行</td>
+</tr>
+<tr>
+<td>B03</td>
+<td><a href="#b03">何十夜も経ってから昔の放送を思い出す</a></td>
+<td>現行</td>
+</tr>
+<tr>
+<td>B04</td>
+<td><a href="#b04">お便り同士が小さな会話になる</a></td>
+<td>現行</td>
+</tr>
+<tr>
+<td>B05</td>
+<td><a href="#b05">想像が商品・行動のきっかけになる</a></td>
+<td>現行</td>
+</tr>
+<tr>
+<td>B06</td>
+<td><a href="#b06">紹介から時間をおいて別人が返歌する</a></td>
+<td>現行</td>
+</tr>
+<tr>
+<td>B07</td>
+<td><a href="#b07">同じ言葉を別の気持ちで受け取る</a></td>
+<td>追加原稿</td>
+</tr>
+</tbody>
+</table>
+<h3 id="b01">B01　自分の手紙が読まれた翌日の感想</h3>
+<p><strong>状態：現行</strong>　／　<strong>起こるきっかけ</strong>：本人がその夜の聴取者に含まれ、実際に自分の便箋が紹介された場合。</p>
+<blockquote>
+<p><strong>お便り・演出の作例</strong>：夜明けの猫「自分の文章が声になると、少し違って聞こえました。」</p>
+</blockquote>
+<p><strong>書くときの注意</strong>：投函しただけ・候補に並んだだけでは「放送で聴いた」としない。</p>
+<p><em>監修用の参照先：regularBroadcastEcho</em></p>
+<h3 id="b02">B02　他人の言葉が翌日に残る</h3>
+<p><strong>状態：現行</strong>　／　<strong>起こるきっかけ</strong>：前夜の放送で紹介された便箋を、実際に聴いていたリスナーが思い返す。</p>
+<blockquote>
+<p><strong>お便り・演出の作例</strong>：透明な金魚「知らない人の話だったのに、今朝、自分のノートを開きました。」</p>
+</blockquote>
+<p><strong>書くときの注意</strong>：他人の私生活の真相を知ったことにはならない。</p>
+<p><em>監修用の参照先：radioCulture.audience / regularBroadcastEcho</em></p>
+<h3 id="b03">B03　何十夜も経ってから昔の放送を思い出す</h3>
+<p><strong>状態：現行</strong>　／　<strong>起こるきっかけ</strong>：実際の聴取と放送履歴に残った記憶が、一定期間を経て再登場する。</p>
+<blockquote>
+<p><strong>お便り・演出の作例</strong>：砂糖を三杯「ずっと前に聞いたコーヒーの話を、今日になって思い出しました。」</p>
+</blockquote>
+<p><strong>書くときの注意</strong>：覚えていた題材・放送夜を記録から参照する。</p>
+<p><em>監修用の参照先：radioMemoryAfterBroadcast39 / radioMemoryCompose39</em></p>
+<h3 id="b04">B04　お便り同士が小さな会話になる</h3>
+<p><strong>状態：現行</strong>　／　<strong>起こるきっかけ</strong>：紹介済みの別人の声と、聴取者に残った話題の記憶が次の便箋を生む。</p>
+<blockquote>
+<p><strong>お便り・演出の作例</strong>：眠れないパン屋「月の話を聞いてから、丸いパンを試したくなってしまいました。」</p>
+</blockquote>
+<p><strong>書くときの注意</strong>：月の裏側が後日反応するにはパン屋の便箋も実際に紹介される必要がある。</p>
+<p><em>監修用の参照先：microWorld / radioCultureCompose</em></p>
+<h3 id="b05">B05　想像が商品・行動のきっかけになる</h3>
+<p><strong>状態：現行</strong>　／　<strong>起こるきっかけ</strong>：「月の裏側」の放送が紹介され、パン屋に実際の試作行動があった場合の連鎖。</p>
+<blockquote>
+<p><strong>お便り・演出の作例</strong>：月の裏側「月の形をしたパンですって。委員会に試食係を置く必要があります。」</p>
+</blockquote>
+<p><strong>書くときの注意</strong>：この連鎖は初期夜の固有イベント。全員・全題材に自動適用されない。</p>
+<p><em>監修用の参照先：simulateMicroWorld / echo_bread_moon</em></p>
+<h3 id="b06">B06　紹介から時間をおいて別人が返歌する</h3>
+<p><strong>状態：現行</strong>　／　<strong>起こるきっかけ</strong>：放送された投稿を起点にした、段階式のリスナー横断連作が進む。</p>
+<blockquote>
+<p><strong>お便り・演出の作例</strong>：三角定規「前に番組で聞いた言葉を、図面の隅に書いてみました。」</p>
+</blockquote>
+<p><strong>書くときの注意</strong>：連作には定義済みの組み合わせ・順番・実際の紹介が必要。</p>
+<p><em>監修用の参照先：listenerCrossCompose4830 / listenerCrossAfterCompose4831</em></p>
+<h3 id="b07">B07　同じ言葉を別の気持ちで受け取る</h3>
+<p><strong>状態：追加原稿</strong>　／　<strong>起こるきっかけ</strong>：放送済みの便箋、聴取者の記憶、本人の最近の行動を組み合わせる。</p>
+<blockquote>
+<p><strong>お便り・演出の作例</strong>：名前はまだありません「前は返事を探して聴きました。今はただ、あの声を思い出します。」</p>
+</blockquote>
+<p><strong>書くときの注意</strong>：「誰が聴いていたか」を条件に加える。現行でこの原稿が確定出現するわけではない。</p>
+<p><em>監修用の参照先：radioMemory.heard / simState.people.daily</em></p>
+<h2 id="c-patterns">C｜放送の外で起きる、リスナー同士の接点</h2>
+<table>
+<thead>
+<tr>
+<th>番号</th>
+<th>物語の型</th>
+<th>状態</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C01</td>
+<td><a href="#c01">同じパン屋を、お客と店員が語る</a></td>
+<td>現行</td>
+</tr>
+<tr>
+<td>C02</td>
+<td><a href="#c02">通りすがりの二人の記憶がつながる</a></td>
+<td>現行</td>
+</tr>
+<tr>
+<td>C03</td>
+<td><a href="#c03">図書室で、二人が別の人を見ている</a></td>
+<td>現行</td>
+</tr>
+<tr>
+<td>C04</td>
+<td><a href="#c04">駅前の短い道案内が、双方に残る</a></td>
+<td>現行</td>
+</tr>
+<tr>
+<td>C05</td>
+<td><a href="#c05">花屋と常連客で、鉢植えの見え方が違う</a></td>
+<td>現行</td>
+</tr>
+<tr>
+<td>C06</td>
+<td><a href="#c06">朝の花市場で、時計と花の話が出る</a></td>
+<td>現行</td>
+</tr>
+<tr>
+<td>C07</td>
+<td><a href="#c07">図書室で年齢の違う二人が本を選ぶ</a></td>
+<td>現行</td>
+</tr>
+<tr>
+<td>C08</td>
+<td><a href="#c08">深夜のコンビニでおにぎり談義</a></td>
+<td>現行</td>
+</tr>
+<tr>
+<td>C09</td>
+<td><a href="#c09">朝の仕入れ先で、作る人同士が会う</a></td>
+<td>現行</td>
+</tr>
+<tr>
+<td>C10</td>
+<td><a href="#c10">同じ出来事の印象が食い違う</a></td>
+<td>現行</td>
+</tr>
+<tr>
+<td>C11</td>
+<td><a href="#c11">顔見知りから少し長い会話へ</a></td>
+<td>現行</td>
+</tr>
+</tbody>
+</table>
+<h3 id="c01">C01　同じパン屋を、お客と店員が語る</h3>
+<p><strong>状態：現行</strong>　／　<strong>起こるきっかけ</strong>：夜明けの猫が店に寄り、眠れないパン屋がその時間に店で働いている。</p>
+<blockquote>
+<p><strong>お便り・演出の作例</strong>：猫「帰り道のパン屋さんに、少しだけ話しかけました。」／パン屋「夕方のお客さんが、珍しいパンを選んでいきました。」</p>
+</blockquote>
+<p><strong>書くときの注意</strong>：各人は相手のラジオネームを知らない。二通とも必ず届くわけではない。</p>
+<p><em>監修用の参照先：socialWorld / cat_bread</em></p>
+<h3 id="c02">C02　通りすがりの二人の記憶がつながる</h3>
+<p><strong>状態：現行</strong>　／　<strong>起こるきっかけ</strong>：午前3時の配達員と古時計の行動時刻・場所が実際に重なる。</p>
+<blockquote>
+<p><strong>お便り・演出の作例</strong>：配達員「時計屋の通りで会釈しました。」／古時計「配送の方が、またあの通りを通りました。」</p>
+</blockquote>
+<p><strong>書くときの注意</strong>：実際の会釈・会話を越えて親友になったことにしない。</p>
+<p><em>監修用の参照先：microChanceMeeting / driver_clock</em></p>
+<h3 id="c03">C03　図書室で、二人が別の人を見ている</h3>
+<p><strong>状態：現行</strong>　／　<strong>起こるきっかけ</strong>：透明な金魚と古時計が同じ図書室に滞在する行動を取る。</p>
+<blockquote>
+<p><strong>お便り・演出の作例</strong>：金魚「年配の方と本の話をしました。」／古時計「熱心な学生さんがおりました。」</p>
+</blockquote>
+<p><strong>書くときの注意</strong>：互いに「同じ番組の常連だ」と気づく描写は既存処理の外。</p>
+<p><em>監修用の参照先：socialWorld / fish_clock</em></p>
+<h3 id="c04">C04　駅前の短い道案内が、双方に残る</h3>
+<p><strong>状態：現行</strong>　／　<strong>起こるきっかけ</strong>：配達員と終点のひとつ前の行動が駅前の同じ時間帯に重なる。</p>
+<blockquote>
+<p><strong>お便り・演出の作例</strong>：配達員「道順を聞かれて、一度車を止めました。」／終点「配達の人と、少し話しました。」</p>
+</blockquote>
+<p><strong>書くときの注意</strong>：行動が一致しなければ同日の出会いを作れない。</p>
+<p><em>監修用の参照先：socialWorld / driver_terminal</em></p>
+<h3 id="c05">C05　花屋と常連客で、鉢植えの見え方が違う</h3>
+<p><strong>状態：現行</strong>　／　<strong>起こるきっかけ</strong>：逆さまの傘と夜明けの猫が花屋の同じ時間にいる。</p>
+<blockquote>
+<p><strong>お便り・演出の作例</strong>：傘「小さな鉢を見つめるお客さんがいました。」／猫「帰り道に、花屋で立ち止まりました。」</p>
+</blockquote>
+<p><strong>書くときの注意</strong>：客が実際に花を買ったとは限らない。</p>
+<p><em>監修用の参照先：socialWorld / umbrella_cat</em></p>
+<h3 id="c06">C06　朝の花市場で、時計と花の話が出る</h3>
+<p><strong>状態：現行</strong>　／　<strong>起こるきっかけ</strong>：逆さまの傘と古時計の朝の行動が市場で重なる。</p>
+<blockquote>
+<p><strong>お便り・演出の作例</strong>：傘「朝早く、花を選んでいた方と話しました。」／時計「花の名前をひとつ教わりました。」</p>
+</blockquote>
+<p><strong>書くときの注意</strong>：すべての接触で会話が起きるわけではない。</p>
+<p><em>監修用の参照先：socialWorld / umbrella_clock</em></p>
+<h3 id="c07">C07　図書室で年齢の違う二人が本を選ぶ</h3>
+<p><strong>状態：現行</strong>　／　<strong>起こるきっかけ</strong>：三角定規と透明な金魚が図書室にいる行動を取る。</p>
+<blockquote>
+<p><strong>お便り・演出の作例</strong>：三角定規「年上の人に本を聞きました。」／金魚「高校生くらいの子と棚の前で会いました。」</p>
+</blockquote>
+<p><strong>書くときの注意</strong>：関係性の段階が「見かけた」の時は会話文を出さない。</p>
+<p><em>監修用の参照先：socialWorld / triangle_fish</em></p>
+<h3 id="c08">C08　深夜のコンビニでおにぎり談義</h3>
+<p><strong>状態：現行</strong>　／　<strong>起こるきっかけ</strong>：冷蔵庫の明かりと配達員が同じ夜の店を訪れる。</p>
+<blockquote>
+<p><strong>お便り・演出の作例</strong>：冷蔵庫「同じ棚で迷う人がいました。」／配達員「夜食の話が妙に盛り上がりました。」</p>
+</blockquote>
+<p><strong>書くときの注意</strong>：夜の仕事同士だが勤務先を同一だと設定しない。</p>
+<p><em>監修用の参照先：socialWorld / fridge_driver</em></p>
+<h3 id="c09">C09　朝の仕入れ先で、作る人同士が会う</h3>
+<p><strong>状態：現行</strong>　／　<strong>起こるきっかけ</strong>：冷蔵庫の明かりとパン屋の仕入れ行動が重なる。</p>
+<blockquote>
+<p><strong>お便り・演出の作例</strong>：冷蔵庫「粉について教えてもらいました。」／パン屋「料理人らしい方と、仕入れ先で話しました。」</p>
+</blockquote>
+<p><strong>書くときの注意</strong>：一度の会話が共同事業に発展するとは限らない。</p>
+<p><em>監修用の参照先：socialWorld / fridge_bread</em></p>
+<h3 id="c10">C10　同じ出来事の印象が食い違う</h3>
+<p><strong>状態：現行</strong>　／　<strong>起こるきっかけ</strong>：実際に接触した二人が、それぞれ異なる感情・疲れ・関係状態で受け取る。</p>
+<blockquote>
+<p><strong>お便り・演出の作例</strong>：片方「うれしかった」／もう片方「気まずかった」。どちらかが嘘をついているわけではない。</p>
+</blockquote>
+<p><strong>書くときの注意</strong>：同じ事実と、本人ごとの印象を区別。二視点投稿は確率的。</p>
+<p><em>監修用の参照先：socialPairContact / socialLetterFor</em></p>
+<h3 id="c11">C11　顔見知りから少し長い会話へ</h3>
+<p><strong>状態：現行</strong>　／　<strong>起こるきっかけ</strong>：同じ組み合わせが繰り返し会い、信頼・緊張などが変わる。</p>
+<blockquote>
+<p><strong>お便り・演出の作例</strong>：金魚「図書室で本の話ができる時間が、少し楽しみになっています。」</p>
+</blockquote>
+<p><strong>書くときの注意</strong>：必ず仲良くなるわけではない。接触結果に気まずさもある。</p>
+<p><em>監修用の参照先：socialWeightDecision / socialPairContact</em></p>
+<h2 id="d-patterns">D｜日々の行動・習慣が、手紙の種になる</h2>
+<table>
+<thead>
+<tr>
+<th>番号</th>
+<th>物語の型</th>
+<th>状態</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>D01</td>
+<td><a href="#d01">小さな行動が翌夜の追伸に出る</a></td>
+<td>現行</td>
+</tr>
+<tr>
+<td>D02</td>
+<td><a href="#d02">仕事が続くが、感じ方だけ変わる</a></td>
+<td>現行</td>
+</tr>
+<tr>
+<td>D03</td>
+<td><a href="#d03">いつもの場所が、別の発見になる</a></td>
+<td>現行</td>
+</tr>
+<tr>
+<td>D04</td>
+<td><a href="#d04">何気ない出来事が3段階の小さな話になる</a></td>
+<td>現行</td>
+</tr>
+<tr>
+<td>D05</td>
+<td><a href="#d05">思いがけない一面が後日の便箋で見える</a></td>
+<td>現行</td>
+</tr>
+<tr>
+<td>D06</td>
+<td><a href="#d06">何も決まらない日が、ちゃんと一通になる</a></td>
+<td>現行</td>
+</tr>
+</tbody>
+</table>
+<h3 id="d01">D01　小さな行動が翌夜の追伸に出る</h3>
+<p><strong>状態：現行</strong>　／　<strong>起こるきっかけ</strong>：前の夜に実際に選ばれた生活行動があり、追伸の条件を満たす。</p>
+<blockquote>
+<p><strong>お便り・演出の作例</strong>：夜明けの猫「昨日、古いスケッチブックを開きました。それだけで少し落ち着きました。」</p>
+</blockquote>
+<p><strong>書くときの注意</strong>：行動候補にあるだけでは書けない。</p>
+<p><em>監修用の参照先：simLetterPostscript</em></p>
+<h3 id="d02">D02　仕事が続くが、感じ方だけ変わる</h3>
+<p><strong>状態：現行</strong>　／　<strong>起こるきっかけ</strong>：仕事・休息・気持ちの数値は連動しつつも同方向には限らない。</p>
+<blockquote>
+<p><strong>お便り・演出の作例</strong>：パン屋「忙しさは昨日と同じです。でも棚を見て、少しうれしくなりました。」</p>
+</blockquote>
+<p><strong>書くときの注意</strong>：数値が変わっただけで業務の異動・退職を確定しない。</p>
+<p><em>監修用の参照先：simulateDailyLives / regularDayNote</em></p>
+<h3 id="d03">D03　いつもの場所が、別の発見になる</h3>
+<p><strong>状態：現行</strong>　／　<strong>起こるきっかけ</strong>：同じ種類の日常でも天気・習慣・前回の記憶が異なる。</p>
+<blockquote>
+<p><strong>お便り・演出の作例</strong>：終点のひとつ前「駅へ行ったけれど、今日は時刻表を見ずに帰りました。」</p>
+</blockquote>
+<p><strong>書くときの注意</strong>：実際の行動が「駅へ行く」と合致する場合にだけ具体化。</p>
+<p><em>監修用の参照先：regularDayNote / dailyThreads</em></p>
+<h3 id="d04">D04　何気ない出来事が3段階の小さな話になる</h3>
+<p><strong>状態：現行</strong>　／　<strong>起こるきっかけ</strong>：本人の生活行動に応じて日常連作の進行段階と枝分かれが変わる。</p>
+<blockquote>
+<p><strong>お便り・演出の作例</strong>：三角定規「ノートの余白に線を引いた」→「人に見せた」→「また書き直した」。</p>
+</blockquote>
+<p><strong>書くときの注意</strong>：ステージは実際の行動と既存の専用原稿を確認して使う。</p>
+<p><em>監修用の参照先：dailyThreadCompose41</em></p>
+<h3 id="d05">D05　思いがけない一面が後日の便箋で見える</h3>
+<p><strong>状態：現行</strong>　／　<strong>起こるきっかけ</strong>：各人物に設定された行動由来の小さな連作が進行する。</p>
+<blockquote>
+<p><strong>お便り・演出の作例</strong>：逆さまの傘「花の仕事と関係のないことが、今日は妙に楽しかったです。」</p>
+</blockquote>
+<p><strong>書くときの注意</strong>：「知らない一面」は公式の未記述過去を勝手に確定してよい意味ではない。</p>
+<p><em>監修用の参照先：surpriseCompose46</em></p>
+<h3 id="d06">D06　何も決まらない日が、ちゃんと一通になる</h3>
+<p><strong>状態：現行</strong>　／　<strong>起こるきっかけ</strong>：通常の生活便箋や日常の小事件が候補になる。</p>
+<blockquote>
+<p><strong>お便り・演出の作例</strong>：砂糖を三杯「コーヒーを一杯飲んで、いつもと同じ帰り道でした。」</p>
+</blockquote>
+<p><strong>書くときの注意</strong>：連夜の具体物差し替えだけにならないよう注意。</p>
+<p><em>監修用の参照先：everydayCompose4827 / regularCompose</em></p>
+<h2 id="e-patterns">E｜リスナーと身近な人の関係</h2>
+<table>
+<thead>
+<tr>
+<th>番号</th>
+<th>物語の型</th>
+<th>状態</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>E01</td>
+<td><a href="#e01">話しかけてみたが、返事は普通</a></td>
+<td>現行</td>
+</tr>
+<tr>
+<td>E02</td>
+<td><a href="#e02">以前より少し話しやすくなる</a></td>
+<td>現行</td>
+</tr>
+<tr>
+<td>E03</td>
+<td><a href="#e03">気まずさが残ったまま、次の日が来る</a></td>
+<td>現行</td>
+</tr>
+<tr>
+<td>E04</td>
+<td><a href="#e04">家族への言葉を送るか迷う</a></td>
+<td>現行</td>
+</tr>
+<tr>
+<td>E05</td>
+<td><a href="#e05">ふつうの会話が、後日の続きになる</a></td>
+<td>現行</td>
+</tr>
+<tr>
+<td>E06</td>
+<td><a href="#e06">家族との距離感に新しい名前がつく</a></td>
+<td>追加原稿</td>
+</tr>
+</tbody>
+</table>
+<h3 id="e01">E01　話しかけてみたが、返事は普通</h3>
+<p><strong>状態：現行</strong>　／　<strong>起こるきっかけ</strong>：実際の対人行動により「温かい・普通・慎重・気まずい」などの結果が生まれる。</p>
+<blockquote>
+<p><strong>お便り・演出の作例</strong>：夜明けの猫「上司に相談しました。答えはまだ出ませんが、話したことは残りました。」</p>
+</blockquote>
+<p><strong>書くときの注意</strong>：会話成立＝和解・昇進・転職決定ではない。</p>
+<p><em>監修用の参照先：simMeet / regularContact</em></p>
+<h3 id="e02">E02　以前より少し話しやすくなる</h3>
+<p><strong>状態：現行</strong>　／　<strong>起こるきっかけ</strong>：繰り返しの接触と信頼・緊張の変化が、会話の感触に表れる。</p>
+<blockquote>
+<p><strong>お便り・演出の作例</strong>：透明な金魚「友人と短く話しました。今日は途中で笑ってごまかさずに済みました。」</p>
+</blockquote>
+<p><strong>書くときの注意</strong>：変化を断定する場合は実行済みの会話結果と専用分岐を確認。</p>
+<p><em>監修用の参照先：simMeet / relationThreadCompose42</em></p>
+<h3 id="e03">E03　気まずさが残ったまま、次の日が来る</h3>
+<p><strong>状態：現行</strong>　／　<strong>起こるきっかけ</strong>：会話が噛み合わなかった履歴も保存され、その後の暮らしに残る。</p>
+<blockquote>
+<p><strong>お便り・演出の作例</strong>：午前3時の配達員「同僚とは、今日はうまく話せませんでした。明日また荷物を運びます。」</p>
+</blockquote>
+<p><strong>書くときの注意</strong>：突然の断交・永久な決裂を既存の結果から推測しない。</p>
+<p><em>監修用の参照先：simMeet / regularContact</em></p>
+<h3 id="e04">E04　家族への言葉を送るか迷う</h3>
+<p><strong>状態：現行</strong>　／　<strong>起こるきっかけ</strong>：既存の家族関係や本人の主体性・不安・最近の行動が進路の重みに関わる。</p>
+<blockquote>
+<p><strong>お便り・演出の作例</strong>：終点のひとつ前「宛名だけ書きました。出すかどうかは、まだ決めていません。」</p>
+</blockquote>
+<p><strong>書くときの注意</strong>：家族の心情・返事を、本人の行動だけから捏造しない。</p>
+<p><em>監修用の参照先：lifeBranchWeights / resolveLifeCrossroads</em></p>
+<h3 id="e05">E05　ふつうの会話が、後日の続きになる</h3>
+<p><strong>状態：現行</strong>　／　<strong>起こるきっかけ</strong>：特定相手との対人行動が蓄積すると、関係を扱う連作便箋が生成候補になる。</p>
+<blockquote>
+<p><strong>お便り・演出の作例</strong>：古時計「図書室で話した子に、また会いました。大げさなことではありませんが。」</p>
+</blockquote>
+<p><strong>書くときの注意</strong>：必ず同じ相手へ会うとは限らないため既存の関係キーで監修。</p>
+<p><em>監修用の参照先：relationThreadCompose42</em></p>
+<h3 id="e06">E06　家族との距離感に新しい名前がつく</h3>
+<p><strong>状態：追加原稿</strong>　／　<strong>起こるきっかけ</strong>：家族との実際の接触記録と、感情の変化を組み合わせた新作。</p>
+<blockquote>
+<p><strong>お便り・演出の作例</strong>：配達員「妹とはまだ少しぎこちないです。でも今日は何を買うかの話をしました。」</p>
+</blockquote>
+<p><strong>書くときの注意</strong>：既存セーブの「話した/話さない」進路に応じた文面分岐を別途設ける。</p>
+<p><em>監修用の参照先：lifePaths / simState.people.relationships</em></p>
+<h2 id="f-patterns">F｜選択の積み重ねで、人生の向きが変わる</h2>
+<table>
+<thead>
+<tr>
+<th>番号</th>
+<th>物語の型</th>
+<th>状態</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>F01</td>
+<td><a href="#f01">DJの言葉が考え方に小さく残る</a></td>
+<td>現行</td>
+</tr>
+<tr>
+<td>F02</td>
+<td><a href="#f02">同じ返答でも、その後が違う</a></td>
+<td>現行</td>
+</tr>
+<tr>
+<td>F03</td>
+<td><a href="#f03">話す・待つ・休むなど異なる進路を選ぶ</a></td>
+<td>現行</td>
+</tr>
+<tr>
+<td>F04</td>
+<td><a href="#f04">進路を選んでも、日常は続く</a></td>
+<td>現行</td>
+</tr>
+<tr>
+<td>F05</td>
+<td><a href="#f05">昔の一言が、ずっと先に意味を持つ</a></td>
+<td>現行</td>
+</tr>
+<tr>
+<td>F06</td>
+<td><a href="#f06">第150夜・第320夜以降の変わらない習慣</a></td>
+<td>現行</td>
+</tr>
+<tr>
+<td>F07</td>
+<td><a href="#f07">変わらないことを自分で選び直す</a></td>
+<td>追加原稿</td>
+</tr>
+</tbody>
+</table>
+<h3 id="f01">F01　DJの言葉が考え方に小さく残る</h3>
+<p><strong>状態：現行</strong>　／　<strong>起こるきっかけ</strong>：共感・問いかけ・主体性を促す返答が、感情や翌夜以降の行動傾向に影響。</p>
+<blockquote>
+<p><strong>お便り・演出の作例</strong>：透明な金魚「昨日の返事で急に変われたわけではありません。でもノートを開きました。」</p>
+</blockquote>
+<p><strong>書くときの注意</strong>：DJが人生を直接命令して実行させる仕組みではない。</p>
+<p><em>監修用の参照先：applyReply / simReplyImpact</em></p>
+<h3 id="f02">F02　同じ返答でも、その後が違う</h3>
+<p><strong>状態：現行</strong>　／　<strong>起こるきっかけ</strong>：元の性格、感情、体力、生活・関係値によって実際の行動候補の重みが異なる。</p>
+<blockquote>
+<p><strong>お便り・演出の作例</strong>：同じ「無理をしないで」を聴いても、休む人も、仕事を続ける人もいる。</p>
+</blockquote>
+<p><strong>書くときの注意</strong>：選択肢に一対一の結果を保証する文を添えない。</p>
+<p><em>監修用の参照先：simCategoryWeight / simChooseAction</em></p>
+<h3 id="f03">F03　話す・待つ・休むなど異なる進路を選ぶ</h3>
+<p><strong>状態：現行</strong>　／　<strong>起こるきっかけ</strong>：一部の主要人物は序盤の経緯と生活・関係状態から進路分岐を選ぶ。</p>
+<blockquote>
+<p><strong>お便り・演出の作例</strong>：配達員「連絡するつもりだったけど、今日は一度手紙に書いてみました。」</p>
+</blockquote>
+<p><strong>書くときの注意</strong>：特定の選択に対する結末を一律に決める方式ではない。</p>
+<p><em>監修用の参照先：resolveLifeCrossroads</em></p>
+<h3 id="f04">F04　進路を選んでも、日常は続く</h3>
+<p><strong>状態：現行</strong>　／　<strong>起こるきっかけ</strong>：進路結果が後の日常行動重みや専用連作へ影響する。</p>
+<blockquote>
+<p><strong>お便り・演出の作例</strong>：夜明けの猫「仕事のことはまだ考えています。今日は帰りに鉛筆を買いました。」</p>
+</blockquote>
+<p><strong>書くときの注意</strong>：「成長したので悩まない」は禁物。</p>
+<p><em>監修用の参照先：lifeDailyActionBias / lifeAfterDaily</em></p>
+<h3 id="f05">F05　昔の一言が、ずっと先に意味を持つ</h3>
+<p><strong>状態：現行</strong>　／　<strong>起こるきっかけ</strong>：実際に届いた・紹介された話、本人が経験した行動の記憶が後年の候補に戻る。</p>
+<blockquote>
+<p><strong>お便り・演出の作例</strong>：古時計「以前のお便りに書いた栞のことを、今日は別の理由で思い出しました。」</p>
+</blockquote>
+<p><strong>書くときの注意</strong>：件名だけ借りて未経験の本文を回想しない。</p>
+<p><em>監修用の参照先：longEchoCompose43 / radioMemoryCompose39</em></p>
+<h3 id="f06">F06　第150夜・第320夜以降の変わらない習慣</h3>
+<p><strong>状態：現行</strong>　／　<strong>起こるきっかけ</strong>：長期用の専用原稿が各人物に2本ずつ候補として用意されている。</p>
+<blockquote>
+<p><strong>お便り・演出の作例</strong>：眠れないパン屋「相変わらず朝は早いです。でも失敗したパンを見る目は少し変わりました。」</p>
+</blockquote>
+<p><strong>書くときの注意</strong>：以前の原稿を既読前提にしない。夜数の目安は確定した出現日ではない。</p>
+<p><em>監修用の参照先：longLifeCompose4914</em></p>
+<h3 id="f07">F07　変わらないことを自分で選び直す</h3>
+<p><strong>状態：追加原稿</strong>　／　<strong>起こるきっかけ</strong>：人生分岐の結果と、長年続いた習慣の記録を組み合わせて書く。</p>
+<blockquote>
+<p><strong>お便り・演出の作例</strong>：砂糖を三杯「好みを変えようとしたけれど、今日はいつもの三杯がちょうどよかったです。」</p>
+</blockquote>
+<p><strong>書くときの注意</strong>：砂糖を三杯に新しい進路分岐があると断定しない。生活ルーチンを素材にした追加原稿。</p>
+<p><em>監修用の参照先：lifePaths / simState.people.rhythms</em></p>
+<h2 id="g-patterns">G｜手紙の届き方・番組が知ること</h2>
+<table>
+<thead>
+<tr>
+<th>番号</th>
+<th>物語の型</th>
+<th>状態</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>G01</td>
+<td><a href="#g01">送ったのに紹介されなかった</a></td>
+<td>現行</td>
+</tr>
+<tr>
+<td>G02</td>
+<td><a href="#g02">読まれなかった便箋が翌夜に残る</a></td>
+<td>現行</td>
+</tr>
+<tr>
+<td>G03</td>
+<td><a href="#g03">DJだけが知らない近況がある</a></td>
+<td>現行</td>
+</tr>
+<tr>
+<td>G04</td>
+<td><a href="#g04">いつも聴いているのに、初めて書く</a></td>
+<td>現行</td>
+</tr>
+<tr>
+<td>G05</td>
+<td><a href="#g05">第4章で久しぶりの声と常連の声が並ぶ</a></td>
+<td>現行</td>
+</tr>
+<tr>
+<td>G06</td>
+<td><a href="#g06">同じ便箋でもDJの返答が異なる</a></td>
+<td>現行</td>
+</tr>
+</tbody>
+</table>
+<h3 id="g01">G01　送ったのに紹介されなかった</h3>
+<p><strong>状態：現行</strong>　／　<strong>起こるきっかけ</strong>：配達候補に入った便箋が、最大3通の紹介から外れる。</p>
+<blockquote>
+<p><strong>お便り・演出の作例</strong>：透明な金魚「書いて送った。でもラジオでは、別の人の話が流れていた。」（物語内面の案）</p>
+</blockquote>
+<p><strong>書くときの注意</strong>：本人が送った事実とDJが読んだ事実を分ける。</p>
+<p><em>監修用の参照先：letterSets / chosen / played</em></p>
+<h3 id="g02">G02　読まれなかった便箋が翌夜に残る</h3>
+<p><strong>状態：現行</strong>　／　<strong>起こるきっかけ</strong>：持ち越し対象になった便箋だけが翌夜の候補へ回る。</p>
+<blockquote>
+<p><strong>お便り・演出の作例</strong>：パン屋「昨日送った話を、今日になって番組が紹介した。」</p>
+</blockquote>
+<p><strong>書くときの注意</strong>：全ての未紹介原稿が持ち越されるわけではない。</p>
+<p><em>監修用の参照先：updatePendingLetters</em></p>
+<h3 id="g03">G03　DJだけが知らない近況がある</h3>
+<p><strong>状態：現行</strong>　／　<strong>起こるきっかけ</strong>：本人の生活・記憶は進行し、放送に紹介されないことがある。</p>
+<blockquote>
+<p><strong>お便り・演出の作例</strong>：夜明けの猫は帰り道に花屋へ行った。でも番組にまだその話は届かない。</p>
+</blockquote>
+<p><strong>書くときの注意</strong>：全知のナレーションとDJの返答の情報範囲を分ける。</p>
+<p><em>監修用の参照先：privateMemories / played</em></p>
+<h3 id="g04">G04　いつも聴いているのに、初めて書く</h3>
+<p><strong>状態：現行</strong>　／　<strong>起こるきっかけ</strong>：初登場時期を迎えた新リスナーが、生活背景とともに初投稿する。</p>
+<blockquote>
+<p><strong>お便り・演出の作例</strong>：冷蔵庫の明かり「仕事帰りに聴いていましたが、書くのは初めてです。」</p>
+</blockquote>
+<p><strong>書くときの注意</strong>：第30/35/41夜以降の新規組など、登場可能時期を尊重する。</p>
+<p><em>監修用の参照先：newListenerFirstLetter / newListenerEligible</em></p>
+<h3 id="g05">G05　第4章で久しぶりの声と常連の声が並ぶ</h3>
+<p><strong>状態：現行</strong>　／　<strong>起こるきっかけ</strong>：第91・92夜に、紹介履歴の少ない人と多い人を選ぶ設計。</p>
+<blockquote>
+<p><strong>お便り・演出の作例</strong>：久しぶりに声を聴く金魚の手紙と、最近もよく聞く配達員の便箋が並ぶ夜。</p>
+</blockquote>
+<p><strong>書くときの注意</strong>：例示の2人が必ず選ばれるわけではない。</p>
+<p><em>監修用の参照先：chapter4ChooseDynamic</em></p>
+<h3 id="g06">G06　同じ便箋でもDJの返答が異なる</h3>
+<p><strong>状態：現行</strong>　／　<strong>起こるきっかけ</strong>：手動の選択／自動DJの評価と最近の返答が、伝える言葉を変える。</p>
+<blockquote>
+<p><strong>お便り・演出の作例</strong>：「休んでいました」に、励ましを重ねず、静かに迎える返答も選べる。</p>
+</blockquote>
+<p><strong>書くときの注意</strong>：返答は本人が書いた本文内で確認できる事実の範囲にする。</p>
+<p><em>監修用の参照先：applyReply / autoDJReplyScore</em></p>
+<h2 id="h-patterns">H｜季節・番組の節目・余白</h2>
+<table>
+<thead>
+<tr>
+<th>番号</th>
+<th>物語の型</th>
+<th>状態</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>H01</td>
+<td><a href="#h01">雨が行動のきっかけになる</a></td>
+<td>現行</td>
+</tr>
+<tr>
+<td>H02</td>
+<td><a href="#h02">同じ季節でも別の過ごし方になる</a></td>
+<td>現行</td>
+</tr>
+<tr>
+<td>H03</td>
+<td><a href="#h03">特別放送でいつもと違う話を送る</a></td>
+<td>現行</td>
+</tr>
+<tr>
+<td>H04</td>
+<td><a href="#h04">記念夜で昔の声と今の声が重なる</a></td>
+<td>現行</td>
+</tr>
+<tr>
+<td>H05</td>
+<td><a href="#h05">番組が終わっても、それぞれの人生は続く</a></td>
+<td>現行</td>
+</tr>
+<tr>
+<td>H06</td>
+<td><a href="#h06">深刻な話の次に、ごく小さな笑い話</a></td>
+<td>現行</td>
+</tr>
+</tbody>
+</table>
+<h3 id="h01">H01　雨が行動のきっかけになる</h3>
+<p><strong>状態：現行</strong>　／　<strong>起こるきっかけ</strong>：ゲーム夜数に対応した天候が、日常行動の候補や放送の雰囲気に影響。</p>
+<blockquote>
+<p><strong>お便り・演出の作例</strong>：逆さまの傘「雨の日は、店の外の鉢の位置が気になります。」</p>
+</blockquote>
+<p><strong>書くときの注意</strong>：現実の端末の日付や天気とは同期しない。</p>
+<p><em>監修用の参照先：climateActionBias</em></p>
+<h3 id="h02">H02　同じ季節でも別の過ごし方になる</h3>
+<p><strong>状態：現行</strong>　／　<strong>起こるきっかけ</strong>：性格・感情・生活状態が違えば天候への反応も違う。</p>
+<blockquote>
+<p><strong>お便り・演出の作例</strong>：配達員は雨の配送を気にし、古時計は窓の音を聴く。</p>
+</blockquote>
+<p><strong>書くときの注意</strong>：全リスナーに同じ季節イベントを強制しない。</p>
+<p><em>監修用の参照先：simulateDailyLives / climate</em></p>
+<h3 id="h03">H03　特別放送でいつもと違う話を送る</h3>
+<p><strong>状態：現行</strong>　／　<strong>起こるきっかけ</strong>：テーマ付き企画の告知・参加・専用お便りが候補を変える。</p>
+<blockquote>
+<p><strong>お便り・演出の作例</strong>：月の裏側「今夜のテーマに合わせて、月の会議で決まったものを募集します。」</p>
+</blockquote>
+<p><strong>書くときの注意</strong>：未参加の人が特別放送で発言したと決めつけない。</p>
+<p><em>監修用の参照先：specialPlan / specialCreateLetters</em></p>
+<h3 id="h04">H04　記念夜で昔の声と今の声が重なる</h3>
+<p><strong>状態：現行</strong>　／　<strong>起こるきっかけ</strong>：50・100・200・300・365・500夜などの節目で番組固有の進行が起きうる。</p>
+<blockquote>
+<p><strong>お便り・演出の作例</strong>：古時計「50夜のころと、今では窓の明るさが違いますね。」（新作例）</p>
+</blockquote>
+<p><strong>書くときの注意</strong>：この台詞が現行版にあるわけではない。節目の放送進行自体は実装済み。</p>
+<p><em>監修用の参照先：MILESTONE_PROGRAMS</em></p>
+<h3 id="h05">H05　番組が終わっても、それぞれの人生は続く</h3>
+<p><strong>状態：現行</strong>　／　<strong>起こるきっかけ</strong>：第100夜以降に任意で閉局。予告と最終放送の手紙が現れる。</p>
+<blockquote>
+<p><strong>お便り・演出の作例</strong>：「この番組は終わる。でも、明日のパンはまた焼かれる。」</p>
+</blockquote>
+<p><strong>書くときの注意</strong>：閉局後に同じセーブで新たなお便りが届く構成にはしない。</p>
+<p><em>監修用の参照先：finale / finishBroadcast</em></p>
+<h3 id="h06">H06　深刻な話の次に、ごく小さな笑い話</h3>
+<p><strong>状態：現行</strong>　／　<strong>起こるきっかけ</strong>：候補の多様性やDJの放送構成が、夜ごとの緩急を調整する。</p>
+<blockquote>
+<p><strong>お便り・演出の作例</strong>：重い相談の次の夜、猫主任が棚の上で昼寝していたという報告が届く。</p>
+</blockquote>
+<p><strong>書くときの注意</strong>：同じ一夜での返答の温度差に気をつける。</p>
+<p><em>監修用の参照先：autoDJPickLetters / regularPacingText4917</em></p>
+<h2>企画会議で使う「一通の設計カード」</h2>
+<p>次の項目だけ埋めれば、プログラムが分からなくても、必要な条件をプランナーへ伝えられます。</p>
+<pre><code class="language-text">仮タイトル：
+差出人：
+この手紙を送りたくなる、直前の出来事：
+本人の気持ち（確定してよいこと／まだ分からないこと）：
+起こる条件：例「実際に放送を聴いた」「パン屋で二人が会話した」
+起こらなかったとき：別の便箋を出す／何も出さない／先送りする
+DJが知っていてよい事実：
+差出人だけが知っている事実：
+件名と本文の書き出し：
+返答の方向（受け止める／問いかける／余白を残す）：
+数夜後に起こせる小さな変化：
+位置づけ：既存の仕組み／追加原稿／新しい仕組みが必要
+</code></pre>
+<h3>このカードの記入例</h3>
+<ul>
+<li><strong>仮タイトル</strong>：「あの人も同じ夜にいた」</li>
+<li><strong>差出人</strong>：冷蔵庫の明かり。</li>
+<li><strong>きっかけ</strong>：深夜のコンビニで、配送中の人とおにぎりの話をした。</li>
+<li><strong>条件</strong>：実際に二人が同じ時間・場所にいた。接触結果が「会話」である。</li>
+<li><strong>本文</strong>：「あの棚の前で誰かと迷ったのが、帰ってから少し可笑しくなりました。」</li>
+<li><strong>後日の可能性</strong>：配達員の別視点。投稿は不確実で、連続で必ず読ませない。</li>
+<li><strong>境界</strong>：冷蔵庫の明かりは、相手が『午前3時の配達員』とは知らない。</li>
+</ul>
+<h2>書き手ができること／プランナーに確認すること</h2>
+<table>
+<thead>
+<tr>
+<th>そのまま発想に使ってよい</th>
+<th>事前に条件の確認が必要</th>
+<th>現行の仕組みだけでは約束できない</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>休息・仕事・内省を理由に短く投稿しなくなる</td>
+<td>任意の人物を任意の夜に必ず休ませる</td>
+<td>決まった理由で数十夜にわたり投稿を封じる</td>
+</tr>
+<tr>
+<td>放送を聴いた人が何夜か後で思い出す</td>
+<td>新しい具体的な過去の便箋への言及</td>
+<td>未放送の内容を全員が知っている</td>
+</tr>
+<tr>
+<td>二人が同じ場所にいると顔を合わせる</td>
+<td>同じ出来事の二通を必ず連続で配達する</td>
+<td>全12人のあらゆる組み合わせが街で出会う</td>
+</tr>
+<tr>
+<td>同じ会話を別々の気持ちで受け取る</td>
+<td>何十夜後まで続く新たな関係の連作</td>
+<td>挨拶一回で結婚・同居などを自動決定する</td>
+</tr>
+<tr>
+<td>DJの返答が生活の行動確率に関わる</td>
+<td>返答の文体に合わせた専用の後日談</td>
+<td>単一の返答で相手の人生を固定する</td>
+</tr>
+</tbody>
+</table>
+<p><strong>表現上の大切な線引き</strong>：「可能性」は「必然」ではありません。</p>
+<h2>最終チェック：新しい場面を書く前に</h2>
+<ul>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox"/>その人物が経験した事実か、誰かから聞いただけの話か。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox"/>その便箋は<strong>送信候補／実際の配達／番組での紹介</strong>のどこまで進んだか。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox"/>DJの返答で知っている情報を増やしすぎていないか。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox"/>出会いがあるなら、同じ日時・場所と双方の行動が記録されているか。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox"/>相手のラジオネームや本名を、偶然の接触だけで知ったことにしていないか。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox"/>気持ちの変化を「全部解決」に置き換えていないか。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox"/>3モード・未紹介・過去に戻れないセーブ・章と特別放送の重複でも成立するか。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox"/>新作は今後の便箋として加え、<strong>過去の放送日誌の本文を上書きしない</strong>か。</li>
+</ul>
+<h2>作家とプランナーのための次のページ</h2>
+<ul>
+<li><a href="people.html">12人の人物設定バイブル</a>：この人ならどう言うか。</li>
+<li><a href="writing-guide.html">シナリオ執筆ガイド</a>：原稿の組み立て方と監修。</li>
+<li><a href="relationships.html">人間関係・生活世界・記憶</a>：日常と交流の仕様の原典。</li>
+<li><a href="choices.html">返答と内部パラメーター</a>：ゲームデザインに落とすときの確認資料。</li>
+</ul>
+<h2>参照した実装箇所（プランナー・実装者向け）</h2>
+<p><code>events.js</code>：<code>quietAfterDaily</code>, <code>quietReturnNote</code>, <code>createRegularLetters</code>, <code>radioCultureCompose</code>, <code>radioMemoryCompose39</code>, <code>simulateMicroWorld</code>, <code>socialPairContact</code>, <code>socialQueueRecollection</code>, <code>socialLetterFor</code>, <code>relationThreadCompose42</code>, <code>dailyThreadCompose41</code>, <code>listenerCrossCompose4830</code>, <code>listenerCrossAfterCompose4831</code>, <code>resolveLifeCrossroads</code>, <code>chapter4ChooseDynamic</code>, <code>specialPlan</code>。</p>
+<p><code>listeners.js</code>：<code>simulateDailyLives</code>, <code>simChooseAction</code>, <code>simMeet</code>, <code>simReplyImpact</code>, <code>simLetterPostscript</code>。</p>
+<p>この一覧はゲーム本体 v4.9.22 の構造に基づく<strong>シナリオの分類</strong>です。全状況の完全な網羅表や、各作例の現在実装済み原稿一覧ではありません。追加原稿の動作確認は別途必要です。</p>
+</article><div class="page-foot"><p>このサイトは実装コードを調査して作成した仕様スナップショットです。最新コードとの照合と実機検証は別途必要です。</p><div class="footlinks"><a href="index.html">資料トップへ</a><a href="source-index.html">関数索引へ</a><a href="deploy.html">公開・更新手順</a></div></div></main>
+<aside aria-label="このページの目次" class="toc"><div class="toc-heading">ON THIS PAGE</div><a href="#a-patterns">A｜手紙が来ない夜と、戻ってくる声</a><a href="#b-patterns">B｜放送を聴いて生まれる次の手紙</a><a href="#c-patterns">C｜放送の外で起きる、リスナー同士の接点</a><a href="#d-patterns">D｜日々の行動・習慣が、手紙の種になる</a><a href="#e-patterns">E｜リスナーと身近な人の関係</a><a href="#f-patterns">F｜選択の積み重ねで、人生の向きが変わる</a><a href="#g-patterns">G｜手紙の届き方・番組が知ること</a><a href="#h-patterns">H｜季節・番組の節目・余白</a><div class="toc-foot">ライター向け v1.2 ／ v4.9.22</div></aside></div><script defer="" src="assets/search-data.js"></script><script defer="" src="assets/app.js"></script></body></html>
