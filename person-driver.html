@@ -1,0 +1,278 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#142538"><meta name="robots" content="noindex,nofollow"><meta name="description" content="夜の配送業務：初期値、生活行動、関係とシナリオ注意"><title>午前3時の配達員｜詳細人物設定｜午前二時の周波数 開発資料</title><link rel="stylesheet" href="assets/style.css"></head>
+<body data-page="person-driver"><a class="skip" href="#main">本文へ移動</a><div class="layout"><header class="topbar"><a href="index.html" class="brand"><span class="brand-dot"></span><span><b>午前二時の周波数</b><small>SOMEWHERE ON AIR · DEV HANDBOOK</small></span></a><div class="top-actions"><button type="button" id="themeToggle" aria-label="テーマを切り替える" title="テーマを切り替え">◐</button><button type="button" id="menuToggle" aria-expanded="false" aria-controls="sidebar">☰ <span>目次</span></button></div></header>
+<aside id="sidebar" class="sidebar"><div class="side-head"><span>SPECIFICATION / v4.9.22</span><button id="closeMenu" type="button" aria-label="目次を閉じる">×</button></div><label class="search-label" for="siteSearch">資料を横断検索</label><input id="siteSearch" type="search" placeholder="例：simReplyImpact / しおり" autocomplete="off"><div id="searchResults" class="search-results" aria-live="polite"></div><nav aria-label="ドキュメントのページ"><div class="nav-group"><div class="nav-heading">はじめに</div><a data-nav="index" href="index.html">開発資料の入口</a><a data-nav="getting-started" href="getting-started.html">開発参加・環境構築</a></div><div class="nav-group"><div class="nav-heading">物語</div><a data-nav="world" href="world.html">世界観・文体・企画哲学</a><a data-nav="chapters" href="chapters.html">第1〜4章と長期放送</a><a data-nav="specials" href="specials.html">特別放送・記念放送</a><a data-nav="finale" href="finale.html">第100夜以降の最終放送と閉局</a></div><div class="nav-group"><div class="nav-heading">人物</div><a data-nav="people" href="people.html">リスナー12人・人物設定一覧</a><a data-nav="person-cat" href="person-cat.html">夜明けの猫｜詳細人物設定</a><a data-nav="person-clock" href="person-clock.html">古時計｜詳細人物設定</a><a data-nav="person-bread" href="person-bread.html">眠れないパン屋｜詳細人物設定</a><a data-nav="person-moon" href="person-moon.html">月の裏側｜詳細人物設定</a><a data-nav="person-driver" href="person-driver.html">午前3時の配達員｜詳細人物設定</a><a data-nav="person-fish" href="person-fish.html">透明な金魚｜詳細人物設定</a><a data-nav="person-sugar" href="person-sugar.html">砂糖を三杯｜詳細人物設定</a><a data-nav="person-anon" href="person-anon.html">名前はまだありません｜詳細人物設定</a><a data-nav="person-terminal" href="person-terminal.html">終点のひとつ前｜詳細人物設定</a><a data-nav="person-umbrella" href="person-umbrella.html">逆さまの傘｜詳細人物設定</a><a data-nav="person-triangle" href="person-triangle.html">三角定規｜詳細人物設定</a><a data-nav="person-fridge" href="person-fridge.html">冷蔵庫の明かり｜詳細人物設定</a></div><div class="nav-group"><div class="nav-heading">ゲーム進行</div><a data-nav="flow" href="flow.html">夜のゲームループと画面遷移</a><a data-nav="archive" href="archive.html">放送日誌・人物録・しおり</a></div><div class="nav-group"><div class="nav-heading">内部システム</div><a data-nav="state" href="state.html">内部状態とパラメーターの全体像</a><a data-nav="choices" href="choices.html">返答と内部パラメーターの変化</a><a data-nav="simulation" href="simulation.html">12人の自律生活AI</a><a data-nav="relationships" href="relationships.html">人間関係・生活世界・記憶</a></div><div class="nav-group"><div class="nav-heading">放送システム</div><a data-nav="modes" href="modes.html">3つの楽しみ方・操作範囲</a><a data-nav="auto-dj" href="auto-dj.html">聴くだけの夜：自動DJの詳細</a><a data-nav="station" href="station.html">放送演出・曲・DJの雰囲気</a></div><div class="nav-group"><div class="nav-heading">実装</div><a data-nav="architecture" href="architecture.html">アーキテクチャ・依存関係</a><a data-nav="letters" href="letters.html">お便り・返答・候補生成</a><a data-nav="save" href="save.html">セーブ・バックアップ・互換性</a></div><div class="nav-group"><div class="nav-heading">開発</div><a data-nav="qa" href="qa.html">テスト計画・受け入れ条件</a></div><div class="nav-group"><div class="nav-heading">運用</div><a data-nav="deploy" href="deploy.html">GitHub Pagesへの公開・保守</a></div><div class="nav-group"><div class="nav-heading">参考資料</div><a data-nav="glossary" href="glossary.html">用語集・キー一覧</a><a data-nav="changelog" href="changelog.html">開発資料の変更履歴</a><a data-nav="source-index" href="source-index.html">ソースコード関数索引</a></div></nav><p class="side-note">基準コード v4.9.22<br>資料初版 2026-10-29<br>GitHub Pages 対応</p></aside><div id="veil" class="veil"></div>
+<main id="main" class="main"><div class="kicker">人物 <span>/ 開発者向け資料</span></div><article class="prose"><h1>午前3時の配達員｜詳細人物設定</h1>
+<blockquote>
+<p><strong>資料基準:</strong> ゲーム v4.9.22 ／ <strong>資料状態:</strong> 実装コードを基準にした開発者向け整理。未検証・提案は明記。</p>
+</blockquote>
+<h2 id="基本人物像">基本人物像<a class="heading-anchor" href="#基本人物像" aria-label="見出しへリンク">#</a></h2>
+<p><strong>人物の役割</strong>：夜の配送業務<br />
+<strong>主題</strong>：猫主任・妹・職場の仲間・夜の帰り道<br />
+<strong>物語の説明</strong>：配送先や駐車場の猫主任との日常。妹との関係はプレイヤーの選択により異なる。運転中に投稿した設定にしない。<br />
+<strong>文体ガイド</strong>：軽い業務報告調の冗談と親しみある丁寧語。</p>
+<blockquote>
+<p><strong>注意</strong>：この人物像は開発用の要約です。進路・家族関係・過去の選択などは、セーブごとの <code>flags</code> と紹介履歴が優先されます。</p>
+</blockquote>
+<h2 id="内部初期値-コード実数値">内部初期値（コード実数値）<a class="heading-anchor" href="#内部初期値-コード実数値" aria-label="見出しへリンク">#</a></h2>
+<table>
+<thead>
+<tr>
+  <th>指標</th>
+  <th>変数</th>
+  <th style="text-align:right">初期値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>性格</td>
+  <td><code>traits.sociability</code></td>
+  <td style="text-align:right">80</td>
+</tr>
+<tr>
+  <td>性格</td>
+  <td><code>traits.caution</code></td>
+  <td style="text-align:right">53</td>
+</tr>
+<tr>
+  <td>性格</td>
+  <td><code>traits.sensitivity</code></td>
+  <td style="text-align:right">67</td>
+</tr>
+<tr>
+  <td>性格</td>
+  <td><code>traits.independence</code></td>
+  <td style="text-align:right">70</td>
+</tr>
+<tr>
+  <td>感情</td>
+  <td><code>emotion.joy</code></td>
+  <td style="text-align:right">48</td>
+</tr>
+<tr>
+  <td>感情</td>
+  <td><code>emotion.anxiety</code></td>
+  <td style="text-align:right">48</td>
+</tr>
+<tr>
+  <td>感情</td>
+  <td><code>emotion.anger</code></td>
+  <td style="text-align:right">20</td>
+</tr>
+<tr>
+  <td>感情</td>
+  <td><code>emotion.loneliness</code></td>
+  <td style="text-align:right">29</td>
+</tr>
+<tr>
+  <td>感情</td>
+  <td><code>emotion.hope</code></td>
+  <td style="text-align:right">38</td>
+</tr>
+<tr>
+  <td>生活</td>
+  <td><code>life.work</code></td>
+  <td style="text-align:right">72</td>
+</tr>
+<tr>
+  <td>生活</td>
+  <td><code>life.health</code></td>
+  <td style="text-align:right">48</td>
+</tr>
+<tr>
+  <td>生活</td>
+  <td><code>life.finance</code></td>
+  <td style="text-align:right">54</td>
+</tr>
+<tr>
+  <td>生活</td>
+  <td><code>life.leisure</code></td>
+  <td style="text-align:right">38</td>
+</tr>
+<tr>
+  <td>放送関係</td>
+  <td><code>listeners.trust</code></td>
+  <td style="text-align:right">35</td>
+</tr>
+<tr>
+  <td>放送関係</td>
+  <td><code>listeners.reflection</code></td>
+  <td style="text-align:right">40</td>
+</tr>
+<tr>
+  <td>放送関係</td>
+  <td><code>listeners.agency</code></td>
+  <td style="text-align:right">50</td>
+</tr>
+<tr>
+  <td>放送関係</td>
+  <td><code>listeners.stress</code></td>
+  <td style="text-align:right">35</td>
+</tr>
+</tbody>
+</table>
+<p>数値は0〜100。<strong>放送関係の数値と生活AIの数値は別の状態</strong>です。性格4値は通常固定。感情5値・生活4値・関係値は行動と放送影響で変化します。</p>
+<h2 id="毎日の基本ルーティン">毎日の基本ルーティン<a class="heading-anchor" href="#毎日の基本ルーティン" aria-label="見出しへリンク">#</a></h2>
+<ul>
+<li>配送車を点検した</li>
+<li>休憩所で缶コーヒーを買った</li>
+<li>駐車場の猫主任を見かけた</li>
+</ul>
+<p>これらは「朝・日中の情景」に使う候補で、<strong>必ず毎晩全部行う</strong>わけではありません。</p>
+<h2 id="交流相手と初期状態">交流相手と初期状態<a class="heading-anchor" href="#交流相手と初期状態" aria-label="見出しへリンク">#</a></h2>
+<table>
+<thead>
+<tr>
+  <th>相手キー</th>
+  <th>相手</th>
+  <th style="text-align:right">初期親密さ</th>
+  <th style="text-align:right">信頼</th>
+  <th style="text-align:right">緊張</th>
+  <th>外部関連キー</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>sister</code></td>
+  <td>妹</td>
+  <td style="text-align:right">48</td>
+  <td style="text-align:right">43</td>
+  <td style="text-align:right">73</td>
+  <td>—</td>
+</tr>
+<tr>
+  <td><code>coworker</code></td>
+  <td>配送仲間</td>
+  <td style="text-align:right">62</td>
+  <td style="text-align:right">67</td>
+  <td style="text-align:right">19</td>
+  <td>—</td>
+</tr>
+<tr>
+  <td><code>catBoss</code></td>
+  <td>猫主任</td>
+  <td style="text-align:right">36</td>
+  <td style="text-align:right">45</td>
+  <td style="text-align:right">0</td>
+  <td>—</td>
+</tr>
+</tbody>
+</table>
+<p>実際の交流は関連する <code>social</code> 行動が選ばれた場合に発生し、<code>simMeet</code> で結果が決まります。交流しただけで自動的に仲直りしません。</p>
+<h2 id="自律生活の行動候補一覧">自律生活の行動候補一覧<a class="heading-anchor" href="#自律生活の行動候補一覧" aria-label="見出しへリンク">#</a></h2>
+<table>
+<thead>
+<tr>
+  <th>行動ID</th>
+  <th>行動</th>
+  <th>分類</th>
+  <th style="text-align:right">基本重み</th>
+  <th>対人キー</th>
+  <th>差分</th>
+  <th>条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>route</code></td>
+  <td>翌日の配送ルートを確認した</td>
+  <td><code>duty</code></td>
+  <td style="text-align:right">17</td>
+  <td><code>None</code></td>
+  <td><code>work</code> +1、<code>anxiety</code> -1</td>
+  <td>なし</td>
+</tr>
+<tr>
+  <td><code>coffee</code></td>
+  <td>休憩所で温かい缶コーヒーを飲んだ</td>
+  <td><code>rest</code></td>
+  <td style="text-align:right">16</td>
+  <td><code>None</code></td>
+  <td><code>health</code> +1、<code>joy</code> +1</td>
+  <td>なし</td>
+</tr>
+<tr>
+  <td><code>chief</code></td>
+  <td>駐車場で猫主任の近くに座ってみた</td>
+  <td><code>social</code></td>
+  <td style="text-align:right">16</td>
+  <td><code>catBoss</code></td>
+  <td><code>joy</code> +2、<code>loneliness</code> -1</td>
+  <td>なし</td>
+</tr>
+<tr>
+  <td><code>coworker</code></td>
+  <td>同僚に休憩中の出来事を話した</td>
+  <td><code>social</code></td>
+  <td style="text-align:right">13</td>
+  <td><code>coworker</code></td>
+  <td><code>loneliness</code> -2、<code>joy</code> +1</td>
+  <td>なし</td>
+</tr>
+<tr>
+  <td><code>sleep</code></td>
+  <td>いつもより長く仮眠を取った</td>
+  <td><code>rest</code></td>
+  <td style="text-align:right">14</td>
+  <td><code>None</code></td>
+  <td><code>health</code> +3、<code>anxiety</code> -2</td>
+  <td>なし</td>
+</tr>
+<tr>
+  <td><code>sisterdraft</code></td>
+  <td>妹への短い返事を下書きした</td>
+  <td><code>reflection</code></td>
+  <td style="text-align:right">12</td>
+  <td><code>None</code></td>
+  <td><code>hope</code> +1、<code>anxiety</code> +1</td>
+  <td>第6夜〜</td>
+</tr>
+<tr>
+  <td><code>sisterthink</code></td>
+  <td>妹と話したころの写真を見つめた</td>
+  <td><code>reflection</code></td>
+  <td style="text-align:right">11</td>
+  <td><code>None</code></td>
+  <td><code>hope</code> +1、<code>loneliness</code> +1</td>
+  <td>第6夜〜</td>
+</tr>
+<tr>
+  <td><code>conveniencestop</code></td>
+  <td>深夜のコンビニに寄って温かい飲み物を買った</td>
+  <td><code>rest</code></td>
+  <td style="text-align:right">13</td>
+  <td><code>None</code></td>
+  <td><code>health</code> +1、<code>joy</code> +1</td>
+  <td>なし</td>
+</tr>
+<tr>
+  <td><code>shoproute</code></td>
+  <td>古い時計店のある通りへ荷物を届けた</td>
+  <td><code>duty</code></td>
+  <td style="text-align:right">15</td>
+  <td><code>None</code></td>
+  <td><code>work</code> +1、<code>health</code> -1</td>
+  <td>なし</td>
+</tr>
+<tr>
+  <td><code>stationdelivery</code></td>
+  <td>駅前の配送先へ荷物を届けた</td>
+  <td><code>duty</code></td>
+  <td style="text-align:right">15</td>
+  <td><code>None</code></td>
+  <td><code>work</code> +1、<code>health</code> -1</td>
+  <td>なし</td>
+</tr>
+</tbody>
+</table>
+<p>行動は候補表の重みをそのまま抽選するのではなく、現在の感情・生活・記憶・気候・関係などを足してから抽選します。<a href="simulation.html">計算式</a>を参照。</p>
+<h2 id="物語・実装の注意">物語・実装の注意<a class="heading-anchor" href="#物語・実装の注意" aria-label="見出しへリンク">#</a></h2>
+<ul>
+<li>その夜の投稿に書かれた出来事と、生活内部に存在する出来事を取り違えない。</li>
+<li>未読の手紙をDJが知っているように書かない。参照根拠は原則 <code>s.played</code>。</li>
+<li>過去章の選択結果を後年の固定文面で強制的に確定しない。</li>
+<li>口調を個別に校正。自動DJの返答と本人の文体を同一視しない。</li>
+</ul>
+<h2 id="主要ソース">主要ソース<a class="heading-anchor" href="#主要ソース" aria-label="見出しへリンク">#</a></h2>
+<p><code>listeners.js</code> の <code>SIM_PROFILES.driver</code>、<code>defaultState().listeners.driver</code>。関連：<code>simChooseAction</code>・<code>simRegisterAction</code>・<code>simMeet</code>・<code>applyReply</code>・<code>chapter4Letters</code>。</p>
+</article><div class="page-foot"><p>このサイトは実装コードを調査して作成した仕様スナップショットです。最新コードとの照合と実機検証は別途必要です。</p><div class="footlinks"><a href="index.html">資料トップへ</a><a href="source-index.html">関数索引へ</a><a href="deploy.html">公開・更新手順</a></div></div></main>
+<aside class="toc" aria-label="このページの目次"><div class="toc-heading">ON THIS PAGE</div><a class="toc-lv-2" href="#基本人物像">基本人物像</a><a class="toc-lv-2" href="#内部初期値-コード実数値">内部初期値（コード実数値）</a><a class="toc-lv-2" href="#毎日の基本ルーティン">毎日の基本ルーティン</a><a class="toc-lv-2" href="#交流相手と初期状態">交流相手と初期状態</a><a class="toc-lv-2" href="#自律生活の行動候補一覧">自律生活の行動候補一覧</a><a class="toc-lv-2" href="#物語・実装の注意">物語・実装の注意</a><a class="toc-lv-2" href="#主要ソース">主要ソース</a><div class="toc-foot">v4.9.22 を基準に編集</div></aside></div><script src="assets/search-data.js" defer></script><script src="assets/app.js" defer></script></body></html>

@@ -1,0 +1,64 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#142538"><meta name="robots" content="noindex,nofollow"><meta name="description" content="手動・おたより中心・聴くだけの夜の状態と差異"><title>3つの楽しみ方・操作範囲｜午前二時の周波数 開発資料</title><link rel="stylesheet" href="assets/style.css"></head>
+<body data-page="modes"><a class="skip" href="#main">本文へ移動</a><div class="layout"><header class="topbar"><a href="index.html" class="brand"><span class="brand-dot"></span><span><b>午前二時の周波数</b><small>SOMEWHERE ON AIR · DEV HANDBOOK</small></span></a><div class="top-actions"><button type="button" id="themeToggle" aria-label="テーマを切り替える" title="テーマを切り替え">◐</button><button type="button" id="menuToggle" aria-expanded="false" aria-controls="sidebar">☰ <span>目次</span></button></div></header>
+<aside id="sidebar" class="sidebar"><div class="side-head"><span>SPECIFICATION / v4.9.22</span><button id="closeMenu" type="button" aria-label="目次を閉じる">×</button></div><label class="search-label" for="siteSearch">資料を横断検索</label><input id="siteSearch" type="search" placeholder="例：simReplyImpact / しおり" autocomplete="off"><div id="searchResults" class="search-results" aria-live="polite"></div><nav aria-label="ドキュメントのページ"><div class="nav-group"><div class="nav-heading">はじめに</div><a data-nav="index" href="index.html">開発資料の入口</a><a data-nav="getting-started" href="getting-started.html">開発参加・環境構築</a></div><div class="nav-group"><div class="nav-heading">物語</div><a data-nav="world" href="world.html">世界観・文体・企画哲学</a><a data-nav="chapters" href="chapters.html">第1〜4章と長期放送</a><a data-nav="specials" href="specials.html">特別放送・記念放送</a><a data-nav="finale" href="finale.html">第100夜以降の最終放送と閉局</a></div><div class="nav-group"><div class="nav-heading">人物</div><a data-nav="people" href="people.html">リスナー12人・人物設定一覧</a><a data-nav="person-cat" href="person-cat.html">夜明けの猫｜詳細人物設定</a><a data-nav="person-clock" href="person-clock.html">古時計｜詳細人物設定</a><a data-nav="person-bread" href="person-bread.html">眠れないパン屋｜詳細人物設定</a><a data-nav="person-moon" href="person-moon.html">月の裏側｜詳細人物設定</a><a data-nav="person-driver" href="person-driver.html">午前3時の配達員｜詳細人物設定</a><a data-nav="person-fish" href="person-fish.html">透明な金魚｜詳細人物設定</a><a data-nav="person-sugar" href="person-sugar.html">砂糖を三杯｜詳細人物設定</a><a data-nav="person-anon" href="person-anon.html">名前はまだありません｜詳細人物設定</a><a data-nav="person-terminal" href="person-terminal.html">終点のひとつ前｜詳細人物設定</a><a data-nav="person-umbrella" href="person-umbrella.html">逆さまの傘｜詳細人物設定</a><a data-nav="person-triangle" href="person-triangle.html">三角定規｜詳細人物設定</a><a data-nav="person-fridge" href="person-fridge.html">冷蔵庫の明かり｜詳細人物設定</a></div><div class="nav-group"><div class="nav-heading">ゲーム進行</div><a data-nav="flow" href="flow.html">夜のゲームループと画面遷移</a><a data-nav="archive" href="archive.html">放送日誌・人物録・しおり</a></div><div class="nav-group"><div class="nav-heading">内部システム</div><a data-nav="state" href="state.html">内部状態とパラメーターの全体像</a><a data-nav="choices" href="choices.html">返答と内部パラメーターの変化</a><a data-nav="simulation" href="simulation.html">12人の自律生活AI</a><a data-nav="relationships" href="relationships.html">人間関係・生活世界・記憶</a></div><div class="nav-group"><div class="nav-heading">放送システム</div><a data-nav="modes" href="modes.html">3つの楽しみ方・操作範囲</a><a data-nav="auto-dj" href="auto-dj.html">聴くだけの夜：自動DJの詳細</a><a data-nav="station" href="station.html">放送演出・曲・DJの雰囲気</a></div><div class="nav-group"><div class="nav-heading">実装</div><a data-nav="architecture" href="architecture.html">アーキテクチャ・依存関係</a><a data-nav="letters" href="letters.html">お便り・返答・候補生成</a><a data-nav="save" href="save.html">セーブ・バックアップ・互換性</a></div><div class="nav-group"><div class="nav-heading">開発</div><a data-nav="qa" href="qa.html">テスト計画・受け入れ条件</a></div><div class="nav-group"><div class="nav-heading">運用</div><a data-nav="deploy" href="deploy.html">GitHub Pagesへの公開・保守</a></div><div class="nav-group"><div class="nav-heading">参考資料</div><a data-nav="glossary" href="glossary.html">用語集・キー一覧</a><a data-nav="changelog" href="changelog.html">開発資料の変更履歴</a><a data-nav="source-index" href="source-index.html">ソースコード関数索引</a></div></nav><p class="side-note">基準コード v4.9.22<br>資料初版 2026-10-29<br>GitHub Pages 対応</p></aside><div id="veil" class="veil"></div>
+<main id="main" class="main"><div class="kicker">放送システム <span>/ 開発者向け資料</span></div><article class="prose"><h1>3つの楽しみ方・操作範囲</h1>
+<blockquote>
+<p><strong>資料基準:</strong> ゲーム v4.9.22 ／ <strong>資料状態:</strong> 実装コードを基準にした開発者向け整理。未検証・提案は明記。</p>
+</blockquote>
+<h2 id="モード比較">モード比較<a class="heading-anchor" href="#モード比較" aria-label="見出しへリンク">#</a></h2>
+<table>
+<thead>
+<tr>
+  <th>要素</th>
+  <th>いつもの放送</th>
+  <th>おたより中心</th>
+  <th>聴くだけの夜</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>保存先</td>
+  <td>本編</td>
+  <td>本編</td>
+  <td>専用の読書セーブ</td>
+</tr>
+<tr>
+  <td>紹介する手紙</td>
+  <td>プレイヤーが最大3通選択</td>
+  <td>プレイヤーが最大3通選択</td>
+  <td>自動DJが選ぶ</td>
+</tr>
+<tr>
+  <td>返答</td>
+  <td>プレイヤーが選択</td>
+  <td>プレイヤーが選択</td>
+  <td>自動DJが候補を評価し選ぶ</td>
+</tr>
+<tr>
+  <td>挨拶・つなぎ・締め</td>
+  <td>プレイヤーが選択</td>
+  <td>自動で演出選択</td>
+  <td>自動DJが放送文を組み立て</td>
+</tr>
+<tr>
+  <td>曲・番組の雰囲気</td>
+  <td>プレイヤーが選択</td>
+  <td>既存の自動演出</td>
+  <td>自動DJが選択</td>
+</tr>
+<tr>
+  <td>物語の進行</td>
+  <td>本編状態</td>
+  <td>同じ本編状態</td>
+  <td>本編と独立した状態</td>
+</tr>
+</tbody>
+</table>
+<h2 id="本編内の切替">本編内の切替<a class="heading-anchor" href="#本編内の切替" aria-label="見出しへリンク">#</a></h2>
+<p><code>broadcastModePref</code> が <code>manual</code> または <code>letters</code>。放送準備中は切り替えられるが、放送開始時に <code>nightBroadcastMode</code> で固定されます。選んだスタイルは翌夜へ引き継がれます。</p>
+<p><code>letters</code> モードは「プレイヤーがお便りと返答を選ぶ」が本質です。自動DJの返信ロジックに統合しないでください。</p>
+<h2 id="読書モードへの分岐">読書モードへの分岐<a class="heading-anchor" href="#読書モードへの分岐" aria-label="見出しへリンク">#</a></h2>
+<p>初めから独立して始める、または本編の適切な節目から別セーブとして分岐する。既存の読書データがある場合は確認を伴う上書き。<code>makeReaderState</code> と <code>createReader</code> が生成を担当。</p>
+<p><strong>参照</strong>：<code>setBroadcastMode</code>（script.js:559）、<code>broadcastModePicker</code>（script.js:565）、<code>beginBroadcast</code>（script.js:485）、<code>createReader</code>（script.js:1514）、<code>switchToReader</code>（script.js:1525）、<code>switchToMain</code>（script.js:1534）、<code>readerProduceNight</code>（script.js:2589）</p>
+</article><div class="page-foot"><p>このサイトは実装コードを調査して作成した仕様スナップショットです。最新コードとの照合と実機検証は別途必要です。</p><div class="footlinks"><a href="index.html">資料トップへ</a><a href="source-index.html">関数索引へ</a><a href="deploy.html">公開・更新手順</a></div></div></main>
+<aside class="toc" aria-label="このページの目次"><div class="toc-heading">ON THIS PAGE</div><a class="toc-lv-2" href="#モード比較">モード比較</a><a class="toc-lv-2" href="#本編内の切替">本編内の切替</a><a class="toc-lv-2" href="#読書モードへの分岐">読書モードへの分岐</a><div class="toc-foot">v4.9.22 を基準に編集</div></aside></div><script src="assets/search-data.js" defer></script><script src="assets/app.js" defer></script></body></html>

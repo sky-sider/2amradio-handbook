@@ -1,0 +1,183 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#142538"><meta name="robots" content="noindex,nofollow"><meta name="description" content="sの主要項目・数値の意味・更新経路・公開範囲"><title>内部状態とパラメーターの全体像｜午前二時の周波数 開発資料</title><link rel="stylesheet" href="assets/style.css"></head>
+<body data-page="state"><a class="skip" href="#main">本文へ移動</a><div class="layout"><header class="topbar"><a href="index.html" class="brand"><span class="brand-dot"></span><span><b>午前二時の周波数</b><small>SOMEWHERE ON AIR · DEV HANDBOOK</small></span></a><div class="top-actions"><button type="button" id="themeToggle" aria-label="テーマを切り替える" title="テーマを切り替え">◐</button><button type="button" id="menuToggle" aria-expanded="false" aria-controls="sidebar">☰ <span>目次</span></button></div></header>
+<aside id="sidebar" class="sidebar"><div class="side-head"><span>SPECIFICATION / v4.9.22</span><button id="closeMenu" type="button" aria-label="目次を閉じる">×</button></div><label class="search-label" for="siteSearch">資料を横断検索</label><input id="siteSearch" type="search" placeholder="例：simReplyImpact / しおり" autocomplete="off"><div id="searchResults" class="search-results" aria-live="polite"></div><nav aria-label="ドキュメントのページ"><div class="nav-group"><div class="nav-heading">はじめに</div><a data-nav="index" href="index.html">開発資料の入口</a><a data-nav="getting-started" href="getting-started.html">開発参加・環境構築</a></div><div class="nav-group"><div class="nav-heading">物語</div><a data-nav="world" href="world.html">世界観・文体・企画哲学</a><a data-nav="chapters" href="chapters.html">第1〜4章と長期放送</a><a data-nav="specials" href="specials.html">特別放送・記念放送</a><a data-nav="finale" href="finale.html">第100夜以降の最終放送と閉局</a></div><div class="nav-group"><div class="nav-heading">人物</div><a data-nav="people" href="people.html">リスナー12人・人物設定一覧</a><a data-nav="person-cat" href="person-cat.html">夜明けの猫｜詳細人物設定</a><a data-nav="person-clock" href="person-clock.html">古時計｜詳細人物設定</a><a data-nav="person-bread" href="person-bread.html">眠れないパン屋｜詳細人物設定</a><a data-nav="person-moon" href="person-moon.html">月の裏側｜詳細人物設定</a><a data-nav="person-driver" href="person-driver.html">午前3時の配達員｜詳細人物設定</a><a data-nav="person-fish" href="person-fish.html">透明な金魚｜詳細人物設定</a><a data-nav="person-sugar" href="person-sugar.html">砂糖を三杯｜詳細人物設定</a><a data-nav="person-anon" href="person-anon.html">名前はまだありません｜詳細人物設定</a><a data-nav="person-terminal" href="person-terminal.html">終点のひとつ前｜詳細人物設定</a><a data-nav="person-umbrella" href="person-umbrella.html">逆さまの傘｜詳細人物設定</a><a data-nav="person-triangle" href="person-triangle.html">三角定規｜詳細人物設定</a><a data-nav="person-fridge" href="person-fridge.html">冷蔵庫の明かり｜詳細人物設定</a></div><div class="nav-group"><div class="nav-heading">ゲーム進行</div><a data-nav="flow" href="flow.html">夜のゲームループと画面遷移</a><a data-nav="archive" href="archive.html">放送日誌・人物録・しおり</a></div><div class="nav-group"><div class="nav-heading">内部システム</div><a data-nav="state" href="state.html">内部状態とパラメーターの全体像</a><a data-nav="choices" href="choices.html">返答と内部パラメーターの変化</a><a data-nav="simulation" href="simulation.html">12人の自律生活AI</a><a data-nav="relationships" href="relationships.html">人間関係・生活世界・記憶</a></div><div class="nav-group"><div class="nav-heading">放送システム</div><a data-nav="modes" href="modes.html">3つの楽しみ方・操作範囲</a><a data-nav="auto-dj" href="auto-dj.html">聴くだけの夜：自動DJの詳細</a><a data-nav="station" href="station.html">放送演出・曲・DJの雰囲気</a></div><div class="nav-group"><div class="nav-heading">実装</div><a data-nav="architecture" href="architecture.html">アーキテクチャ・依存関係</a><a data-nav="letters" href="letters.html">お便り・返答・候補生成</a><a data-nav="save" href="save.html">セーブ・バックアップ・互換性</a></div><div class="nav-group"><div class="nav-heading">開発</div><a data-nav="qa" href="qa.html">テスト計画・受け入れ条件</a></div><div class="nav-group"><div class="nav-heading">運用</div><a data-nav="deploy" href="deploy.html">GitHub Pagesへの公開・保守</a></div><div class="nav-group"><div class="nav-heading">参考資料</div><a data-nav="glossary" href="glossary.html">用語集・キー一覧</a><a data-nav="changelog" href="changelog.html">開発資料の変更履歴</a><a data-nav="source-index" href="source-index.html">ソースコード関数索引</a></div></nav><p class="side-note">基準コード v4.9.22<br>資料初版 2026-10-29<br>GitHub Pages 対応</p></aside><div id="veil" class="veil"></div>
+<main id="main" class="main"><div class="kicker">内部システム <span>/ 開発者向け資料</span></div><article class="prose"><h1>内部状態とパラメーターの全体像</h1>
+<blockquote>
+<p><strong>資料基準:</strong> ゲーム v4.9.22 ／ <strong>資料状態:</strong> 実装コードを基準にした開発者向け整理。未検証・提案は明記。</p>
+</blockquote>
+<h2 id="単一の進行状態-s">単一の進行状態 <code>s</code><a class="heading-anchor" href="#単一の進行状態-s" aria-label="見出しへリンク">#</a></h2>
+<p>ゲーム本編はグローバル変数 <code>s</code> に状態を集約し、<code>defaultState()</code>で初期化、<code>migrateState()</code>で旧版の不足項目を補います。<strong>数値はすべてプレイヤーに表示する必要はありません。</strong></p>
+<table>
+<thead>
+<tr>
+  <th>状態</th>
+  <th>データ形</th>
+  <th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>night</code>, <code>phase</code>, <code>tab</code></td>
+  <td>number/string</td>
+  <td>現在夜、画面進行、タブ</td>
+</tr>
+<tr>
+  <td><code>listeners[id]</code></td>
+  <td>object</td>
+  <td>放送との関係（信頼・内省・主体性・ストレスなど）</td>
+</tr>
+<tr>
+  <td><code>simState.people[id]</code></td>
+  <td>object</td>
+  <td>自律生活（性格、感情、生活、交流、習慣、記憶）</td>
+</tr>
+<tr>
+  <td><code>flags</code></td>
+  <td>object</td>
+  <td>既読・選択・人物別イベントフラグ</td>
+</tr>
+<tr>
+  <td><code>privateMemories</code></td>
+  <td>object</td>
+  <td>放送局はまだ知らない個人の経験</td>
+</tr>
+<tr>
+  <td><code>storyState</code>, <code>lifePaths</code></td>
+  <td>object</td>
+  <td>脚本分岐、人生の方向</td>
+</tr>
+<tr>
+  <td><code>letterSets</code>, <code>pending</code>, <code>chosen</code></td>
+  <td>object/array</td>
+  <td>配達済み候補・持ち越し・紹介予定</td>
+</tr>
+<tr>
+  <td><code>played</code>, <code>logs</code>, <code>events</code></td>
+  <td>array</td>
+  <td>紹介履歴・放送履歴・出来事</td>
+</tr>
+<tr>
+  <td><code>simState.processedNights</code></td>
+  <td>array</td>
+  <td>自律生活の同夜二重更新防止</td>
+</tr>
+<tr>
+  <td><code>special</code>, <code>storyPrograms</code></td>
+  <td>object</td>
+  <td>特別企画と物語連動番組</td>
+</tr>
+<tr>
+  <td><code>chapter2</code>,<code>chapter3</code>,<code>chapter4</code></td>
+  <td>object</td>
+  <td>章固有の進行とイベント履歴</td>
+</tr>
+<tr>
+  <td><code>climate</code>, <code>stationTone</code></td>
+  <td>object</td>
+  <td>天気とスタジオの雰囲気</td>
+</tr>
+<tr>
+  <td><code>broadcastStyle</code>, <code>broadcastModePref</code></td>
+  <td>object/string</td>
+  <td>演出履歴・手動／おたより中心</td>
+</tr>
+<tr>
+  <td><code>finale</code></td>
+  <td>object</td>
+  <td>閉局計画・予告・閉局済み状態</td>
+</tr>
+<tr>
+  <td><code>rng</code></td>
+  <td>unsigned integer</td>
+  <td>ゲーム本体の再現性に関わる乱数状態</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2層の数値を混同しない">2層の数値を混同しない<a class="heading-anchor" href="#2層の数値を混同しない" aria-label="見出しへリンク">#</a></h2>
+<h3 id="放送との関係-s-listeners-id">① 放送との関係：<code>s.listeners[id]</code><a class="heading-anchor" href="#放送との関係-s-listeners-id" aria-label="見出しへリンク">#</a></h3>
+<table>
+<thead>
+<tr>
+  <th>キー</th>
+  <th>範囲</th>
+  <th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>trust</code></td>
+  <td>0〜100</td>
+  <td>この放送で受け取った言葉に対する信頼の目安</td>
+</tr>
+<tr>
+  <td><code>reflection</code></td>
+  <td>0〜100</td>
+  <td>自分の状況を振り返る方向</td>
+</tr>
+<tr>
+  <td><code>agency</code></td>
+  <td>0〜100</td>
+  <td>自分で選択する方向</td>
+</tr>
+<tr>
+  <td><code>stress</code></td>
+  <td>0〜100</td>
+  <td>負担・緊張の方向</td>
+</tr>
+<tr>
+  <td><code>memories</code></td>
+  <td>配列</td>
+  <td>放送で知り得た、主に紹介済みの出来事</td>
+</tr>
+<tr>
+  <td><code>known</code></td>
+  <td>boolean</td>
+  <td>局が紹介を通じて知っているリスナーか</td>
+</tr>
+</tbody>
+</table>
+<h3 id="暮らしの状態-s-simstate-people-id">② 暮らしの状態：<code>s.simState.people[id]</code><a class="heading-anchor" href="#暮らしの状態-s-simstate-people-id" aria-label="見出しへリンク">#</a></h3>
+<table>
+<thead>
+<tr>
+  <th>キー</th>
+  <th>内部項目</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>traits</code></td>
+  <td><code>sociability</code>、<code>caution</code>、<code>sensitivity</code>、<code>independence</code>（基本性格・通常固定）</td>
+</tr>
+<tr>
+  <td><code>emotion</code></td>
+  <td><code>joy</code>、<code>anxiety</code>、<code>anger</code>、<code>loneliness</code>、<code>hope</code>（毎夜変化）</td>
+</tr>
+<tr>
+  <td><code>life</code></td>
+  <td><code>work</code>、<code>health</code>、<code>finance</code>、<code>leisure</code>（毎夜変化）</td>
+</tr>
+<tr>
+  <td><code>relationships</code></td>
+  <td>相手ごとに <code>closeness</code>・<code>trust</code>・<code>tension</code> 等</td>
+</tr>
+<tr>
+  <td><code>signals</code></td>
+  <td>放送の返答により残る短期的な関心。毎夜減衰</td>
+</tr>
+<tr>
+  <td><code>activityCounts</code>, <code>rhythms</code>, <code>habits</code></td>
+  <td>行動・行動カテゴリの累積習慣</td>
+</tr>
+<tr>
+  <td><code>daily</code>, <code>memories</code></td>
+  <td>実際に起きた日常・重要度付きの記憶</td>
+</tr>
+</tbody>
+</table>
+<p>数値の更新は原則 <code>simAdjust()</code>／<code>affect()</code> が0〜100に丸めます。性格 <code>traits</code> は初期値のまま移行する実装です。</p>
+<h2 id="人物の初期値">人物の初期値<a class="heading-anchor" href="#人物の初期値" aria-label="見出しへリンク">#</a></h2>
+<p>12人の<strong>正確な初期数値</strong>は<a href="people.html">人物一覧</a>または各人物ページを参照。機械可読版は <code>data/listener-profiles.json</code> に用意しました。</p>
+<p><strong>ソース照合</strong>：<code>defaultState</code>（listeners.js:2）、<code>applyReply</code>（events.js:5）、<code>affect</code>（events.js:3）、<code>simReplyImpact</code>（listeners.js:235）、<code>simulateDailyLives</code>（listeners.js:363）、<code>migrateSimulation</code>（listeners.js:181）</p>
+</article><div class="page-foot"><p>このサイトは実装コードを調査して作成した仕様スナップショットです。最新コードとの照合と実機検証は別途必要です。</p><div class="footlinks"><a href="index.html">資料トップへ</a><a href="source-index.html">関数索引へ</a><a href="deploy.html">公開・更新手順</a></div></div></main>
+<aside class="toc" aria-label="このページの目次"><div class="toc-heading">ON THIS PAGE</div><a class="toc-lv-2" href="#単一の進行状態-s">単一の進行状態 s</a><a class="toc-lv-2" href="#2層の数値を混同しない">2層の数値を混同しない</a><a class="toc-lv-3" href="#放送との関係-s-listeners-id">① 放送との関係：s.listeners[id]</a><a class="toc-lv-3" href="#暮らしの状態-s-simstate-people-id">② 暮らしの状態：s.simState.people[id]</a><a class="toc-lv-2" href="#人物の初期値">人物の初期値</a><div class="toc-foot">v4.9.22 を基準に編集</div></aside></div><script src="assets/search-data.js" defer></script><script src="assets/app.js" defer></script></body></html>

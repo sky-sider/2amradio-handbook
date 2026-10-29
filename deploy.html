@@ -1,0 +1,39 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#142538"><meta name="robots" content="noindex,nofollow"><meta name="description" content="サイト公開手順、URL構造、ソース更新、公開時の注意"><title>GitHub Pagesへの公開・保守｜午前二時の周波数 開発資料</title><link rel="stylesheet" href="assets/style.css"></head>
+<body data-page="deploy"><a class="skip" href="#main">本文へ移動</a><div class="layout"><header class="topbar"><a href="index.html" class="brand"><span class="brand-dot"></span><span><b>午前二時の周波数</b><small>SOMEWHERE ON AIR · DEV HANDBOOK</small></span></a><div class="top-actions"><button type="button" id="themeToggle" aria-label="テーマを切り替える" title="テーマを切り替え">◐</button><button type="button" id="menuToggle" aria-expanded="false" aria-controls="sidebar">☰ <span>目次</span></button></div></header>
+<aside id="sidebar" class="sidebar"><div class="side-head"><span>SPECIFICATION / v4.9.22</span><button id="closeMenu" type="button" aria-label="目次を閉じる">×</button></div><label class="search-label" for="siteSearch">資料を横断検索</label><input id="siteSearch" type="search" placeholder="例：simReplyImpact / しおり" autocomplete="off"><div id="searchResults" class="search-results" aria-live="polite"></div><nav aria-label="ドキュメントのページ"><div class="nav-group"><div class="nav-heading">はじめに</div><a data-nav="index" href="index.html">開発資料の入口</a><a data-nav="getting-started" href="getting-started.html">開発参加・環境構築</a></div><div class="nav-group"><div class="nav-heading">物語</div><a data-nav="world" href="world.html">世界観・文体・企画哲学</a><a data-nav="chapters" href="chapters.html">第1〜4章と長期放送</a><a data-nav="specials" href="specials.html">特別放送・記念放送</a><a data-nav="finale" href="finale.html">第100夜以降の最終放送と閉局</a></div><div class="nav-group"><div class="nav-heading">人物</div><a data-nav="people" href="people.html">リスナー12人・人物設定一覧</a><a data-nav="person-cat" href="person-cat.html">夜明けの猫｜詳細人物設定</a><a data-nav="person-clock" href="person-clock.html">古時計｜詳細人物設定</a><a data-nav="person-bread" href="person-bread.html">眠れないパン屋｜詳細人物設定</a><a data-nav="person-moon" href="person-moon.html">月の裏側｜詳細人物設定</a><a data-nav="person-driver" href="person-driver.html">午前3時の配達員｜詳細人物設定</a><a data-nav="person-fish" href="person-fish.html">透明な金魚｜詳細人物設定</a><a data-nav="person-sugar" href="person-sugar.html">砂糖を三杯｜詳細人物設定</a><a data-nav="person-anon" href="person-anon.html">名前はまだありません｜詳細人物設定</a><a data-nav="person-terminal" href="person-terminal.html">終点のひとつ前｜詳細人物設定</a><a data-nav="person-umbrella" href="person-umbrella.html">逆さまの傘｜詳細人物設定</a><a data-nav="person-triangle" href="person-triangle.html">三角定規｜詳細人物設定</a><a data-nav="person-fridge" href="person-fridge.html">冷蔵庫の明かり｜詳細人物設定</a></div><div class="nav-group"><div class="nav-heading">ゲーム進行</div><a data-nav="flow" href="flow.html">夜のゲームループと画面遷移</a><a data-nav="archive" href="archive.html">放送日誌・人物録・しおり</a></div><div class="nav-group"><div class="nav-heading">内部システム</div><a data-nav="state" href="state.html">内部状態とパラメーターの全体像</a><a data-nav="choices" href="choices.html">返答と内部パラメーターの変化</a><a data-nav="simulation" href="simulation.html">12人の自律生活AI</a><a data-nav="relationships" href="relationships.html">人間関係・生活世界・記憶</a></div><div class="nav-group"><div class="nav-heading">放送システム</div><a data-nav="modes" href="modes.html">3つの楽しみ方・操作範囲</a><a data-nav="auto-dj" href="auto-dj.html">聴くだけの夜：自動DJの詳細</a><a data-nav="station" href="station.html">放送演出・曲・DJの雰囲気</a></div><div class="nav-group"><div class="nav-heading">実装</div><a data-nav="architecture" href="architecture.html">アーキテクチャ・依存関係</a><a data-nav="letters" href="letters.html">お便り・返答・候補生成</a><a data-nav="save" href="save.html">セーブ・バックアップ・互換性</a></div><div class="nav-group"><div class="nav-heading">開発</div><a data-nav="qa" href="qa.html">テスト計画・受け入れ条件</a></div><div class="nav-group"><div class="nav-heading">運用</div><a data-nav="deploy" href="deploy.html">GitHub Pagesへの公開・保守</a></div><div class="nav-group"><div class="nav-heading">参考資料</div><a data-nav="glossary" href="glossary.html">用語集・キー一覧</a><a data-nav="changelog" href="changelog.html">開発資料の変更履歴</a><a data-nav="source-index" href="source-index.html">ソースコード関数索引</a></div></nav><p class="side-note">基準コード v4.9.22<br>資料初版 2026-10-29<br>GitHub Pages 対応</p></aside><div id="veil" class="veil"></div>
+<main id="main" class="main"><div class="kicker">運用 <span>/ 開発者向け資料</span></div><article class="prose"><h1>GitHub Pagesへの公開・保守</h1>
+<blockquote>
+<p><strong>資料基準:</strong> ゲーム v4.9.22 ／ <strong>資料状態:</strong> 実装コードを基準にした開発者向け整理。未検証・提案は明記。</p>
+</blockquote>
+<h2 id="公開の前提">公開の前提<a class="heading-anchor" href="#公開の前提" aria-label="見出しへリンク">#</a></h2>
+<p>このサイトは HTML／CSS／JavaScript だけで動作し、外部CDNやサーバーを使いません。<code>index.html</code> と各 <code>.html</code> ファイル、<code>assets/</code>・<code>data/</code> の相対パスを維持して配置してください。<strong>GitHub Pagesは公開用</strong>なので、秘密の内部メモ・実ユーザーのセーブ・APIキーを入れないでください。</p>
+<h2 id="github-pagesで公開">GitHub Pagesで公開<a class="heading-anchor" href="#github-pagesで公開" aria-label="見出しへリンク">#</a></h2>
+<ol>
+<li>GitHubで新しいリポジトリ（例：<code>radio-2am-devdocs</code>）を作成。</li>
+<li>ZIP内の <code>site/</code> フォルダーにあるファイルを、リポジトリの<strong>ルート</strong>に配置する。<code>site</code> フォルダーごとアップするとトップURLの直下に表示されません。</li>
+<li><code>index.html</code>、<code>assets/style.css</code>、<code>assets/app.js</code>、その他の <code>.html</code> をコミット。</li>
+<li>リポジトリの <strong>Settings → Pages</strong> を開く。</li>
+<li><strong>Build and deployment → Deploy from a branch</strong> を選び、ブランチ <code>main</code>、フォルダー <code>/ (root)</code> を指定して保存。</li>
+<li>公開URL <code>https://ユーザー名.github.io/radio-2am-devdocs/</code> を開く。</li>
+</ol>
+<p>GitHubの現在のUIは変更されることがあります。公開作業は利用者のGitHubアカウント側で必要です。</p>
+<h2 id="file-not-foundが出る場合">File not foundが出る場合<a class="heading-anchor" href="#file-not-foundが出る場合" aria-label="見出しへリンク">#</a></h2>
+<ul>
+<li><code>index.html</code> の小文字表記を確認。</li>
+<li><code>site/index.html</code> ではなく<strong>リポジトリ直下</strong>に <code>index.html</code> を置く。</li>
+<li>ブランチと <code>/ (root)</code> を確認。</li>
+<li><code>assets/</code> や <code>data/</code> の名前の大文字・小文字を確認。</li>
+</ul>
+<h2 id="資料更新ワークフロー">資料更新ワークフロー<a class="heading-anchor" href="#資料更新ワークフロー" aria-label="見出しへリンク">#</a></h2>
+<ol>
+<li>ゲーム本体のバージョンを更新する。</li>
+<li>変更した関数・状態・分岐条件を仕様書へ反映。</li>
+<li>各ページの<strong>資料基準版</strong>を新しい版へ更新。</li>
+<li>特に <code>source-index.html</code> の行番号と <code>data/listener-profiles.json</code> の値を再生成。</li>
+<li>スマホとPCで検索・目次・アンカーをテスト。</li>
+<li><a href="changelog.html">変更履歴</a>へ追加。</li>
+</ol>
+<h2 id="urlとリンク">URLとリンク<a class="heading-anchor" href="#urlとリンク" aria-label="見出しへリンク">#</a></h2>
+<p>GitHub Pagesのプロジェクト配下URLに対応するため、サイト内リンクは <code>flow.html</code> 等の<strong>相対リンク</strong>を使っています。ドメイン直下固定の <code>/flow.html</code> に変更しないでください。</p>
+</article><div class="page-foot"><p>このサイトは実装コードを調査して作成した仕様スナップショットです。最新コードとの照合と実機検証は別途必要です。</p><div class="footlinks"><a href="index.html">資料トップへ</a><a href="source-index.html">関数索引へ</a><a href="deploy.html">公開・更新手順</a></div></div></main>
+<aside class="toc" aria-label="このページの目次"><div class="toc-heading">ON THIS PAGE</div><a class="toc-lv-2" href="#公開の前提">公開の前提</a><a class="toc-lv-2" href="#github-pagesで公開">GitHub Pagesで公開</a><a class="toc-lv-2" href="#file-not-foundが出る場合">File not foundが出る場合</a><a class="toc-lv-2" href="#資料更新ワークフロー">資料更新ワークフロー</a><a class="toc-lv-2" href="#urlとリンク">URLとリンク</a><div class="toc-foot">v4.9.22 を基準に編集</div></aside></div><script src="assets/search-data.js" defer></script><script src="assets/app.js" defer></script></body></html>

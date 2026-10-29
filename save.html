@@ -1,0 +1,58 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#142538"><meta name="robots" content="noindex,nofollow"><meta name="description" content="保存キー、圧縮、読書分離、移行処理、復元失敗時の安全"><title>セーブ・バックアップ・互換性｜午前二時の周波数 開発資料</title><link rel="stylesheet" href="assets/style.css"></head>
+<body data-page="save"><a class="skip" href="#main">本文へ移動</a><div class="layout"><header class="topbar"><a href="index.html" class="brand"><span class="brand-dot"></span><span><b>午前二時の周波数</b><small>SOMEWHERE ON AIR · DEV HANDBOOK</small></span></a><div class="top-actions"><button type="button" id="themeToggle" aria-label="テーマを切り替える" title="テーマを切り替え">◐</button><button type="button" id="menuToggle" aria-expanded="false" aria-controls="sidebar">☰ <span>目次</span></button></div></header>
+<aside id="sidebar" class="sidebar"><div class="side-head"><span>SPECIFICATION / v4.9.22</span><button id="closeMenu" type="button" aria-label="目次を閉じる">×</button></div><label class="search-label" for="siteSearch">資料を横断検索</label><input id="siteSearch" type="search" placeholder="例：simReplyImpact / しおり" autocomplete="off"><div id="searchResults" class="search-results" aria-live="polite"></div><nav aria-label="ドキュメントのページ"><div class="nav-group"><div class="nav-heading">はじめに</div><a data-nav="index" href="index.html">開発資料の入口</a><a data-nav="getting-started" href="getting-started.html">開発参加・環境構築</a></div><div class="nav-group"><div class="nav-heading">物語</div><a data-nav="world" href="world.html">世界観・文体・企画哲学</a><a data-nav="chapters" href="chapters.html">第1〜4章と長期放送</a><a data-nav="specials" href="specials.html">特別放送・記念放送</a><a data-nav="finale" href="finale.html">第100夜以降の最終放送と閉局</a></div><div class="nav-group"><div class="nav-heading">人物</div><a data-nav="people" href="people.html">リスナー12人・人物設定一覧</a><a data-nav="person-cat" href="person-cat.html">夜明けの猫｜詳細人物設定</a><a data-nav="person-clock" href="person-clock.html">古時計｜詳細人物設定</a><a data-nav="person-bread" href="person-bread.html">眠れないパン屋｜詳細人物設定</a><a data-nav="person-moon" href="person-moon.html">月の裏側｜詳細人物設定</a><a data-nav="person-driver" href="person-driver.html">午前3時の配達員｜詳細人物設定</a><a data-nav="person-fish" href="person-fish.html">透明な金魚｜詳細人物設定</a><a data-nav="person-sugar" href="person-sugar.html">砂糖を三杯｜詳細人物設定</a><a data-nav="person-anon" href="person-anon.html">名前はまだありません｜詳細人物設定</a><a data-nav="person-terminal" href="person-terminal.html">終点のひとつ前｜詳細人物設定</a><a data-nav="person-umbrella" href="person-umbrella.html">逆さまの傘｜詳細人物設定</a><a data-nav="person-triangle" href="person-triangle.html">三角定規｜詳細人物設定</a><a data-nav="person-fridge" href="person-fridge.html">冷蔵庫の明かり｜詳細人物設定</a></div><div class="nav-group"><div class="nav-heading">ゲーム進行</div><a data-nav="flow" href="flow.html">夜のゲームループと画面遷移</a><a data-nav="archive" href="archive.html">放送日誌・人物録・しおり</a></div><div class="nav-group"><div class="nav-heading">内部システム</div><a data-nav="state" href="state.html">内部状態とパラメーターの全体像</a><a data-nav="choices" href="choices.html">返答と内部パラメーターの変化</a><a data-nav="simulation" href="simulation.html">12人の自律生活AI</a><a data-nav="relationships" href="relationships.html">人間関係・生活世界・記憶</a></div><div class="nav-group"><div class="nav-heading">放送システム</div><a data-nav="modes" href="modes.html">3つの楽しみ方・操作範囲</a><a data-nav="auto-dj" href="auto-dj.html">聴くだけの夜：自動DJの詳細</a><a data-nav="station" href="station.html">放送演出・曲・DJの雰囲気</a></div><div class="nav-group"><div class="nav-heading">実装</div><a data-nav="architecture" href="architecture.html">アーキテクチャ・依存関係</a><a data-nav="letters" href="letters.html">お便り・返答・候補生成</a><a data-nav="save" href="save.html">セーブ・バックアップ・互換性</a></div><div class="nav-group"><div class="nav-heading">開発</div><a data-nav="qa" href="qa.html">テスト計画・受け入れ条件</a></div><div class="nav-group"><div class="nav-heading">運用</div><a data-nav="deploy" href="deploy.html">GitHub Pagesへの公開・保守</a></div><div class="nav-group"><div class="nav-heading">参考資料</div><a data-nav="glossary" href="glossary.html">用語集・キー一覧</a><a data-nav="changelog" href="changelog.html">開発資料の変更履歴</a><a data-nav="source-index" href="source-index.html">ソースコード関数索引</a></div></nav><p class="side-note">基準コード v4.9.22<br>資料初版 2026-10-29<br>GitHub Pages 対応</p></aside><div id="veil" class="veil"></div>
+<main id="main" class="main"><div class="kicker">実装 <span>/ 開発者向け資料</span></div><article class="prose"><h1>セーブ・バックアップ・互換性</h1>
+<blockquote>
+<p><strong>資料基準:</strong> ゲーム v4.9.22 ／ <strong>資料状態:</strong> 実装コードを基準にした開発者向け整理。未検証・提案は明記。</p>
+</blockquote>
+<h2 id="localstorageのキー">localStorageのキー<a class="heading-anchor" href="#localstorageのキー" aria-label="見出しへリンク">#</a></h2>
+<table>
+<thead>
+<tr>
+  <th>キー</th>
+  <th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>radio_2am_prototype_v1</code></td>
+  <td>本編の進行セーブ</td>
+</tr>
+<tr>
+  <td><code>radio_2am_reader_v48</code></td>
+  <td>「聴くだけの夜」専用セーブ</td>
+</tr>
+<tr>
+  <td><code>radio_2am_active_profile_v48</code></td>
+  <td>現在表示中の本編／読書切替</td>
+</tr>
+<tr>
+  <td><code>radio_2am_reader_position_v420</code></td>
+  <td>読書ページ・スクロール位置</td>
+</tr>
+<tr>
+  <td><code>radio_2am_main_view_v421</code></td>
+  <td>本編タブ・日誌ページの表示位置</td>
+</tr>
+</tbody>
+</table>
+<p>キー名は旧版互換性のため重要。<strong>リネームする場合は旧キー読み込みと移行処理が必須</strong>です。</p>
+<h2 id="保存経路">保存経路<a class="heading-anchor" href="#保存経路" aria-label="見出しへリンク">#</a></h2>
+<p><code>save()</code> がJSON化し、アクティブなプロファイルごとに <code>mainSaveRaw</code>／<code>readerSaveRaw</code> へ渡す。通常はJSONを保存し、容量不足時は圧縮形式へ切り替える。v4.9.20は圧縮内部処理の高速化であり、フォーマット変更を目的にしていません。</p>
+<p><code>load()</code> は保存済みデータの復号と <code>migrateState()</code> を行い、不足状態を補完します。読書状態に不整合があれば本編へ退避する設計です。</p>
+<h2 id="何を移行するか">何を移行するか<a class="heading-anchor" href="#何を移行するか" aria-label="見出しへリンク">#</a></h2>
+<p><code>migrateSimulation</code> は <code>processedNights</code> を保持して重複生活更新を防ぎ、<code>people</code> の不足キーを補完。生活日誌は直近56件、重要度付きの生活記憶は概ね45件に整理。章4の移行は途中の夜や過去の夜に遡及追加しない。</p>
+<h2 id="jsonバックアップ">JSONバックアップ<a class="heading-anchor" href="#jsonバックアップ" aria-label="見出しへリンク">#</a></h2>
+<p><code>downloadSave</code> は本編をJSONとして保存し、<code>importSave</code> はJSONを検証・移行した後、保存に成功してから表示中の状態を切り替えます。読書モードにも個別のバックアップ操作があります。</p>
+<h2 id="保存の安全な検証">保存の安全な検証<a class="heading-anchor" href="#保存の安全な検証" aria-label="見出しへリンク">#</a></h2>
+<ol>
+<li>新規開始直後、100夜、300夜、500夜相当のJSONで読み込み・書き出しを試す。</li>
+<li>圧縮保存前後で <code>played</code>、<code>letterSets</code>、各人物・章・閉局状態が一致すること。</li>
+<li>保存領域不足を模擬し、失敗しても<strong>直前の正常セーブが残る</strong>こと。</li>
+<li>第130夜の旧バックアップから最終放送まで通せること。</li>
+<li><code>reader.pages</code> の内部構造と <code>played</code> のID対応を <code>validateReaderState</code> で確認。</li>
+<li>テスト時には<strong>本編と読書の両方</strong>のバックアップを確保。</li>
+</ol>
+<p><strong>参照</strong>：<code>load</code>（script.js:259）、<code>save</code>（script.js:277）、<code>mainSaveRaw</code>（script.js:190）、<code>readerSaveRaw</code>（script.js:170）、<code>mainDecodeSaved</code>（script.js:186）、<code>readerDecodeSaved</code>（script.js:166）、<code>migrateState</code>（script.js:32）、<code>migrateSimulation</code>（listeners.js:181）、<code>validateReaderState</code>（script.js:219）、<code>downloadSave</code>（script.js:535）、<code>importSave</code>（script.js:536）</p>
+</article><div class="page-foot"><p>このサイトは実装コードを調査して作成した仕様スナップショットです。最新コードとの照合と実機検証は別途必要です。</p><div class="footlinks"><a href="index.html">資料トップへ</a><a href="source-index.html">関数索引へ</a><a href="deploy.html">公開・更新手順</a></div></div></main>
+<aside class="toc" aria-label="このページの目次"><div class="toc-heading">ON THIS PAGE</div><a class="toc-lv-2" href="#localstorageのキー">localStorageのキー</a><a class="toc-lv-2" href="#保存経路">保存経路</a><a class="toc-lv-2" href="#何を移行するか">何を移行するか</a><a class="toc-lv-2" href="#jsonバックアップ">JSONバックアップ</a><a class="toc-lv-2" href="#保存の安全な検証">保存の安全な検証</a><div class="toc-foot">v4.9.22 を基準に編集</div></aside></div><script src="assets/search-data.js" defer></script><script src="assets/app.js" defer></script></body></html>

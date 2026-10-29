@@ -1,0 +1,1954 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#142538"><meta name="robots" content="noindex,nofollow"><meta name="description" content="実装関数の名前とv4.9.22での行番号"><title>ソースコード関数索引｜午前二時の周波数 開発資料</title><link rel="stylesheet" href="assets/style.css"></head>
+<body data-page="source-index"><a class="skip" href="#main">本文へ移動</a><div class="layout"><header class="topbar"><a href="index.html" class="brand"><span class="brand-dot"></span><span><b>午前二時の周波数</b><small>SOMEWHERE ON AIR · DEV HANDBOOK</small></span></a><div class="top-actions"><button type="button" id="themeToggle" aria-label="テーマを切り替える" title="テーマを切り替え">◐</button><button type="button" id="menuToggle" aria-expanded="false" aria-controls="sidebar">☰ <span>目次</span></button></div></header>
+<aside id="sidebar" class="sidebar"><div class="side-head"><span>SPECIFICATION / v4.9.22</span><button id="closeMenu" type="button" aria-label="目次を閉じる">×</button></div><label class="search-label" for="siteSearch">資料を横断検索</label><input id="siteSearch" type="search" placeholder="例：simReplyImpact / しおり" autocomplete="off"><div id="searchResults" class="search-results" aria-live="polite"></div><nav aria-label="ドキュメントのページ"><div class="nav-group"><div class="nav-heading">はじめに</div><a data-nav="index" href="index.html">開発資料の入口</a><a data-nav="getting-started" href="getting-started.html">開発参加・環境構築</a></div><div class="nav-group"><div class="nav-heading">物語</div><a data-nav="world" href="world.html">世界観・文体・企画哲学</a><a data-nav="chapters" href="chapters.html">第1〜4章と長期放送</a><a data-nav="specials" href="specials.html">特別放送・記念放送</a><a data-nav="finale" href="finale.html">第100夜以降の最終放送と閉局</a></div><div class="nav-group"><div class="nav-heading">人物</div><a data-nav="people" href="people.html">リスナー12人・人物設定一覧</a><a data-nav="person-cat" href="person-cat.html">夜明けの猫｜詳細人物設定</a><a data-nav="person-clock" href="person-clock.html">古時計｜詳細人物設定</a><a data-nav="person-bread" href="person-bread.html">眠れないパン屋｜詳細人物設定</a><a data-nav="person-moon" href="person-moon.html">月の裏側｜詳細人物設定</a><a data-nav="person-driver" href="person-driver.html">午前3時の配達員｜詳細人物設定</a><a data-nav="person-fish" href="person-fish.html">透明な金魚｜詳細人物設定</a><a data-nav="person-sugar" href="person-sugar.html">砂糖を三杯｜詳細人物設定</a><a data-nav="person-anon" href="person-anon.html">名前はまだありません｜詳細人物設定</a><a data-nav="person-terminal" href="person-terminal.html">終点のひとつ前｜詳細人物設定</a><a data-nav="person-umbrella" href="person-umbrella.html">逆さまの傘｜詳細人物設定</a><a data-nav="person-triangle" href="person-triangle.html">三角定規｜詳細人物設定</a><a data-nav="person-fridge" href="person-fridge.html">冷蔵庫の明かり｜詳細人物設定</a></div><div class="nav-group"><div class="nav-heading">ゲーム進行</div><a data-nav="flow" href="flow.html">夜のゲームループと画面遷移</a><a data-nav="archive" href="archive.html">放送日誌・人物録・しおり</a></div><div class="nav-group"><div class="nav-heading">内部システム</div><a data-nav="state" href="state.html">内部状態とパラメーターの全体像</a><a data-nav="choices" href="choices.html">返答と内部パラメーターの変化</a><a data-nav="simulation" href="simulation.html">12人の自律生活AI</a><a data-nav="relationships" href="relationships.html">人間関係・生活世界・記憶</a></div><div class="nav-group"><div class="nav-heading">放送システム</div><a data-nav="modes" href="modes.html">3つの楽しみ方・操作範囲</a><a data-nav="auto-dj" href="auto-dj.html">聴くだけの夜：自動DJの詳細</a><a data-nav="station" href="station.html">放送演出・曲・DJの雰囲気</a></div><div class="nav-group"><div class="nav-heading">実装</div><a data-nav="architecture" href="architecture.html">アーキテクチャ・依存関係</a><a data-nav="letters" href="letters.html">お便り・返答・候補生成</a><a data-nav="save" href="save.html">セーブ・バックアップ・互換性</a></div><div class="nav-group"><div class="nav-heading">開発</div><a data-nav="qa" href="qa.html">テスト計画・受け入れ条件</a></div><div class="nav-group"><div class="nav-heading">運用</div><a data-nav="deploy" href="deploy.html">GitHub Pagesへの公開・保守</a></div><div class="nav-group"><div class="nav-heading">参考資料</div><a data-nav="glossary" href="glossary.html">用語集・キー一覧</a><a data-nav="changelog" href="changelog.html">開発資料の変更履歴</a><a data-nav="source-index" href="source-index.html">ソースコード関数索引</a></div></nav><p class="side-note">基準コード v4.9.22<br>資料初版 2026-10-29<br>GitHub Pages 対応</p></aside><div id="veil" class="veil"></div>
+<main id="main" class="main"><div class="kicker">参考資料 <span>/ 開発者向け資料</span></div><article class="prose"><h1>ソースコード関数索引</h1>
+<blockquote>
+<p><strong>資料基準:</strong> ゲーム v4.9.22 ／ <strong>資料状態:</strong> 実装コードを基準にした開発者向け整理。未検証・提案は明記。</p>
+</blockquote>
+<p>この索引は<strong>v4.9.22の6ファイルから行頭の <code>function</code> 宣言を抽出したもの</strong>です。関数の正確な処理は必ず対応する原本で確認してください。</p>
+<h2 id="listeners-js">listeners.js<a class="heading-anchor" href="#listeners-js" aria-label="見出しへリンク">#</a></h2>
+<p>収録した関数：<strong>21件</strong></p>
+<table>
+<thead>
+<tr>
+  <th>関数名</th>
+  <th>ソース位置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>simNumber</code></td>
+  <td><code>listeners.js:160</code></td>
+</tr>
+<tr>
+  <td><code>simAdjust</code></td>
+  <td><code>listeners.js:161</code></td>
+</tr>
+<tr>
+  <td><code>simHash</code></td>
+  <td><code>listeners.js:162</code></td>
+</tr>
+<tr>
+  <td><code>simPick</code></td>
+  <td><code>listeners.js:163</code></td>
+</tr>
+<tr>
+  <td><code>simRelationDefaults</code></td>
+  <td><code>listeners.js:164</code></td>
+</tr>
+<tr>
+  <td><code>createSimulationState</code></td>
+  <td><code>listeners.js:169</code></td>
+</tr>
+<tr>
+  <td><code>migrateSimulation</code></td>
+  <td><code>listeners.js:181</code></td>
+</tr>
+<tr>
+  <td><code>simMemory</code></td>
+  <td><code>listeners.js:215</code></td>
+</tr>
+<tr>
+  <td><code>simReplyTopic</code></td>
+  <td><code>listeners.js:227</code></td>
+</tr>
+<tr>
+  <td><code>simReplyImpact</code></td>
+  <td><code>listeners.js:235</code></td>
+</tr>
+<tr>
+  <td><code>simEligible</code></td>
+  <td><code>listeners.js:248</code></td>
+</tr>
+<tr>
+  <td><code>simCategoryWeight</code></td>
+  <td><code>listeners.js:253</code></td>
+</tr>
+<tr>
+  <td><code>simChooseAction</code></td>
+  <td><code>listeners.js:290</code></td>
+</tr>
+<tr>
+  <td><code>simMeet</code></td>
+  <td><code>listeners.js:299</code></td>
+</tr>
+<tr>
+  <td><code>simStoryRelationEcho</code></td>
+  <td><code>listeners.js:321</code></td>
+</tr>
+<tr>
+  <td><code>simRegisterAction</code></td>
+  <td><code>listeners.js:342</code></td>
+</tr>
+<tr>
+  <td><code>simulateDailyLives</code></td>
+  <td><code>listeners.js:363</code></td>
+</tr>
+<tr>
+  <td><code>simLetterPostscript</code></td>
+  <td><code>listeners.js:393</code></td>
+</tr>
+<tr>
+  <td><code>simLatestContact</code></td>
+  <td><code>listeners.js:405</code></td>
+</tr>
+<tr>
+  <td><code>simContactCount</code></td>
+  <td><code>listeners.js:410</code></td>
+</tr>
+<tr>
+  <td><code>simRelationshipPostscript</code></td>
+  <td><code>listeners.js:411</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="letters-js">letters.js<a class="heading-anchor" href="#letters-js" aria-label="見出しへリンク">#</a></h2>
+<p>収録した関数：<strong>17件</strong></p>
+<table>
+<thead>
+<tr>
+  <th>関数名</th>
+  <th>ソース位置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>partsForLetter</code></td>
+  <td><code>letters.js:442</code></td>
+</tr>
+<tr>
+  <td><code>lateLetterText</code></td>
+  <td><code>letters.js:461</code></td>
+</tr>
+<tr>
+  <td><code>lifeLetterNote</code></td>
+  <td><code>letters.js:509</code></td>
+</tr>
+<tr>
+  <td><code>relationLetterText</code></td>
+  <td><code>letters.js:565</code></td>
+</tr>
+<tr>
+  <td><code>chapter2StageIndex</code></td>
+  <td><code>letters.js:906</code></td>
+</tr>
+<tr>
+  <td><code>chapter2Route</code></td>
+  <td><code>letters.js:907</code></td>
+</tr>
+<tr>
+  <td><code>chapter2LetterBody</code></td>
+  <td><code>letters.js:912</code></td>
+</tr>
+<tr>
+  <td><code>chapter2BuildLetter</code></td>
+  <td><code>letters.js:919</code></td>
+</tr>
+<tr>
+  <td><code>chapter3LetterBody</code></td>
+  <td><code>letters.js:1469</code></td>
+</tr>
+<tr>
+  <td><code>chapter3BuildLetter</code></td>
+  <td><code>letters.js:1484</code></td>
+</tr>
+<tr>
+  <td><code>replyGenreFromText</code></td>
+  <td><code>letters.js:1659</code></td>
+</tr>
+<tr>
+  <td><code>replyContextKey</code></td>
+  <td><code>letters.js:1684</code></td>
+</tr>
+<tr>
+  <td><code>lateReplyChoices486</code></td>
+  <td><code>letters.js:1766</code></td>
+</tr>
+<tr>
+  <td><code>replyTopicChoices</code></td>
+  <td><code>letters.js:1774</code></td>
+</tr>
+<tr>
+  <td><code>isGenericReplySet</code></td>
+  <td><code>letters.js:1819</code></td>
+</tr>
+<tr>
+  <td><code>meetingChoices</code></td>
+  <td><code>letters.js:1846</code></td>
+</tr>
+<tr>
+  <td><code>contactReplyChoices</code></td>
+  <td><code>letters.js:1853</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="events-js">events.js<a class="heading-anchor" href="#events-js" aria-label="見出しへリンク">#</a></h2>
+<p>収録した関数：<strong>201件</strong></p>
+<table>
+<thead>
+<tr>
+  <th>関数名</th>
+  <th>ソース位置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>log</code></td>
+  <td><code>events.js:1</code></td>
+</tr>
+<tr>
+  <td><code>event</code></td>
+  <td><code>events.js:2</code></td>
+</tr>
+<tr>
+  <td><code>affect</code></td>
+  <td><code>events.js:3</code></td>
+</tr>
+<tr>
+  <td><code>remember</code></td>
+  <td><code>events.js:4</code></td>
+</tr>
+<tr>
+  <td><code>applyReply</code></td>
+  <td><code>events.js:5</code></td>
+</tr>
+<tr>
+  <td><code>advanceWorld</code></td>
+  <td><code>events.js:6</code></td>
+</tr>
+<tr>
+  <td><code>privateRemember</code></td>
+  <td><code>events.js:11</code></td>
+</tr>
+<tr>
+  <td><code>extendedApplyReply</code></td>
+  <td><code>events.js:17</code></td>
+</tr>
+<tr>
+  <td><code>advanceExtendedWorld</code></td>
+  <td><code>events.js:79</code></td>
+</tr>
+<tr>
+  <td><code>createNightLetters</code></td>
+  <td><code>events.js:138</code></td>
+</tr>
+<tr>
+  <td><code>updatePendingLetters</code></td>
+  <td><code>events.js:153</code></td>
+</tr>
+<tr>
+  <td><code>recordOpening</code></td>
+  <td><code>events.js:167</code></td>
+</tr>
+<tr>
+  <td><code>applySongMood</code></td>
+  <td><code>events.js:175</code></td>
+</tr>
+<tr>
+  <td><code>initializeStoryState</code></td>
+  <td><code>events.js:188</code></td>
+</tr>
+<tr>
+  <td><code>addStory</code></td>
+  <td><code>events.js:200</code></td>
+</tr>
+<tr>
+  <td><code>scorePick</code></td>
+  <td><code>events.js:204</code></td>
+</tr>
+<tr>
+  <td><code>applyLateReply</code></td>
+  <td><code>events.js:209</code></td>
+</tr>
+<tr>
+  <td><code>createLifePaths</code></td>
+  <td><code>events.js:312</code></td>
+</tr>
+<tr>
+  <td><code>migrateLifePaths</code></td>
+  <td><code>events.js:313</code></td>
+</tr>
+<tr>
+  <td><code>lifeCore</code></td>
+  <td><code>events.js:336</code></td>
+</tr>
+<tr>
+  <td><code>lifeRelationship</code></td>
+  <td><code>events.js:337</code></td>
+</tr>
+<tr>
+  <td><code>lifeHabit</code></td>
+  <td><code>events.js:338</code></td>
+</tr>
+<tr>
+  <td><code>lifeMemory</code></td>
+  <td><code>events.js:339</code></td>
+</tr>
+<tr>
+  <td><code>lifeContactImprint</code></td>
+  <td><code>events.js:340</code></td>
+</tr>
+<tr>
+  <td><code>lifeBranchWeights</code></td>
+  <td><code>events.js:349</code></td>
+</tr>
+<tr>
+  <td><code>resolveLifeCrossroads</code></td>
+  <td><code>events.js:428</code></td>
+</tr>
+<tr>
+  <td><code>lifeApplyDelta</code></td>
+  <td><code>events.js:446</code></td>
+</tr>
+<tr>
+  <td><code>lifeRealConversation</code></td>
+  <td><code>events.js:452</code></td>
+</tr>
+<tr>
+  <td><code>lifeAfterDaily</code></td>
+  <td><code>events.js:459</code></td>
+</tr>
+<tr>
+  <td><code>lifePossibleConsequences</code></td>
+  <td><code>events.js:499</code></td>
+</tr>
+<tr>
+  <td><code>lifeDailyActionBias</code></td>
+  <td><code>events.js:509</code></td>
+</tr>
+<tr>
+  <td><code>advanceLateWorld</code></td>
+  <td><code>events.js:527</code></td>
+</tr>
+<tr>
+  <td><code>createMicroWorldState</code></td>
+  <td><code>events.js:616</code></td>
+</tr>
+<tr>
+  <td><code>migrateMicroWorld</code></td>
+  <td><code>events.js:617</code></td>
+</tr>
+<tr>
+  <td><code>microRecent</code></td>
+  <td><code>events.js:629</code></td>
+</tr>
+<tr>
+  <td><code>microRemember</code></td>
+  <td><code>events.js:633</code></td>
+</tr>
+<tr>
+  <td><code>microLink</code></td>
+  <td><code>events.js:637</code></td>
+</tr>
+<tr>
+  <td><code>microChanceMeeting</code></td>
+  <td><code>events.js:644</code></td>
+</tr>
+<tr>
+  <td><code>register</code></td>
+  <td><code>events.js:652</code></td>
+</tr>
+<tr>
+  <td><code>simulateMicroWorld</code></td>
+  <td><code>events.js:666</code></td>
+</tr>
+<tr>
+  <td><code>socialFreshPair</code></td>
+  <td><code>events.js:784</code></td>
+</tr>
+<tr>
+  <td><code>createSocialWorldState</code></td>
+  <td><code>events.js:789</code></td>
+</tr>
+<tr>
+  <td><code>migrateSocialWorld</code></td>
+  <td><code>events.js:790</code></td>
+</tr>
+<tr>
+  <td><code>socialActionBias</code></td>
+  <td><code>events.js:817</code></td>
+</tr>
+<tr>
+  <td><code>socialActorSchedule</code></td>
+  <td><code>events.js:830</code></td>
+</tr>
+<tr>
+  <td><code>socialWeightDecision</code></td>
+  <td><code>events.js:860</code></td>
+</tr>
+<tr>
+  <td><code>socialPairContact</code></td>
+  <td><code>events.js:874</code></td>
+</tr>
+<tr>
+  <td><code>socialLetterFor</code></td>
+  <td><code>events.js:968</code></td>
+</tr>
+<tr>
+  <td><code>socialQueueRecollection</code></td>
+  <td><code>events.js:980</code></td>
+</tr>
+<tr>
+  <td><code>simulateSocialWorld</code></td>
+  <td><code>events.js:1007</code></td>
+</tr>
+<tr>
+  <td><code>socialVisibleClue</code></td>
+  <td><code>events.js:1030</code></td>
+</tr>
+<tr>
+  <td><code>createNewListenerState</code></td>
+  <td><code>events.js:1049</code></td>
+</tr>
+<tr>
+  <td><code>migrateNewListeners</code></td>
+  <td><code>events.js:1050</code></td>
+</tr>
+<tr>
+  <td><code>newListenerEligible</code></td>
+  <td><code>events.js:1068</code></td>
+</tr>
+<tr>
+  <td><code>newListenerIntroduced</code></td>
+  <td><code>events.js:1069</code></td>
+</tr>
+<tr>
+  <td><code>newListenerFirstLetter</code></td>
+  <td><code>events.js:1070</code></td>
+</tr>
+<tr>
+  <td><code>newListenerArcNote</code></td>
+  <td><code>events.js:1074</code></td>
+</tr>
+<tr>
+  <td><code>newListenerPersonalNote</code></td>
+  <td><code>events.js:1085</code></td>
+</tr>
+<tr>
+  <td><code>newListenerCompose</code></td>
+  <td><code>events.js:1098</code></td>
+</tr>
+<tr>
+  <td><code>newListenerOnLettersDelivered</code></td>
+  <td><code>events.js:1121</code></td>
+</tr>
+<tr>
+  <td><code>newListenerAfterDaily</code></td>
+  <td><code>events.js:1135</code></td>
+</tr>
+<tr>
+  <td><code>letterPoliteActivity491</code></td>
+  <td><code>events.js:1243</code></td>
+</tr>
+<tr>
+  <td><code>letterPoliteProgress491</code></td>
+  <td><code>events.js:1254</code></td>
+</tr>
+<tr>
+  <td><code>createQuietState</code></td>
+  <td><code>events.js:1274</code></td>
+</tr>
+<tr>
+  <td><code>migrateQuiet</code></td>
+  <td><code>events.js:1275</code></td>
+</tr>
+<tr>
+  <td><code>quietScheduledFor</code></td>
+  <td><code>events.js:1286</code></td>
+</tr>
+<tr>
+  <td><code>quietWaitingToReturn</code></td>
+  <td><code>events.js:1287</code></td>
+</tr>
+<tr>
+  <td><code>quietSafeWindow</code></td>
+  <td><code>events.js:1289</code></td>
+</tr>
+<tr>
+  <td><code>quietReasonFromAction</code></td>
+  <td><code>events.js:1295</code></td>
+</tr>
+<tr>
+  <td><code>quietAfterDaily</code></td>
+  <td><code>events.js:1307</code></td>
+</tr>
+<tr>
+  <td><code>quietLastActualMail461</code></td>
+  <td><code>events.js:1336</code></td>
+</tr>
+<tr>
+  <td><code>quietReturnNote</code></td>
+  <td><code>events.js:1358</code></td>
+</tr>
+<tr>
+  <td><code>quietConfirmDelivered</code></td>
+  <td><code>events.js:1383</code></td>
+</tr>
+<tr>
+  <td><code>createRadioCultureState</code></td>
+  <td><code>events.js:1398</code></td>
+</tr>
+<tr>
+  <td><code>migrateRadioCulture</code></td>
+  <td><code>events.js:1399</code></td>
+</tr>
+<tr>
+  <td><code>radioCultureIdentify</code></td>
+  <td><code>events.js:1483</code></td>
+</tr>
+<tr>
+  <td><code>radioCultureAfterBroadcast</code></td>
+  <td><code>events.js:1508</code></td>
+</tr>
+<tr>
+  <td><code>radioCultureConfirmDelivered</code></td>
+  <td><code>events.js:1539</code></td>
+</tr>
+<tr>
+  <td><code>radioCultureCompose</code></td>
+  <td><code>events.js:1550</code></td>
+</tr>
+<tr>
+  <td><code>createRadioMemoryState39</code></td>
+  <td><code>events.js:1589</code></td>
+</tr>
+<tr>
+  <td><code>migrateRadioMemory39</code></td>
+  <td><code>events.js:1592</code></td>
+</tr>
+<tr>
+  <td><code>radioMemoryAfterBroadcast39</code></td>
+  <td><code>events.js:1641</code></td>
+</tr>
+<tr>
+  <td><code>radioMemoryCompose39</code></td>
+  <td><code>events.js:1682</code></td>
+</tr>
+<tr>
+  <td><code>radioMemoryConfirmDelivered39</code></td>
+  <td><code>events.js:1713</code></td>
+</tr>
+<tr>
+  <td><code>createRegularState</code></td>
+  <td><code>events.js:1726</code></td>
+</tr>
+<tr>
+  <td><code>migrateRegular</code></td>
+  <td><code>events.js:1727</code></td>
+</tr>
+<tr>
+  <td><code>regularTheme</code></td>
+  <td><code>events.js:1741</code></td>
+</tr>
+<tr>
+  <td><code>regularDayTitle</code></td>
+  <td><code>events.js:1742</code></td>
+</tr>
+<tr>
+  <td><code>regularFirstSentence</code></td>
+  <td><code>events.js:1753</code></td>
+</tr>
+<tr>
+  <td><code>regularDayAction</code></td>
+  <td><code>events.js:1754</code></td>
+</tr>
+<tr>
+  <td><code>regularRoute</code></td>
+  <td><code>events.js:1787</code></td>
+</tr>
+<tr>
+  <td><code>regularSubject44</code></td>
+  <td><code>events.js:1804</code></td>
+</tr>
+<tr>
+  <td><code>regularDayNote</code></td>
+  <td><code>events.js:1846</code></td>
+</tr>
+<tr>
+  <td><code>regularContact</code></td>
+  <td><code>events.js:1906</code></td>
+</tr>
+<tr>
+  <td><code>regularBroadcastEcho</code></td>
+  <td><code>events.js:1964</code></td>
+</tr>
+<tr>
+  <td><code>regularThemeAction44</code></td>
+  <td><code>events.js:1990</code></td>
+</tr>
+<tr>
+  <td><code>regularThemeLetter</code></td>
+  <td><code>events.js:2194</code></td>
+</tr>
+<tr>
+  <td><code>radioVarietyCompose38</code></td>
+  <td><code>events.js:2301</code></td>
+</tr>
+<tr>
+  <td><code>radioVarietyConfirmDelivered38</code></td>
+  <td><code>events.js:2329</code></td>
+</tr>
+<tr>
+  <td><code>everydayCompose4827</code></td>
+  <td><code>events.js:2345</code></td>
+</tr>
+<tr>
+  <td><code>longLifeCompose4914</code></td>
+  <td><code>events.js:2372</code></td>
+</tr>
+<tr>
+  <td><code>regularCompose</code></td>
+  <td><code>events.js:2385</code></td>
+</tr>
+<tr>
+  <td><code>v33VoiceLetter</code></td>
+  <td><code>events.js:2431</code></td>
+</tr>
+<tr>
+  <td><code>createCrossTalkState4830</code></td>
+  <td><code>events.js:2479</code></td>
+</tr>
+<tr>
+  <td><code>migrateCrossTalk4830</code></td>
+  <td><code>events.js:2480</code></td>
+</tr>
+<tr>
+  <td><code>listenerCrossCompose4830</code></td>
+  <td><code>events.js:2490</code></td>
+</tr>
+<tr>
+  <td><code>listenerCrossConfirmDelivered4830</code></td>
+  <td><code>events.js:2518</code></td>
+</tr>
+<tr>
+  <td><code>createCrossAfterState4831</code></td>
+  <td><code>events.js:2885</code></td>
+</tr>
+<tr>
+  <td><code>migrateCrossAfter4831</code></td>
+  <td><code>events.js:2886</code></td>
+</tr>
+<tr>
+  <td><code>listenerCrossAfterCompose4831</code></td>
+  <td><code>events.js:2896</code></td>
+</tr>
+<tr>
+  <td><code>listenerCrossAfterConfirm4831</code></td>
+  <td><code>events.js:2917</code></td>
+</tr>
+<tr>
+  <td><code>createRegularLetters</code></td>
+  <td><code>events.js:2929</code></td>
+</tr>
+<tr>
+  <td><code>regularVoiceKey45</code></td>
+  <td><code>events.js:2981</code></td>
+</tr>
+<tr>
+  <td><code>regularConfirmDelivered40</code></td>
+  <td><code>events.js:2985</code></td>
+</tr>
+<tr>
+  <td><code>regularAfterWorld</code></td>
+  <td><code>events.js:3019</code></td>
+</tr>
+<tr>
+  <td><code>regularReplyRecorded</code></td>
+  <td><code>events.js:3060</code></td>
+</tr>
+<tr>
+  <td><code>createChapter2State</code></td>
+  <td><code>events.js:3110</code></td>
+</tr>
+<tr>
+  <td><code>migrateChapter2</code></td>
+  <td><code>events.js:3111</code></td>
+</tr>
+<tr>
+  <td><code>chapter2EndingSenders</code></td>
+  <td><code>events.js:3124</code></td>
+</tr>
+<tr>
+  <td><code>chapter2Letters</code></td>
+  <td><code>events.js:3136</code></td>
+</tr>
+<tr>
+  <td><code>chapter2ReplyRecorded</code></td>
+  <td><code>events.js:3168</code></td>
+</tr>
+<tr>
+  <td><code>chapter2SecondaryDecision</code></td>
+  <td><code>events.js:3180</code></td>
+</tr>
+<tr>
+  <td><code>chapter2AfterWorld</code></td>
+  <td><code>events.js:3203</code></td>
+</tr>
+<tr>
+  <td><code>createSpecialState</code></td>
+  <td><code>events.js:3238</code></td>
+</tr>
+<tr>
+  <td><code>migrateSpecial</code></td>
+  <td><code>events.js:3239</code></td>
+</tr>
+<tr>
+  <td><code>milestoneAt</code></td>
+  <td><code>events.js:3252</code></td>
+</tr>
+<tr>
+  <td><code>milestoneUpcoming</code></td>
+  <td><code>events.js:3253</code></td>
+</tr>
+<tr>
+  <td><code>milestonePlan</code></td>
+  <td><code>events.js:3254</code></td>
+</tr>
+<tr>
+  <td><code>milestoneEnsure</code></td>
+  <td><code>events.js:3257</code></td>
+</tr>
+<tr>
+  <td><code>specialActive</code></td>
+  <td><code>events.js:3281</code></td>
+</tr>
+<tr>
+  <td><code>specialEligible</code></td>
+  <td><code>events.js:3285</code></td>
+</tr>
+<tr>
+  <td><code>specialAvailable</code></td>
+  <td><code>events.js:3293</code></td>
+</tr>
+<tr>
+  <td><code>specialPlan</code></td>
+  <td><code>events.js:3306</code></td>
+</tr>
+<tr>
+  <td><code>specialCancel</code></td>
+  <td><code>events.js:3315</code></td>
+</tr>
+<tr>
+  <td><code>specialLifeExcerpt</code></td>
+  <td><code>events.js:3322</code></td>
+</tr>
+<tr>
+  <td><code>specialSubmitBody</code></td>
+  <td><code>events.js:3328</code></td>
+</tr>
+<tr>
+  <td><code>specialBeginAnnouncement</code></td>
+  <td><code>events.js:3368</code></td>
+</tr>
+<tr>
+  <td><code>specialFinalizeAnnouncement</code></td>
+  <td><code>events.js:3374</code></td>
+</tr>
+<tr>
+  <td><code>specialCreateLetters</code></td>
+  <td><code>events.js:3410</code></td>
+</tr>
+<tr>
+  <td><code>specialFollowup</code></td>
+  <td><code>events.js:3434</code></td>
+</tr>
+<tr>
+  <td><code>specialEndBroadcast</code></td>
+  <td><code>events.js:3463</code></td>
+</tr>
+<tr>
+  <td><code>specialProcessNight</code></td>
+  <td><code>events.js:3494</code></td>
+</tr>
+<tr>
+  <td><code>createClimateState</code></td>
+  <td><code>events.js:3519</code></td>
+</tr>
+<tr>
+  <td><code>migrateClimate</code></td>
+  <td><code>events.js:3520</code></td>
+</tr>
+<tr>
+  <td><code>climateSeason</code></td>
+  <td><code>events.js:3525</code></td>
+</tr>
+<tr>
+  <td><code>climateWeatherRaw</code></td>
+  <td><code>events.js:3526</code></td>
+</tr>
+<tr>
+  <td><code>climateForNight</code></td>
+  <td><code>events.js:3545</code></td>
+</tr>
+<tr>
+  <td><code>climateCaption</code></td>
+  <td><code>events.js:3556</code></td>
+</tr>
+<tr>
+  <td><code>climateIntroText</code></td>
+  <td><code>events.js:3559</code></td>
+</tr>
+<tr>
+  <td><code>climateActionBias</code></td>
+  <td><code>events.js:3567</code></td>
+</tr>
+<tr>
+  <td><code>climateLifeEffects</code></td>
+  <td><code>events.js:3580</code></td>
+</tr>
+<tr>
+  <td><code>climateCreateLetter</code></td>
+  <td><code>events.js:3638</code></td>
+</tr>
+<tr>
+  <td><code>createStoryProgramsState</code></td>
+  <td><code>events.js:3697</code></td>
+</tr>
+<tr>
+  <td><code>migrateStoryPrograms</code></td>
+  <td><code>events.js:3698</code></td>
+</tr>
+<tr>
+  <td><code>storyOfferFor</code></td>
+  <td><code>events.js:3712</code></td>
+</tr>
+<tr>
+  <td><code>storyAvailableOffers</code></td>
+  <td><code>events.js:3716</code></td>
+</tr>
+<tr>
+  <td><code>storyRecentBroadcasts</code></td>
+  <td><code>events.js:3720</code></td>
+</tr>
+<tr>
+  <td><code>storyHadDaily</code></td>
+  <td><code>events.js:3724</code></td>
+</tr>
+<tr>
+  <td><code>storyHasSocialContact</code></td>
+  <td><code>events.js:3728</code></td>
+</tr>
+<tr>
+  <td><code>storySpecialEvidence</code></td>
+  <td><code>events.js:3732</code></td>
+</tr>
+<tr>
+  <td><code>storyProgramsAfterWorld</code></td>
+  <td><code>events.js:3772</code></td>
+</tr>
+<tr>
+  <td><code>createChapter3State</code></td>
+  <td><code>events.js:3802</code></td>
+</tr>
+<tr>
+  <td><code>migrateChapter3</code></td>
+  <td><code>events.js:3803</code></td>
+</tr>
+<tr>
+  <td><code>chapter3MaybeShift</code></td>
+  <td><code>events.js:3821</code></td>
+</tr>
+<tr>
+  <td><code>chapter3Offset</code></td>
+  <td><code>events.js:3829</code></td>
+</tr>
+<tr>
+  <td><code>chapter3IsNight</code></td>
+  <td><code>events.js:3835</code></td>
+</tr>
+<tr>
+  <td><code>chapter3EndingSenders</code></td>
+  <td><code>events.js:3836</code></td>
+</tr>
+<tr>
+  <td><code>chapter3Letters</code></td>
+  <td><code>events.js:3850</code></td>
+</tr>
+<tr>
+  <td><code>chapter3ReplyRecorded</code></td>
+  <td><code>events.js:3880</code></td>
+</tr>
+<tr>
+  <td><code>chapter3Decision</code></td>
+  <td><code>events.js:3890</code></td>
+</tr>
+<tr>
+  <td><code>chapter3AfterWorld</code></td>
+  <td><code>events.js:3913</code></td>
+</tr>
+<tr>
+  <td><code>createDailyThreadsState41</code></td>
+  <td><code>events.js:4076</code></td>
+</tr>
+<tr>
+  <td><code>migrateDailyThreads41</code></td>
+  <td><code>events.js:4077</code></td>
+</tr>
+<tr>
+  <td><code>dailyThreadsAfterWorld41</code></td>
+  <td><code>events.js:4100</code></td>
+</tr>
+<tr>
+  <td><code>deferredSceneDateBody4840</code></td>
+  <td><code>events.js:4132</code></td>
+</tr>
+<tr>
+  <td><code>dailyThreadCompose41</code></td>
+  <td><code>events.js:4138</code></td>
+</tr>
+<tr>
+  <td><code>dailyThreadConfirmDelivered41</code></td>
+  <td><code>events.js:4153</code></td>
+</tr>
+<tr>
+  <td><code>createRelationThreadsState42</code></td>
+  <td><code>events.js:4304</code></td>
+</tr>
+<tr>
+  <td><code>migrateRelationThreads42</code></td>
+  <td><code>events.js:4305</code></td>
+</tr>
+<tr>
+  <td><code>relationThreadsAfterWorld42</code></td>
+  <td><code>events.js:4317</code></td>
+</tr>
+<tr>
+  <td><code>relationThreadDatedBody42</code></td>
+  <td><code>events.js:4343</code></td>
+</tr>
+<tr>
+  <td><code>relationThreadCompose42</code></td>
+  <td><code>events.js:4350</code></td>
+</tr>
+<tr>
+  <td><code>relationThreadConfirmDelivered42</code></td>
+  <td><code>events.js:4366</code></td>
+</tr>
+<tr>
+  <td><code>createLongEchoState43</code></td>
+  <td><code>events.js:4448</code></td>
+</tr>
+<tr>
+  <td><code>longEchoSourceFromSent43</code></td>
+  <td><code>events.js:4449</code></td>
+</tr>
+<tr>
+  <td><code>migrateLongEcho43</code></td>
+  <td><code>events.js:4457</code></td>
+</tr>
+<tr>
+  <td><code>longEchoConfirmSource43</code></td>
+  <td><code>events.js:4485</code></td>
+</tr>
+<tr>
+  <td><code>longEchoAfterBroadcast43</code></td>
+  <td><code>events.js:4499</code></td>
+</tr>
+<tr>
+  <td><code>longEchoCompose43</code></td>
+  <td><code>events.js:4526</code></td>
+</tr>
+<tr>
+  <td><code>longEchoConfirmDelivered43</code></td>
+  <td><code>events.js:4565</code></td>
+</tr>
+<tr>
+  <td><code>createSurpriseState46</code></td>
+  <td><code>events.js:4766</code></td>
+</tr>
+<tr>
+  <td><code>migrateSurprise46</code></td>
+  <td><code>events.js:4767</code></td>
+</tr>
+<tr>
+  <td><code>surpriseAfterWorld46</code></td>
+  <td><code>events.js:4783</code></td>
+</tr>
+<tr>
+  <td><code>surpriseCompose46</code></td>
+  <td><code>events.js:4814</code></td>
+</tr>
+<tr>
+  <td><code>surpriseConfirmDelivered46</code></td>
+  <td><code>events.js:4833</code></td>
+</tr>
+<tr>
+  <td><code>createChapter4State</code></td>
+  <td><code>events.js:4871</code></td>
+</tr>
+<tr>
+  <td><code>migrateChapter4</code></td>
+  <td><code>events.js:4872</code></td>
+</tr>
+<tr>
+  <td><code>chapter4IsNight</code></td>
+  <td><code>events.js:4885</code></td>
+</tr>
+<tr>
+  <td><code>chapter4ChooseDynamic</code></td>
+  <td><code>events.js:4886</code></td>
+</tr>
+<tr>
+  <td><code>chapter4PlanNight</code></td>
+  <td><code>events.js:4897</code></td>
+</tr>
+<tr>
+  <td><code>chapter4Letters</code></td>
+  <td><code>events.js:4903</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="script-js">script.js<a class="heading-anchor" href="#script-js" aria-label="見出しへリンク">#</a></h2>
+<p>収録した関数：<strong>235件</strong></p>
+<table>
+<thead>
+<tr>
+  <th>関数名</th>
+  <th>ソース位置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>migrateState</code></td>
+  <td><code>script.js:32</code></td>
+</tr>
+<tr>
+  <td><code>radioCompactEncode</code></td>
+  <td><code>script.js:112</code></td>
+</tr>
+<tr>
+  <td><code>radioCompactDecode</code></td>
+  <td><code>script.js:143</code></td>
+</tr>
+<tr>
+  <td><code>readerDecodeSaved</code></td>
+  <td><code>script.js:166</code></td>
+</tr>
+<tr>
+  <td><code>readerSaveRaw</code></td>
+  <td><code>script.js:170</code></td>
+</tr>
+<tr>
+  <td><code>mainDecodeSaved</code></td>
+  <td><code>script.js:186</code></td>
+</tr>
+<tr>
+  <td><code>mainSaveRaw</code></td>
+  <td><code>script.js:190</code></td>
+</tr>
+<tr>
+  <td><code>readerSavePosition</code></td>
+  <td><code>script.js:203</code></td>
+</tr>
+<tr>
+  <td><code>readerApplyPosition</code></td>
+  <td><code>script.js:208</code></td>
+</tr>
+<tr>
+  <td><code>validateReaderState</code></td>
+  <td><code>script.js:219</code></td>
+</tr>
+<tr>
+  <td><code>applyMainViewState</code></td>
+  <td><code>script.js:232</code></td>
+</tr>
+<tr>
+  <td><code>saveMainViewState</code></td>
+  <td><code>script.js:240</code></td>
+</tr>
+<tr>
+  <td><code>journalMovePage</code></td>
+  <td><code>script.js:247</code></td>
+</tr>
+<tr>
+  <td><code>load</code></td>
+  <td><code>script.js:259</code></td>
+</tr>
+<tr>
+  <td><code>save</code></td>
+  <td><code>script.js:277</code></td>
+</tr>
+<tr>
+  <td><code>rand</code></td>
+  <td><code>script.js:283</code></td>
+</tr>
+<tr>
+  <td><code>clamp</code></td>
+  <td><code>script.js:284</code></td>
+</tr>
+<tr>
+  <td><code>esc</code></td>
+  <td><code>script.js:285</code></td>
+</tr>
+<tr>
+  <td><code>fmt</code></td>
+  <td><code>script.js:286</code></td>
+</tr>
+<tr>
+  <td><code>letter</code></td>
+  <td><code>script.js:287</code></td>
+</tr>
+<tr>
+  <td><code>letterSenderId</code></td>
+  <td><code>script.js:333</code></td>
+</tr>
+<tr>
+  <td><code>applyNightlyLetterLimits</code></td>
+  <td><code>script.js:334</code></td>
+</tr>
+<tr>
+  <td><code>nightLetters</code></td>
+  <td><code>script.js:353</code></td>
+</tr>
+<tr>
+  <td><code>normalizeStudioVisuals</code></td>
+  <td><code>script.js:421</code></td>
+</tr>
+<tr>
+  <td><code>setStudioVisuals</code></td>
+  <td><code>script.js:424</code></td>
+</tr>
+<tr>
+  <td><code>studioDisplayPhase</code></td>
+  <td><code>script.js:430</code></td>
+</tr>
+<tr>
+  <td><code>studioWeatherText</code></td>
+  <td><code>script.js:441</code></td>
+</tr>
+<tr>
+  <td><code>studioScene</code></td>
+  <td><code>script.js:445</code></td>
+</tr>
+<tr>
+  <td><code>studioPrelude</code></td>
+  <td><code>script.js:452</code></td>
+</tr>
+<tr>
+  <td><code>studioSilenceText</code></td>
+  <td><code>script.js:456</code></td>
+</tr>
+<tr>
+  <td><code>studioSilentBridge</code></td>
+  <td><code>script.js:465</code></td>
+</tr>
+<tr>
+  <td><code>studioAfterQuiet</code></td>
+  <td><code>script.js:469</code></td>
+</tr>
+<tr>
+  <td><code>prepareUIStage</code></td>
+  <td><code>script.js:476</code></td>
+</tr>
+<tr>
+  <td><code>setTab</code></td>
+  <td><code>script.js:482</code></td>
+</tr>
+<tr>
+  <td><code>selectLetter</code></td>
+  <td><code>script.js:483</code></td>
+</tr>
+<tr>
+  <td><code>startNight</code></td>
+  <td><code>script.js:484</code></td>
+</tr>
+<tr>
+  <td><code>beginBroadcast</code></td>
+  <td><code>script.js:485</code></td>
+</tr>
+<tr>
+  <td><code>chooseReply</code></td>
+  <td><code>script.js:495</code></td>
+</tr>
+<tr>
+  <td><code>finishBroadcast</code></td>
+  <td><code>script.js:496</code></td>
+</tr>
+<tr>
+  <td><code>nextNight</code></td>
+  <td><code>script.js:508</code></td>
+</tr>
+<tr>
+  <td><code>beginRegular</code></td>
+  <td><code>script.js:521</code></td>
+</tr>
+<tr>
+  <td><code>resetGame</code></td>
+  <td><code>script.js:528</code></td>
+</tr>
+<tr>
+  <td><code>downloadSave</code></td>
+  <td><code>script.js:535</code></td>
+</tr>
+<tr>
+  <td><code>importSave</code></td>
+  <td><code>script.js:536</code></td>
+</tr>
+<tr>
+  <td><code>isLettersMode</code></td>
+  <td><code>script.js:558</code></td>
+</tr>
+<tr>
+  <td><code>setBroadcastMode</code></td>
+  <td><code>script.js:559</code></td>
+</tr>
+<tr>
+  <td><code>broadcastModePicker</code></td>
+  <td><code>script.js:565</code></td>
+</tr>
+<tr>
+  <td><code>automaticStyleHash</code></td>
+  <td><code>script.js:570</code></td>
+</tr>
+<tr>
+  <td><code>stationAutoHasAffirmed</code></td>
+  <td><code>script.js:612</code></td>
+</tr>
+<tr>
+  <td><code>stationAutoIndirectDistress</code></td>
+  <td><code>script.js:626</code></td>
+</tr>
+<tr>
+  <td><code>stationAutoMood</code></td>
+  <td><code>script.js:633</code></td>
+</tr>
+<tr>
+  <td><code>stationAutoReplyTag</code></td>
+  <td><code>script.js:670</code></td>
+</tr>
+<tr>
+  <td><code>stationAutoNightMood</code></td>
+  <td><code>script.js:675</code></td>
+</tr>
+<tr>
+  <td><code>stationAutoNightSensitivity</code></td>
+  <td><code>script.js:699</code></td>
+</tr>
+<tr>
+  <td><code>stationAutoScore</code></td>
+  <td><code>script.js:709</code></td>
+</tr>
+<tr>
+  <td><code>automaticStylePick</code></td>
+  <td><code>script.js:743</code></td>
+</tr>
+<tr>
+  <td><code>ensureAutomaticBroadcastSelections</code></td>
+  <td><code>script.js:773</code></td>
+</tr>
+<tr>
+  <td><code>createBroadcastStyle</code></td>
+  <td><code>script.js:789</code></td>
+</tr>
+<tr>
+  <td><code>chooseOpening</code></td>
+  <td><code>script.js:804</code></td>
+</tr>
+<tr>
+  <td><code>chooseSong</code></td>
+  <td><code>script.js:805</code></td>
+</tr>
+<tr>
+  <td><code>chooseClosing</code></td>
+  <td><code>script.js:806</code></td>
+</tr>
+<tr>
+  <td><code>closeInterlude</code></td>
+  <td><code>script.js:807</code></td>
+</tr>
+<tr>
+  <td><code>interludeScreen</code></td>
+  <td><code>script.js:816</code></td>
+</tr>
+<tr>
+  <td><code>nightStyleRecord</code></td>
+  <td><code>script.js:820</code></td>
+</tr>
+<tr>
+  <td><code>stationHabitText</code></td>
+  <td><code>script.js:823</code></td>
+</tr>
+<tr>
+  <td><code>stationStylePanel</code></td>
+  <td><code>script.js:832</code></td>
+</tr>
+<tr>
+  <td><code>openGuide</code></td>
+  <td><code>script.js:853</code></td>
+</tr>
+<tr>
+  <td><code>closeGuide</code></td>
+  <td><code>script.js:862</code></td>
+</tr>
+<tr>
+  <td><code>closeWelcome</code></td>
+  <td><code>script.js:872</code></td>
+</tr>
+<tr>
+  <td><code>toggleHints</code></td>
+  <td><code>script.js:873</code></td>
+</tr>
+<tr>
+  <td><code>dismissHint</code></td>
+  <td><code>script.js:874</code></td>
+</tr>
+<tr>
+  <td><code>hideableHint</code></td>
+  <td><code>script.js:875</code></td>
+</tr>
+<tr>
+  <td><code>guideDialog</code></td>
+  <td><code>script.js:879</code></td>
+</tr>
+<tr>
+  <td><code>djSmallStory4832</code></td>
+  <td><code>script.js:921</code></td>
+</tr>
+<tr>
+  <td><code>djSmallStoryPanel4832</code></td>
+  <td><code>script.js:980</code></td>
+</tr>
+<tr>
+  <td><code>tonightReflection</code></td>
+  <td><code>script.js:986</code></td>
+</tr>
+<tr>
+  <td><code>reflectionPanel</code></td>
+  <td><code>script.js:1005</code></td>
+</tr>
+<tr>
+  <td><code>bookmarkKey</code></td>
+  <td><code>script.js:1011</code></td>
+</tr>
+<tr>
+  <td><code>hasBookmark</code></td>
+  <td><code>script.js:1012</code></td>
+</tr>
+<tr>
+  <td><code>toggleBookmark</code></td>
+  <td><code>script.js:1013</code></td>
+</tr>
+<tr>
+  <td><code>refreshJournalBookmarkButtons</code></td>
+  <td><code>script.js:1022</code></td>
+</tr>
+<tr>
+  <td><code>toggleBookmarksView</code></td>
+  <td><code>script.js:1042</code></td>
+</tr>
+<tr>
+  <td><code>bookmarkArchiveMove</code></td>
+  <td><code>script.js:1048</code></td>
+</tr>
+<tr>
+  <td><code>bookmarkButton</code></td>
+  <td><code>script.js:1058</code></td>
+</tr>
+<tr>
+  <td><code>journalTwoLettersCandidates</code></td>
+  <td><code>script.js:1063</code></td>
+</tr>
+<tr>
+  <td><code>repaintJournalTwoLetters</code></td>
+  <td><code>script.js:1082</code></td>
+</tr>
+<tr>
+  <td><code>journalTwoLettersToggle</code></td>
+  <td><code>script.js:1088</code></td>
+</tr>
+<tr>
+  <td><code>journalTwoLettersNext</code></td>
+  <td><code>script.js:1089</code></td>
+</tr>
+<tr>
+  <td><code>journalTwoLettersPanel</code></td>
+  <td><code>script.js:1090</code></td>
+</tr>
+<tr>
+  <td><code>bookmarkArchive</code></td>
+  <td><code>script.js:1098</code></td>
+</tr>
+<tr>
+  <td><code>uiIcon</code></td>
+  <td><code>script.js:1113</code></td>
+</tr>
+<tr>
+  <td><code>shell</code></td>
+  <td><code>script.js:1138</code></td>
+</tr>
+<tr>
+  <td><code>navButtons</code></td>
+  <td><code>script.js:1139</code></td>
+</tr>
+<tr>
+  <td><code>intro</code></td>
+  <td><code>script.js:1141</code></td>
+</tr>
+<tr>
+  <td><code>prepare</code></td>
+  <td><code>script.js:1167</code></td>
+</tr>
+<tr>
+  <td><code>broadcast</code></td>
+  <td><code>script.js:1183</code></td>
+</tr>
+<tr>
+  <td><code>reply</code></td>
+  <td><code>script.js:1193</code></td>
+</tr>
+<tr>
+  <td><code>showSpecialLetter</code></td>
+  <td><code>script.js:1204</code></td>
+</tr>
+<tr>
+  <td><code>confirmSpecial</code></td>
+  <td><code>script.js:1210</code></td>
+</tr>
+<tr>
+  <td><code>after</code></td>
+  <td><code>script.js:1218</code></td>
+</tr>
+<tr>
+  <td><code>complete</code></td>
+  <td><code>script.js:1247</code></td>
+</tr>
+<tr>
+  <td><code>lettersTab</code></td>
+  <td><code>script.js:1258</code></td>
+</tr>
+<tr>
+  <td><code>journal</code></td>
+  <td><code>script.js:1259</code></td>
+</tr>
+<tr>
+  <td><code>journalHistoryContent</code></td>
+  <td><code>script.js:1264</code></td>
+</tr>
+<tr>
+  <td><code>archiveExcerpt</code></td>
+  <td><code>script.js:1286</code></td>
+</tr>
+<tr>
+  <td><code>listeners</code></td>
+  <td><code>script.js:1292</code></td>
+</tr>
+<tr>
+  <td><code>settings</code></td>
+  <td><code>script.js:1320</code></td>
+</tr>
+<tr>
+  <td><code>specialPlanningPanel</code></td>
+  <td><code>script.js:1321</code></td>
+</tr>
+<tr>
+  <td><code>specialIntro</code></td>
+  <td><code>script.js:1339</code></td>
+</tr>
+<tr>
+  <td><code>specialAfter</code></td>
+  <td><code>script.js:1343</code></td>
+</tr>
+<tr>
+  <td><code>regularIntro</code></td>
+  <td><code>script.js:1347</code></td>
+</tr>
+<tr>
+  <td><code>regularPacingKind4917</code></td>
+  <td><code>script.js:1395</code></td>
+</tr>
+<tr>
+  <td><code>regularPacingText4917</code></td>
+  <td><code>script.js:1413</code></td>
+</tr>
+<tr>
+  <td><code>regularAfter</code></td>
+  <td><code>script.js:1424</code></td>
+</tr>
+<tr>
+  <td><code>chapter2Intro</code></td>
+  <td><code>script.js:1438</code></td>
+</tr>
+<tr>
+  <td><code>chapter2After</code></td>
+  <td><code>script.js:1446</code></td>
+</tr>
+<tr>
+  <td><code>chapter2Complete</code></td>
+  <td><code>script.js:1464</code></td>
+</tr>
+<tr>
+  <td><code>beginAfterChapter2</code></td>
+  <td><code>script.js:1474</code></td>
+</tr>
+<tr>
+  <td><code>readerEntry</code></td>
+  <td><code>script.js:1484</code></td>
+</tr>
+<tr>
+  <td><code>openReaderSetup</code></td>
+  <td><code>script.js:1488</code></td>
+</tr>
+<tr>
+  <td><code>closeReaderSetup</code></td>
+  <td><code>script.js:1492</code></td>
+</tr>
+<tr>
+  <td><code>readerSetupScreen</code></td>
+  <td><code>script.js:1493</code></td>
+</tr>
+<tr>
+  <td><code>makeReaderState</code></td>
+  <td><code>script.js:1506</code></td>
+</tr>
+<tr>
+  <td><code>createReader</code></td>
+  <td><code>script.js:1514</code></td>
+</tr>
+<tr>
+  <td><code>switchToReader</code></td>
+  <td><code>script.js:1525</code></td>
+</tr>
+<tr>
+  <td><code>switchToMain</code></td>
+  <td><code>script.js:1534</code></td>
+</tr>
+<tr>
+  <td><code>downloadReaderSave</code></td>
+  <td><code>script.js:1544</code></td>
+</tr>
+<tr>
+  <td><code>importReaderSave</code></td>
+  <td><code>script.js:1549</code></td>
+</tr>
+<tr>
+  <td><code>readerTextFromPanel</code></td>
+  <td><code>script.js:1562</code></td>
+</tr>
+<tr>
+  <td><code>readerEditorialScene</code></td>
+  <td><code>script.js:1570</code></td>
+</tr>
+<tr>
+  <td><code>readerEditorialTitle</code></td>
+  <td><code>script.js:1596</code></td>
+</tr>
+<tr>
+  <td><code>autoDJNoise</code></td>
+  <td><code>script.js:1603</code></td>
+</tr>
+<tr>
+  <td><code>autoDJLetterMood</code></td>
+  <td><code>script.js:1604</code></td>
+</tr>
+<tr>
+  <td><code>autoDJPickLetters</code></td>
+  <td><code>script.js:1605</code></td>
+</tr>
+<tr>
+  <td><code>autoDJOrderNightLetters</code></td>
+  <td><code>script.js:1664</code></td>
+</tr>
+<tr>
+  <td><code>autoDJOptionTag</code></td>
+  <td><code>script.js:1686</code></td>
+</tr>
+<tr>
+  <td><code>autoDJTone</code></td>
+  <td><code>script.js:1705</code></td>
+</tr>
+<tr>
+  <td><code>autoDJContactHistory</code></td>
+  <td><code>script.js:1714</code></td>
+</tr>
+<tr>
+  <td><code>autoDJRelationshipScore</code></td>
+  <td><code>script.js:1723</code></td>
+</tr>
+<tr>
+  <td><code>autoDJRememberReply</code></td>
+  <td><code>script.js:1748</code></td>
+</tr>
+<tr>
+  <td><code>autoDJFactualFit</code></td>
+  <td><code>script.js:1759</code></td>
+</tr>
+<tr>
+  <td><code>autoDJNeutralReply</code></td>
+  <td><code>script.js:1812</code></td>
+</tr>
+<tr>
+  <td><code>autoDJNoAnswerRequested</code></td>
+  <td><code>script.js:1839</code></td>
+</tr>
+<tr>
+  <td><code>autoDJAsksQuestion</code></td>
+  <td><code>script.js:1843</code></td>
+</tr>
+<tr>
+  <td><code>autoDJSpecificityFit</code></td>
+  <td><code>script.js:1846</code></td>
+</tr>
+<tr>
+  <td><code>autoDJRepeatSaturation</code></td>
+  <td><code>script.js:1878</code></td>
+</tr>
+<tr>
+  <td><code>autoDJQuestionRole</code></td>
+  <td><code>script.js:1907</code></td>
+</tr>
+<tr>
+  <td><code>autoDJNightVarietyScore</code></td>
+  <td><code>script.js:1916</code></td>
+</tr>
+<tr>
+  <td><code>autoDJRankChoices</code></td>
+  <td><code>script.js:1930</code></td>
+</tr>
+<tr>
+  <td><code>autoDJSpecialCoherence</code></td>
+  <td><code>script.js:1939</code></td>
+</tr>
+<tr>
+  <td><code>autoDJSelectSpecialParts</code></td>
+  <td><code>script.js:1955</code></td>
+</tr>
+<tr>
+  <td><code>autoDJConversationalFit</code></td>
+  <td><code>script.js:1982</code></td>
+</tr>
+<tr>
+  <td><code>autoDJSpecialPartRepeatPenalty</code></td>
+  <td><code>script.js:2004</code></td>
+</tr>
+<tr>
+  <td><code>autoDJMomentChoices</code></td>
+  <td><code>script.js:2034</code></td>
+</tr>
+<tr>
+  <td><code>autoDJReplyScore</code></td>
+  <td><code>script.js:2039</code></td>
+</tr>
+<tr>
+  <td><code>autoDJLatePersonalChoices</code></td>
+  <td><code>script.js:2084</code></td>
+</tr>
+<tr>
+  <td><code>autoDJTaughtChoices</code></td>
+  <td><code>script.js:2133</code></td>
+</tr>
+<tr>
+  <td><code>autoDJHeardLetterChoices</code></td>
+  <td><code>script.js:2150</code></td>
+</tr>
+<tr>
+  <td><code>autoDJEverydayChoices</code></td>
+  <td><code>script.js:2190</code></td>
+</tr>
+<tr>
+  <td><code>autoDJGenericContextScore</code></td>
+  <td><code>script.js:2261</code></td>
+</tr>
+<tr>
+  <td><code>autoDJReply</code></td>
+  <td><code>script.js:2271</code></td>
+</tr>
+<tr>
+  <td><code>autoDJMaybePlan</code></td>
+  <td><code>script.js:2294</code></td>
+</tr>
+<tr>
+  <td><code>readerDJVoiceValue</code></td>
+  <td><code>script.js:2378</code></td>
+</tr>
+<tr>
+  <td><code>readerDJVoiceTopicText</code></td>
+  <td><code>script.js:2385</code></td>
+</tr>
+<tr>
+  <td><code>readerRadioPhrase4915</code></td>
+  <td><code>script.js:2491</code></td>
+</tr>
+<tr>
+  <td><code>lettersBroadcastPhrase4916</code></td>
+  <td><code>script.js:2511</code></td>
+</tr>
+<tr>
+  <td><code>readerDJChooseVoice</code></td>
+  <td><code>script.js:2533</code></td>
+</tr>
+<tr>
+  <td><code>readerProduceNight</code></td>
+  <td><code>script.js:2589</code></td>
+</tr>
+<tr>
+  <td><code>readerOriginFromPage</code></td>
+  <td><code>script.js:2654</code></td>
+</tr>
+<tr>
+  <td><code>readerOriginFootnote</code></td>
+  <td><code>script.js:2660</code></td>
+</tr>
+<tr>
+  <td><code>readerChooseClosing</code></td>
+  <td><code>script.js:2667</code></td>
+</tr>
+<tr>
+  <td><code>readerGotoPage</code></td>
+  <td><code>script.js:2683</code></td>
+</tr>
+<tr>
+  <td><code>readerGotoLatest</code></td>
+  <td><code>script.js:2688</code></td>
+</tr>
+<tr>
+  <td><code>readerNightSelect</code></td>
+  <td><code>script.js:2692</code></td>
+</tr>
+<tr>
+  <td><code>readerJumpToNightNumber</code></td>
+  <td><code>script.js:2696</code></td>
+</tr>
+<tr>
+  <td><code>readerNightNavigation</code></td>
+  <td><code>script.js:2705</code></td>
+</tr>
+<tr>
+  <td><code>readerJumpToSection</code></td>
+  <td><code>script.js:2715</code></td>
+</tr>
+<tr>
+  <td><code>readerNightContents</code></td>
+  <td><code>script.js:2722</code></td>
+</tr>
+<tr>
+  <td><code>readerShell</code></td>
+  <td><code>script.js:2726</code></td>
+</tr>
+<tr>
+  <td><code>readerView</code></td>
+  <td><code>script.js:2729</code></td>
+</tr>
+<tr>
+  <td><code>readerReaderTools</code></td>
+  <td><code>script.js:2747</code></td>
+</tr>
+<tr>
+  <td><code>updateMainNavActive</code></td>
+  <td><code>script.js:2758</code></td>
+</tr>
+<tr>
+  <td><code>render</code></td>
+  <td><code>script.js:2772</code></td>
+</tr>
+<tr>
+  <td><code>createFinaleState</code></td>
+  <td><code>script.js:2839</code></td>
+</tr>
+<tr>
+  <td><code>migrateFinaleState</code></td>
+  <td><code>script.js:2840</code></td>
+</tr>
+<tr>
+  <td><code>finaleRoleOf</code></td>
+  <td><code>script.js:3014</code></td>
+</tr>
+<tr>
+  <td><code>finaleReplyOptions</code></td>
+  <td><code>script.js:3015</code></td>
+</tr>
+<tr>
+  <td><code>finaleCanPlan</code></td>
+  <td><code>script.js:3022</code></td>
+</tr>
+<tr>
+  <td><code>finalePlanExplanation</code></td>
+  <td><code>script.js:3029</code></td>
+</tr>
+<tr>
+  <td><code>finaleCommit</code></td>
+  <td><code>script.js:3037</code></td>
+</tr>
+<tr>
+  <td><code>finalePlan</code></td>
+  <td><code>script.js:3038</code></td>
+</tr>
+<tr>
+  <td><code>finaleCancelPlan</code></td>
+  <td><code>script.js:3043</code></td>
+</tr>
+<tr>
+  <td><code>finaleChooseAnnouncement</code></td>
+  <td><code>script.js:3044</code></td>
+</tr>
+<tr>
+  <td><code>finaleAnnounceIntro</code></td>
+  <td><code>script.js:3045</code></td>
+</tr>
+<tr>
+  <td><code>finaleAnnouncementPreview</code></td>
+  <td><code>script.js:3049</code></td>
+</tr>
+<tr>
+  <td><code>finaleAnnouncementAfter</code></td>
+  <td><code>script.js:3050</code></td>
+</tr>
+<tr>
+  <td><code>finaleRankedListeners</code></td>
+  <td><code>script.js:3051</code></td>
+</tr>
+<tr>
+  <td><code>finaleMakeSnapshot</code></td>
+  <td><code>script.js:3055</code></td>
+</tr>
+<tr>
+  <td><code>finaleResponses</code></td>
+  <td><code>script.js:3075</code></td>
+</tr>
+<tr>
+  <td><code>finaleStart</code></td>
+  <td><code>script.js:3080</code></td>
+</tr>
+<tr>
+  <td><code>finaleChooseOpening</code></td>
+  <td><code>script.js:3081</code></td>
+</tr>
+<tr>
+  <td><code>finaleRespond</code></td>
+  <td><code>script.js:3082</code></td>
+</tr>
+<tr>
+  <td><code>finaleNextStage</code></td>
+  <td><code>script.js:3083</code></td>
+</tr>
+<tr>
+  <td><code>finaleChooseClosing</code></td>
+  <td><code>script.js:3084</code></td>
+</tr>
+<tr>
+  <td><code>finaleStats</code></td>
+  <td><code>script.js:3085</code></td>
+</tr>
+<tr>
+  <td><code>finaleComplete</code></td>
+  <td><code>script.js:3088</code></td>
+</tr>
+<tr>
+  <td><code>finaleIntroduction</code></td>
+  <td><code>script.js:3097</code></td>
+</tr>
+<tr>
+  <td><code>finaleFlowLine</code></td>
+  <td><code>script.js:3098</code></td>
+</tr>
+<tr>
+  <td><code>finaleHeardReply</code></td>
+  <td><code>script.js:3101</code></td>
+</tr>
+<tr>
+  <td><code>finaleBroadcast</code></td>
+  <td><code>script.js:3102</code></td>
+</tr>
+<tr>
+  <td><code>finaleEndingText</code></td>
+  <td><code>script.js:3108</code></td>
+</tr>
+<tr>
+  <td><code>finaleCompletedView</code></td>
+  <td><code>script.js:3109</code></td>
+</tr>
+<tr>
+  <td><code>finaleReview</code></td>
+  <td><code>script.js:3111</code></td>
+</tr>
+<tr>
+  <td><code>finaleOpenKeepsakes</code></td>
+  <td><code>script.js:3112</code></td>
+</tr>
+<tr>
+  <td><code>finaleArchiveHtml</code></td>
+  <td><code>script.js:3113</code></td>
+</tr>
+<tr>
+  <td><code>finaleBackToComplete</code></td>
+  <td><code>script.js:3114</code></td>
+</tr>
+<tr>
+  <td><code>finaleKeepsakes</code></td>
+  <td><code>script.js:3115</code></td>
+</tr>
+<tr>
+  <td><code>finaleRestart</code></td>
+  <td><code>script.js:3116</code></td>
+</tr>
+<tr>
+  <td><code>finaleReaderCompletedPage</code></td>
+  <td><code>script.js:3122</code></td>
+</tr>
+<tr>
+  <td><code>finaleReaderKeepsake</code></td>
+  <td><code>script.js:3128</code></td>
+</tr>
+<tr>
+  <td><code>finaleReaderProduce</code></td>
+  <td><code>script.js:3129</code></td>
+</tr>
+<tr>
+  <td><code>finaleImageLayouts</code></td>
+  <td><code>script.js:3143</code></td>
+</tr>
+<tr>
+  <td><code>finaleDrawPage</code></td>
+  <td><code>script.js:3158</code></td>
+</tr>
+<tr>
+  <td><code>text</code></td>
+  <td><code>script.js:3173</code></td>
+</tr>
+<tr>
+  <td><code>stroke</code></td>
+  <td><code>script.js:3176</code></td>
+</tr>
+<tr>
+  <td><code>finaleExportPNG</code></td>
+  <td><code>script.js:3219</code></td>
+</tr>
+<tr>
+  <td><code>finaleDownloadData</code></td>
+  <td><code>script.js:3231</code></td>
+</tr>
+<tr>
+  <td><code>chapter3Intro</code></td>
+  <td><code>script.js:3237</code></td>
+</tr>
+<tr>
+  <td><code>chapter3After</code></td>
+  <td><code>script.js:3253</code></td>
+</tr>
+<tr>
+  <td><code>chapter3Complete</code></td>
+  <td><code>script.js:3281</code></td>
+</tr>
+<tr>
+  <td><code>beginAfterChapter3</code></td>
+  <td><code>script.js:3293</code></td>
+</tr>
+<tr>
+  <td><code>chapter4Intro</code></td>
+  <td><code>script.js:3303</code></td>
+</tr>
+<tr>
+  <td><code>chapter4After</code></td>
+  <td><code>script.js:3310</code></td>
+</tr>
+<tr>
+  <td><code>chapter4Complete</code></td>
+  <td><code>script.js:3319</code></td>
+</tr>
+<tr>
+  <td><code>beginAfterChapter4</code></td>
+  <td><code>script.js:3326</code></td>
+</tr>
+</tbody>
+</table>
+</article><div class="page-foot"><p>このサイトは実装コードを調査して作成した仕様スナップショットです。最新コードとの照合と実機検証は別途必要です。</p><div class="footlinks"><a href="index.html">資料トップへ</a><a href="source-index.html">関数索引へ</a><a href="deploy.html">公開・更新手順</a></div></div></main>
+<aside class="toc" aria-label="このページの目次"><div class="toc-heading">ON THIS PAGE</div><a class="toc-lv-2" href="#listeners-js">listeners.js</a><a class="toc-lv-2" href="#letters-js">letters.js</a><a class="toc-lv-2" href="#events-js">events.js</a><a class="toc-lv-2" href="#script-js">script.js</a><div class="toc-foot">v4.9.22 を基準に編集</div></aside></div><script src="assets/search-data.js" defer></script><script src="assets/app.js" defer></script></body></html>

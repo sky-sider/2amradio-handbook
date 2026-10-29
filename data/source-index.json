@@ -1,0 +1,1908 @@
+{
+  "index.html": [],
+  "style.css": [],
+  "listeners.js": [
+    {
+      "name": "simNumber",
+      "line": 160
+    },
+    {
+      "name": "simAdjust",
+      "line": 161
+    },
+    {
+      "name": "simHash",
+      "line": 162
+    },
+    {
+      "name": "simPick",
+      "line": 163
+    },
+    {
+      "name": "simRelationDefaults",
+      "line": 164
+    },
+    {
+      "name": "createSimulationState",
+      "line": 169
+    },
+    {
+      "name": "migrateSimulation",
+      "line": 181
+    },
+    {
+      "name": "simMemory",
+      "line": 215
+    },
+    {
+      "name": "simReplyTopic",
+      "line": 227
+    },
+    {
+      "name": "simReplyImpact",
+      "line": 235
+    },
+    {
+      "name": "simEligible",
+      "line": 248
+    },
+    {
+      "name": "simCategoryWeight",
+      "line": 253
+    },
+    {
+      "name": "simChooseAction",
+      "line": 290
+    },
+    {
+      "name": "simMeet",
+      "line": 299
+    },
+    {
+      "name": "simStoryRelationEcho",
+      "line": 321
+    },
+    {
+      "name": "simRegisterAction",
+      "line": 342
+    },
+    {
+      "name": "simulateDailyLives",
+      "line": 363
+    },
+    {
+      "name": "simLetterPostscript",
+      "line": 393
+    },
+    {
+      "name": "simLatestContact",
+      "line": 405
+    },
+    {
+      "name": "simContactCount",
+      "line": 410
+    },
+    {
+      "name": "simRelationshipPostscript",
+      "line": 411
+    }
+  ],
+  "letters.js": [
+    {
+      "name": "partsForLetter",
+      "line": 442
+    },
+    {
+      "name": "lateLetterText",
+      "line": 461
+    },
+    {
+      "name": "lifeLetterNote",
+      "line": 509
+    },
+    {
+      "name": "relationLetterText",
+      "line": 565
+    },
+    {
+      "name": "chapter2StageIndex",
+      "line": 906
+    },
+    {
+      "name": "chapter2Route",
+      "line": 907
+    },
+    {
+      "name": "chapter2LetterBody",
+      "line": 912
+    },
+    {
+      "name": "chapter2BuildLetter",
+      "line": 919
+    },
+    {
+      "name": "chapter3LetterBody",
+      "line": 1469
+    },
+    {
+      "name": "chapter3BuildLetter",
+      "line": 1484
+    },
+    {
+      "name": "replyGenreFromText",
+      "line": 1659
+    },
+    {
+      "name": "replyContextKey",
+      "line": 1684
+    },
+    {
+      "name": "lateReplyChoices486",
+      "line": 1766
+    },
+    {
+      "name": "replyTopicChoices",
+      "line": 1774
+    },
+    {
+      "name": "isGenericReplySet",
+      "line": 1819
+    },
+    {
+      "name": "meetingChoices",
+      "line": 1846
+    },
+    {
+      "name": "contactReplyChoices",
+      "line": 1853
+    }
+  ],
+  "events.js": [
+    {
+      "name": "log",
+      "line": 1
+    },
+    {
+      "name": "event",
+      "line": 2
+    },
+    {
+      "name": "affect",
+      "line": 3
+    },
+    {
+      "name": "remember",
+      "line": 4
+    },
+    {
+      "name": "applyReply",
+      "line": 5
+    },
+    {
+      "name": "advanceWorld",
+      "line": 6
+    },
+    {
+      "name": "privateRemember",
+      "line": 11
+    },
+    {
+      "name": "extendedApplyReply",
+      "line": 17
+    },
+    {
+      "name": "advanceExtendedWorld",
+      "line": 79
+    },
+    {
+      "name": "createNightLetters",
+      "line": 138
+    },
+    {
+      "name": "updatePendingLetters",
+      "line": 153
+    },
+    {
+      "name": "recordOpening",
+      "line": 167
+    },
+    {
+      "name": "applySongMood",
+      "line": 175
+    },
+    {
+      "name": "initializeStoryState",
+      "line": 188
+    },
+    {
+      "name": "addStory",
+      "line": 200
+    },
+    {
+      "name": "scorePick",
+      "line": 204
+    },
+    {
+      "name": "applyLateReply",
+      "line": 209
+    },
+    {
+      "name": "createLifePaths",
+      "line": 312
+    },
+    {
+      "name": "migrateLifePaths",
+      "line": 313
+    },
+    {
+      "name": "lifeCore",
+      "line": 336
+    },
+    {
+      "name": "lifeRelationship",
+      "line": 337
+    },
+    {
+      "name": "lifeHabit",
+      "line": 338
+    },
+    {
+      "name": "lifeMemory",
+      "line": 339
+    },
+    {
+      "name": "lifeContactImprint",
+      "line": 340
+    },
+    {
+      "name": "lifeBranchWeights",
+      "line": 349
+    },
+    {
+      "name": "resolveLifeCrossroads",
+      "line": 428
+    },
+    {
+      "name": "lifeApplyDelta",
+      "line": 446
+    },
+    {
+      "name": "lifeRealConversation",
+      "line": 452
+    },
+    {
+      "name": "lifeAfterDaily",
+      "line": 459
+    },
+    {
+      "name": "lifePossibleConsequences",
+      "line": 499
+    },
+    {
+      "name": "lifeDailyActionBias",
+      "line": 509
+    },
+    {
+      "name": "advanceLateWorld",
+      "line": 527
+    },
+    {
+      "name": "createMicroWorldState",
+      "line": 616
+    },
+    {
+      "name": "migrateMicroWorld",
+      "line": 617
+    },
+    {
+      "name": "microRecent",
+      "line": 629
+    },
+    {
+      "name": "microRemember",
+      "line": 633
+    },
+    {
+      "name": "microLink",
+      "line": 637
+    },
+    {
+      "name": "microChanceMeeting",
+      "line": 644
+    },
+    {
+      "name": "register",
+      "line": 652
+    },
+    {
+      "name": "simulateMicroWorld",
+      "line": 666
+    },
+    {
+      "name": "socialFreshPair",
+      "line": 784
+    },
+    {
+      "name": "createSocialWorldState",
+      "line": 789
+    },
+    {
+      "name": "migrateSocialWorld",
+      "line": 790
+    },
+    {
+      "name": "socialActionBias",
+      "line": 817
+    },
+    {
+      "name": "socialActorSchedule",
+      "line": 830
+    },
+    {
+      "name": "socialWeightDecision",
+      "line": 860
+    },
+    {
+      "name": "socialPairContact",
+      "line": 874
+    },
+    {
+      "name": "socialLetterFor",
+      "line": 968
+    },
+    {
+      "name": "socialQueueRecollection",
+      "line": 980
+    },
+    {
+      "name": "simulateSocialWorld",
+      "line": 1007
+    },
+    {
+      "name": "socialVisibleClue",
+      "line": 1030
+    },
+    {
+      "name": "createNewListenerState",
+      "line": 1049
+    },
+    {
+      "name": "migrateNewListeners",
+      "line": 1050
+    },
+    {
+      "name": "newListenerEligible",
+      "line": 1068
+    },
+    {
+      "name": "newListenerIntroduced",
+      "line": 1069
+    },
+    {
+      "name": "newListenerFirstLetter",
+      "line": 1070
+    },
+    {
+      "name": "newListenerArcNote",
+      "line": 1074
+    },
+    {
+      "name": "newListenerPersonalNote",
+      "line": 1085
+    },
+    {
+      "name": "newListenerCompose",
+      "line": 1098
+    },
+    {
+      "name": "newListenerOnLettersDelivered",
+      "line": 1121
+    },
+    {
+      "name": "newListenerAfterDaily",
+      "line": 1135
+    },
+    {
+      "name": "letterPoliteActivity491",
+      "line": 1243
+    },
+    {
+      "name": "letterPoliteProgress491",
+      "line": 1254
+    },
+    {
+      "name": "createQuietState",
+      "line": 1274
+    },
+    {
+      "name": "migrateQuiet",
+      "line": 1275
+    },
+    {
+      "name": "quietScheduledFor",
+      "line": 1286
+    },
+    {
+      "name": "quietWaitingToReturn",
+      "line": 1287
+    },
+    {
+      "name": "quietSafeWindow",
+      "line": 1289
+    },
+    {
+      "name": "quietReasonFromAction",
+      "line": 1295
+    },
+    {
+      "name": "quietAfterDaily",
+      "line": 1307
+    },
+    {
+      "name": "quietLastActualMail461",
+      "line": 1336
+    },
+    {
+      "name": "quietReturnNote",
+      "line": 1358
+    },
+    {
+      "name": "quietConfirmDelivered",
+      "line": 1383
+    },
+    {
+      "name": "createRadioCultureState",
+      "line": 1398
+    },
+    {
+      "name": "migrateRadioCulture",
+      "line": 1399
+    },
+    {
+      "name": "radioCultureIdentify",
+      "line": 1483
+    },
+    {
+      "name": "radioCultureAfterBroadcast",
+      "line": 1508
+    },
+    {
+      "name": "radioCultureConfirmDelivered",
+      "line": 1539
+    },
+    {
+      "name": "radioCultureCompose",
+      "line": 1550
+    },
+    {
+      "name": "createRadioMemoryState39",
+      "line": 1589
+    },
+    {
+      "name": "migrateRadioMemory39",
+      "line": 1592
+    },
+    {
+      "name": "radioMemoryAfterBroadcast39",
+      "line": 1641
+    },
+    {
+      "name": "radioMemoryCompose39",
+      "line": 1682
+    },
+    {
+      "name": "radioMemoryConfirmDelivered39",
+      "line": 1713
+    },
+    {
+      "name": "createRegularState",
+      "line": 1726
+    },
+    {
+      "name": "migrateRegular",
+      "line": 1727
+    },
+    {
+      "name": "regularTheme",
+      "line": 1741
+    },
+    {
+      "name": "regularDayTitle",
+      "line": 1742
+    },
+    {
+      "name": "regularFirstSentence",
+      "line": 1753
+    },
+    {
+      "name": "regularDayAction",
+      "line": 1754
+    },
+    {
+      "name": "regularRoute",
+      "line": 1787
+    },
+    {
+      "name": "regularSubject44",
+      "line": 1804
+    },
+    {
+      "name": "regularDayNote",
+      "line": 1846
+    },
+    {
+      "name": "regularContact",
+      "line": 1906
+    },
+    {
+      "name": "regularBroadcastEcho",
+      "line": 1964
+    },
+    {
+      "name": "regularThemeAction44",
+      "line": 1990
+    },
+    {
+      "name": "regularThemeLetter",
+      "line": 2194
+    },
+    {
+      "name": "radioVarietyCompose38",
+      "line": 2301
+    },
+    {
+      "name": "radioVarietyConfirmDelivered38",
+      "line": 2329
+    },
+    {
+      "name": "everydayCompose4827",
+      "line": 2345
+    },
+    {
+      "name": "longLifeCompose4914",
+      "line": 2372
+    },
+    {
+      "name": "regularCompose",
+      "line": 2385
+    },
+    {
+      "name": "v33VoiceLetter",
+      "line": 2431
+    },
+    {
+      "name": "createCrossTalkState4830",
+      "line": 2479
+    },
+    {
+      "name": "migrateCrossTalk4830",
+      "line": 2480
+    },
+    {
+      "name": "listenerCrossCompose4830",
+      "line": 2490
+    },
+    {
+      "name": "listenerCrossConfirmDelivered4830",
+      "line": 2518
+    },
+    {
+      "name": "createCrossAfterState4831",
+      "line": 2885
+    },
+    {
+      "name": "migrateCrossAfter4831",
+      "line": 2886
+    },
+    {
+      "name": "listenerCrossAfterCompose4831",
+      "line": 2896
+    },
+    {
+      "name": "listenerCrossAfterConfirm4831",
+      "line": 2917
+    },
+    {
+      "name": "createRegularLetters",
+      "line": 2929
+    },
+    {
+      "name": "regularVoiceKey45",
+      "line": 2981
+    },
+    {
+      "name": "regularConfirmDelivered40",
+      "line": 2985
+    },
+    {
+      "name": "regularAfterWorld",
+      "line": 3019
+    },
+    {
+      "name": "regularReplyRecorded",
+      "line": 3060
+    },
+    {
+      "name": "createChapter2State",
+      "line": 3110
+    },
+    {
+      "name": "migrateChapter2",
+      "line": 3111
+    },
+    {
+      "name": "chapter2EndingSenders",
+      "line": 3124
+    },
+    {
+      "name": "chapter2Letters",
+      "line": 3136
+    },
+    {
+      "name": "chapter2ReplyRecorded",
+      "line": 3168
+    },
+    {
+      "name": "chapter2SecondaryDecision",
+      "line": 3180
+    },
+    {
+      "name": "chapter2AfterWorld",
+      "line": 3203
+    },
+    {
+      "name": "createSpecialState",
+      "line": 3238
+    },
+    {
+      "name": "migrateSpecial",
+      "line": 3239
+    },
+    {
+      "name": "milestoneAt",
+      "line": 3252
+    },
+    {
+      "name": "milestoneUpcoming",
+      "line": 3253
+    },
+    {
+      "name": "milestonePlan",
+      "line": 3254
+    },
+    {
+      "name": "milestoneEnsure",
+      "line": 3257
+    },
+    {
+      "name": "specialActive",
+      "line": 3281
+    },
+    {
+      "name": "specialEligible",
+      "line": 3285
+    },
+    {
+      "name": "specialAvailable",
+      "line": 3293
+    },
+    {
+      "name": "specialPlan",
+      "line": 3306
+    },
+    {
+      "name": "specialCancel",
+      "line": 3315
+    },
+    {
+      "name": "specialLifeExcerpt",
+      "line": 3322
+    },
+    {
+      "name": "specialSubmitBody",
+      "line": 3328
+    },
+    {
+      "name": "specialBeginAnnouncement",
+      "line": 3368
+    },
+    {
+      "name": "specialFinalizeAnnouncement",
+      "line": 3374
+    },
+    {
+      "name": "specialCreateLetters",
+      "line": 3410
+    },
+    {
+      "name": "specialFollowup",
+      "line": 3434
+    },
+    {
+      "name": "specialEndBroadcast",
+      "line": 3463
+    },
+    {
+      "name": "specialProcessNight",
+      "line": 3494
+    },
+    {
+      "name": "createClimateState",
+      "line": 3519
+    },
+    {
+      "name": "migrateClimate",
+      "line": 3520
+    },
+    {
+      "name": "climateSeason",
+      "line": 3525
+    },
+    {
+      "name": "climateWeatherRaw",
+      "line": 3526
+    },
+    {
+      "name": "climateForNight",
+      "line": 3545
+    },
+    {
+      "name": "climateCaption",
+      "line": 3556
+    },
+    {
+      "name": "climateIntroText",
+      "line": 3559
+    },
+    {
+      "name": "climateActionBias",
+      "line": 3567
+    },
+    {
+      "name": "climateLifeEffects",
+      "line": 3580
+    },
+    {
+      "name": "climateCreateLetter",
+      "line": 3638
+    },
+    {
+      "name": "createStoryProgramsState",
+      "line": 3697
+    },
+    {
+      "name": "migrateStoryPrograms",
+      "line": 3698
+    },
+    {
+      "name": "storyOfferFor",
+      "line": 3712
+    },
+    {
+      "name": "storyAvailableOffers",
+      "line": 3716
+    },
+    {
+      "name": "storyRecentBroadcasts",
+      "line": 3720
+    },
+    {
+      "name": "storyHadDaily",
+      "line": 3724
+    },
+    {
+      "name": "storyHasSocialContact",
+      "line": 3728
+    },
+    {
+      "name": "storySpecialEvidence",
+      "line": 3732
+    },
+    {
+      "name": "storyProgramsAfterWorld",
+      "line": 3772
+    },
+    {
+      "name": "createChapter3State",
+      "line": 3802
+    },
+    {
+      "name": "migrateChapter3",
+      "line": 3803
+    },
+    {
+      "name": "chapter3MaybeShift",
+      "line": 3821
+    },
+    {
+      "name": "chapter3Offset",
+      "line": 3829
+    },
+    {
+      "name": "chapter3IsNight",
+      "line": 3835
+    },
+    {
+      "name": "chapter3EndingSenders",
+      "line": 3836
+    },
+    {
+      "name": "chapter3Letters",
+      "line": 3850
+    },
+    {
+      "name": "chapter3ReplyRecorded",
+      "line": 3880
+    },
+    {
+      "name": "chapter3Decision",
+      "line": 3890
+    },
+    {
+      "name": "chapter3AfterWorld",
+      "line": 3913
+    },
+    {
+      "name": "createDailyThreadsState41",
+      "line": 4076
+    },
+    {
+      "name": "migrateDailyThreads41",
+      "line": 4077
+    },
+    {
+      "name": "dailyThreadsAfterWorld41",
+      "line": 4100
+    },
+    {
+      "name": "deferredSceneDateBody4840",
+      "line": 4132
+    },
+    {
+      "name": "dailyThreadCompose41",
+      "line": 4138
+    },
+    {
+      "name": "dailyThreadConfirmDelivered41",
+      "line": 4153
+    },
+    {
+      "name": "createRelationThreadsState42",
+      "line": 4304
+    },
+    {
+      "name": "migrateRelationThreads42",
+      "line": 4305
+    },
+    {
+      "name": "relationThreadsAfterWorld42",
+      "line": 4317
+    },
+    {
+      "name": "relationThreadDatedBody42",
+      "line": 4343
+    },
+    {
+      "name": "relationThreadCompose42",
+      "line": 4350
+    },
+    {
+      "name": "relationThreadConfirmDelivered42",
+      "line": 4366
+    },
+    {
+      "name": "createLongEchoState43",
+      "line": 4448
+    },
+    {
+      "name": "longEchoSourceFromSent43",
+      "line": 4449
+    },
+    {
+      "name": "migrateLongEcho43",
+      "line": 4457
+    },
+    {
+      "name": "longEchoConfirmSource43",
+      "line": 4485
+    },
+    {
+      "name": "longEchoAfterBroadcast43",
+      "line": 4499
+    },
+    {
+      "name": "longEchoCompose43",
+      "line": 4526
+    },
+    {
+      "name": "longEchoConfirmDelivered43",
+      "line": 4565
+    },
+    {
+      "name": "createSurpriseState46",
+      "line": 4766
+    },
+    {
+      "name": "migrateSurprise46",
+      "line": 4767
+    },
+    {
+      "name": "surpriseAfterWorld46",
+      "line": 4783
+    },
+    {
+      "name": "surpriseCompose46",
+      "line": 4814
+    },
+    {
+      "name": "surpriseConfirmDelivered46",
+      "line": 4833
+    },
+    {
+      "name": "createChapter4State",
+      "line": 4871
+    },
+    {
+      "name": "migrateChapter4",
+      "line": 4872
+    },
+    {
+      "name": "chapter4IsNight",
+      "line": 4885
+    },
+    {
+      "name": "chapter4ChooseDynamic",
+      "line": 4886
+    },
+    {
+      "name": "chapter4PlanNight",
+      "line": 4897
+    },
+    {
+      "name": "chapter4Letters",
+      "line": 4903
+    }
+  ],
+  "script.js": [
+    {
+      "name": "migrateState",
+      "line": 32
+    },
+    {
+      "name": "radioCompactEncode",
+      "line": 112
+    },
+    {
+      "name": "radioCompactDecode",
+      "line": 143
+    },
+    {
+      "name": "readerDecodeSaved",
+      "line": 166
+    },
+    {
+      "name": "readerSaveRaw",
+      "line": 170
+    },
+    {
+      "name": "mainDecodeSaved",
+      "line": 186
+    },
+    {
+      "name": "mainSaveRaw",
+      "line": 190
+    },
+    {
+      "name": "readerSavePosition",
+      "line": 203
+    },
+    {
+      "name": "readerApplyPosition",
+      "line": 208
+    },
+    {
+      "name": "validateReaderState",
+      "line": 219
+    },
+    {
+      "name": "applyMainViewState",
+      "line": 232
+    },
+    {
+      "name": "saveMainViewState",
+      "line": 240
+    },
+    {
+      "name": "journalMovePage",
+      "line": 247
+    },
+    {
+      "name": "load",
+      "line": 259
+    },
+    {
+      "name": "save",
+      "line": 277
+    },
+    {
+      "name": "rand",
+      "line": 283
+    },
+    {
+      "name": "clamp",
+      "line": 284
+    },
+    {
+      "name": "esc",
+      "line": 285
+    },
+    {
+      "name": "fmt",
+      "line": 286
+    },
+    {
+      "name": "letter",
+      "line": 287
+    },
+    {
+      "name": "letterSenderId",
+      "line": 333
+    },
+    {
+      "name": "applyNightlyLetterLimits",
+      "line": 334
+    },
+    {
+      "name": "nightLetters",
+      "line": 353
+    },
+    {
+      "name": "normalizeStudioVisuals",
+      "line": 421
+    },
+    {
+      "name": "setStudioVisuals",
+      "line": 424
+    },
+    {
+      "name": "studioDisplayPhase",
+      "line": 430
+    },
+    {
+      "name": "studioWeatherText",
+      "line": 441
+    },
+    {
+      "name": "studioScene",
+      "line": 445
+    },
+    {
+      "name": "studioPrelude",
+      "line": 452
+    },
+    {
+      "name": "studioSilenceText",
+      "line": 456
+    },
+    {
+      "name": "studioSilentBridge",
+      "line": 465
+    },
+    {
+      "name": "studioAfterQuiet",
+      "line": 469
+    },
+    {
+      "name": "prepareUIStage",
+      "line": 476
+    },
+    {
+      "name": "setTab",
+      "line": 482
+    },
+    {
+      "name": "selectLetter",
+      "line": 483
+    },
+    {
+      "name": "startNight",
+      "line": 484
+    },
+    {
+      "name": "beginBroadcast",
+      "line": 485
+    },
+    {
+      "name": "chooseReply",
+      "line": 495
+    },
+    {
+      "name": "finishBroadcast",
+      "line": 496
+    },
+    {
+      "name": "nextNight",
+      "line": 508
+    },
+    {
+      "name": "beginRegular",
+      "line": 521
+    },
+    {
+      "name": "resetGame",
+      "line": 528
+    },
+    {
+      "name": "downloadSave",
+      "line": 535
+    },
+    {
+      "name": "importSave",
+      "line": 536
+    },
+    {
+      "name": "isLettersMode",
+      "line": 558
+    },
+    {
+      "name": "setBroadcastMode",
+      "line": 559
+    },
+    {
+      "name": "broadcastModePicker",
+      "line": 565
+    },
+    {
+      "name": "automaticStyleHash",
+      "line": 570
+    },
+    {
+      "name": "stationAutoHasAffirmed",
+      "line": 612
+    },
+    {
+      "name": "stationAutoIndirectDistress",
+      "line": 626
+    },
+    {
+      "name": "stationAutoMood",
+      "line": 633
+    },
+    {
+      "name": "stationAutoReplyTag",
+      "line": 670
+    },
+    {
+      "name": "stationAutoNightMood",
+      "line": 675
+    },
+    {
+      "name": "stationAutoNightSensitivity",
+      "line": 699
+    },
+    {
+      "name": "stationAutoScore",
+      "line": 709
+    },
+    {
+      "name": "automaticStylePick",
+      "line": 743
+    },
+    {
+      "name": "ensureAutomaticBroadcastSelections",
+      "line": 773
+    },
+    {
+      "name": "createBroadcastStyle",
+      "line": 789
+    },
+    {
+      "name": "chooseOpening",
+      "line": 804
+    },
+    {
+      "name": "chooseSong",
+      "line": 805
+    },
+    {
+      "name": "chooseClosing",
+      "line": 806
+    },
+    {
+      "name": "closeInterlude",
+      "line": 807
+    },
+    {
+      "name": "interludeScreen",
+      "line": 816
+    },
+    {
+      "name": "nightStyleRecord",
+      "line": 820
+    },
+    {
+      "name": "stationHabitText",
+      "line": 823
+    },
+    {
+      "name": "stationStylePanel",
+      "line": 832
+    },
+    {
+      "name": "openGuide",
+      "line": 853
+    },
+    {
+      "name": "closeGuide",
+      "line": 862
+    },
+    {
+      "name": "closeWelcome",
+      "line": 872
+    },
+    {
+      "name": "toggleHints",
+      "line": 873
+    },
+    {
+      "name": "dismissHint",
+      "line": 874
+    },
+    {
+      "name": "hideableHint",
+      "line": 875
+    },
+    {
+      "name": "guideDialog",
+      "line": 879
+    },
+    {
+      "name": "djSmallStory4832",
+      "line": 921
+    },
+    {
+      "name": "djSmallStoryPanel4832",
+      "line": 980
+    },
+    {
+      "name": "tonightReflection",
+      "line": 986
+    },
+    {
+      "name": "reflectionPanel",
+      "line": 1005
+    },
+    {
+      "name": "bookmarkKey",
+      "line": 1011
+    },
+    {
+      "name": "hasBookmark",
+      "line": 1012
+    },
+    {
+      "name": "toggleBookmark",
+      "line": 1013
+    },
+    {
+      "name": "refreshJournalBookmarkButtons",
+      "line": 1022
+    },
+    {
+      "name": "toggleBookmarksView",
+      "line": 1042
+    },
+    {
+      "name": "bookmarkArchiveMove",
+      "line": 1048
+    },
+    {
+      "name": "bookmarkButton",
+      "line": 1058
+    },
+    {
+      "name": "journalTwoLettersCandidates",
+      "line": 1063
+    },
+    {
+      "name": "repaintJournalTwoLetters",
+      "line": 1082
+    },
+    {
+      "name": "journalTwoLettersToggle",
+      "line": 1088
+    },
+    {
+      "name": "journalTwoLettersNext",
+      "line": 1089
+    },
+    {
+      "name": "journalTwoLettersPanel",
+      "line": 1090
+    },
+    {
+      "name": "bookmarkArchive",
+      "line": 1098
+    },
+    {
+      "name": "uiIcon",
+      "line": 1113
+    },
+    {
+      "name": "shell",
+      "line": 1138
+    },
+    {
+      "name": "navButtons",
+      "line": 1139
+    },
+    {
+      "name": "intro",
+      "line": 1141
+    },
+    {
+      "name": "prepare",
+      "line": 1167
+    },
+    {
+      "name": "broadcast",
+      "line": 1183
+    },
+    {
+      "name": "reply",
+      "line": 1193
+    },
+    {
+      "name": "showSpecialLetter",
+      "line": 1204
+    },
+    {
+      "name": "confirmSpecial",
+      "line": 1210
+    },
+    {
+      "name": "after",
+      "line": 1218
+    },
+    {
+      "name": "complete",
+      "line": 1247
+    },
+    {
+      "name": "lettersTab",
+      "line": 1258
+    },
+    {
+      "name": "journal",
+      "line": 1259
+    },
+    {
+      "name": "journalHistoryContent",
+      "line": 1264
+    },
+    {
+      "name": "archiveExcerpt",
+      "line": 1286
+    },
+    {
+      "name": "listeners",
+      "line": 1292
+    },
+    {
+      "name": "settings",
+      "line": 1320
+    },
+    {
+      "name": "specialPlanningPanel",
+      "line": 1321
+    },
+    {
+      "name": "specialIntro",
+      "line": 1339
+    },
+    {
+      "name": "specialAfter",
+      "line": 1343
+    },
+    {
+      "name": "regularIntro",
+      "line": 1347
+    },
+    {
+      "name": "regularPacingKind4917",
+      "line": 1395
+    },
+    {
+      "name": "regularPacingText4917",
+      "line": 1413
+    },
+    {
+      "name": "regularAfter",
+      "line": 1424
+    },
+    {
+      "name": "chapter2Intro",
+      "line": 1438
+    },
+    {
+      "name": "chapter2After",
+      "line": 1446
+    },
+    {
+      "name": "chapter2Complete",
+      "line": 1464
+    },
+    {
+      "name": "beginAfterChapter2",
+      "line": 1474
+    },
+    {
+      "name": "readerEntry",
+      "line": 1484
+    },
+    {
+      "name": "openReaderSetup",
+      "line": 1488
+    },
+    {
+      "name": "closeReaderSetup",
+      "line": 1492
+    },
+    {
+      "name": "readerSetupScreen",
+      "line": 1493
+    },
+    {
+      "name": "makeReaderState",
+      "line": 1506
+    },
+    {
+      "name": "createReader",
+      "line": 1514
+    },
+    {
+      "name": "switchToReader",
+      "line": 1525
+    },
+    {
+      "name": "switchToMain",
+      "line": 1534
+    },
+    {
+      "name": "downloadReaderSave",
+      "line": 1544
+    },
+    {
+      "name": "importReaderSave",
+      "line": 1549
+    },
+    {
+      "name": "readerTextFromPanel",
+      "line": 1562
+    },
+    {
+      "name": "readerEditorialScene",
+      "line": 1570
+    },
+    {
+      "name": "readerEditorialTitle",
+      "line": 1596
+    },
+    {
+      "name": "autoDJNoise",
+      "line": 1603
+    },
+    {
+      "name": "autoDJLetterMood",
+      "line": 1604
+    },
+    {
+      "name": "autoDJPickLetters",
+      "line": 1605
+    },
+    {
+      "name": "autoDJOrderNightLetters",
+      "line": 1664
+    },
+    {
+      "name": "autoDJOptionTag",
+      "line": 1686
+    },
+    {
+      "name": "autoDJTone",
+      "line": 1705
+    },
+    {
+      "name": "autoDJContactHistory",
+      "line": 1714
+    },
+    {
+      "name": "autoDJRelationshipScore",
+      "line": 1723
+    },
+    {
+      "name": "autoDJRememberReply",
+      "line": 1748
+    },
+    {
+      "name": "autoDJFactualFit",
+      "line": 1759
+    },
+    {
+      "name": "autoDJNeutralReply",
+      "line": 1812
+    },
+    {
+      "name": "autoDJNoAnswerRequested",
+      "line": 1839
+    },
+    {
+      "name": "autoDJAsksQuestion",
+      "line": 1843
+    },
+    {
+      "name": "autoDJSpecificityFit",
+      "line": 1846
+    },
+    {
+      "name": "autoDJRepeatSaturation",
+      "line": 1878
+    },
+    {
+      "name": "autoDJQuestionRole",
+      "line": 1907
+    },
+    {
+      "name": "autoDJNightVarietyScore",
+      "line": 1916
+    },
+    {
+      "name": "autoDJRankChoices",
+      "line": 1930
+    },
+    {
+      "name": "autoDJSpecialCoherence",
+      "line": 1939
+    },
+    {
+      "name": "autoDJSelectSpecialParts",
+      "line": 1955
+    },
+    {
+      "name": "autoDJConversationalFit",
+      "line": 1982
+    },
+    {
+      "name": "autoDJSpecialPartRepeatPenalty",
+      "line": 2004
+    },
+    {
+      "name": "autoDJMomentChoices",
+      "line": 2034
+    },
+    {
+      "name": "autoDJReplyScore",
+      "line": 2039
+    },
+    {
+      "name": "autoDJLatePersonalChoices",
+      "line": 2084
+    },
+    {
+      "name": "autoDJTaughtChoices",
+      "line": 2133
+    },
+    {
+      "name": "autoDJHeardLetterChoices",
+      "line": 2150
+    },
+    {
+      "name": "autoDJEverydayChoices",
+      "line": 2190
+    },
+    {
+      "name": "autoDJGenericContextScore",
+      "line": 2261
+    },
+    {
+      "name": "autoDJReply",
+      "line": 2271
+    },
+    {
+      "name": "autoDJMaybePlan",
+      "line": 2294
+    },
+    {
+      "name": "readerDJVoiceValue",
+      "line": 2378
+    },
+    {
+      "name": "readerDJVoiceTopicText",
+      "line": 2385
+    },
+    {
+      "name": "readerRadioPhrase4915",
+      "line": 2491
+    },
+    {
+      "name": "lettersBroadcastPhrase4916",
+      "line": 2511
+    },
+    {
+      "name": "readerDJChooseVoice",
+      "line": 2533
+    },
+    {
+      "name": "readerProduceNight",
+      "line": 2589
+    },
+    {
+      "name": "readerOriginFromPage",
+      "line": 2654
+    },
+    {
+      "name": "readerOriginFootnote",
+      "line": 2660
+    },
+    {
+      "name": "readerChooseClosing",
+      "line": 2667
+    },
+    {
+      "name": "readerGotoPage",
+      "line": 2683
+    },
+    {
+      "name": "readerGotoLatest",
+      "line": 2688
+    },
+    {
+      "name": "readerNightSelect",
+      "line": 2692
+    },
+    {
+      "name": "readerJumpToNightNumber",
+      "line": 2696
+    },
+    {
+      "name": "readerNightNavigation",
+      "line": 2705
+    },
+    {
+      "name": "readerJumpToSection",
+      "line": 2715
+    },
+    {
+      "name": "readerNightContents",
+      "line": 2722
+    },
+    {
+      "name": "readerShell",
+      "line": 2726
+    },
+    {
+      "name": "readerView",
+      "line": 2729
+    },
+    {
+      "name": "readerReaderTools",
+      "line": 2747
+    },
+    {
+      "name": "updateMainNavActive",
+      "line": 2758
+    },
+    {
+      "name": "render",
+      "line": 2772
+    },
+    {
+      "name": "createFinaleState",
+      "line": 2839
+    },
+    {
+      "name": "migrateFinaleState",
+      "line": 2840
+    },
+    {
+      "name": "finaleRoleOf",
+      "line": 3014
+    },
+    {
+      "name": "finaleReplyOptions",
+      "line": 3015
+    },
+    {
+      "name": "finaleCanPlan",
+      "line": 3022
+    },
+    {
+      "name": "finalePlanExplanation",
+      "line": 3029
+    },
+    {
+      "name": "finaleCommit",
+      "line": 3037
+    },
+    {
+      "name": "finalePlan",
+      "line": 3038
+    },
+    {
+      "name": "finaleCancelPlan",
+      "line": 3043
+    },
+    {
+      "name": "finaleChooseAnnouncement",
+      "line": 3044
+    },
+    {
+      "name": "finaleAnnounceIntro",
+      "line": 3045
+    },
+    {
+      "name": "finaleAnnouncementPreview",
+      "line": 3049
+    },
+    {
+      "name": "finaleAnnouncementAfter",
+      "line": 3050
+    },
+    {
+      "name": "finaleRankedListeners",
+      "line": 3051
+    },
+    {
+      "name": "finaleMakeSnapshot",
+      "line": 3055
+    },
+    {
+      "name": "finaleResponses",
+      "line": 3075
+    },
+    {
+      "name": "finaleStart",
+      "line": 3080
+    },
+    {
+      "name": "finaleChooseOpening",
+      "line": 3081
+    },
+    {
+      "name": "finaleRespond",
+      "line": 3082
+    },
+    {
+      "name": "finaleNextStage",
+      "line": 3083
+    },
+    {
+      "name": "finaleChooseClosing",
+      "line": 3084
+    },
+    {
+      "name": "finaleStats",
+      "line": 3085
+    },
+    {
+      "name": "finaleComplete",
+      "line": 3088
+    },
+    {
+      "name": "finaleIntroduction",
+      "line": 3097
+    },
+    {
+      "name": "finaleFlowLine",
+      "line": 3098
+    },
+    {
+      "name": "finaleHeardReply",
+      "line": 3101
+    },
+    {
+      "name": "finaleBroadcast",
+      "line": 3102
+    },
+    {
+      "name": "finaleEndingText",
+      "line": 3108
+    },
+    {
+      "name": "finaleCompletedView",
+      "line": 3109
+    },
+    {
+      "name": "finaleReview",
+      "line": 3111
+    },
+    {
+      "name": "finaleOpenKeepsakes",
+      "line": 3112
+    },
+    {
+      "name": "finaleArchiveHtml",
+      "line": 3113
+    },
+    {
+      "name": "finaleBackToComplete",
+      "line": 3114
+    },
+    {
+      "name": "finaleKeepsakes",
+      "line": 3115
+    },
+    {
+      "name": "finaleRestart",
+      "line": 3116
+    },
+    {
+      "name": "finaleReaderCompletedPage",
+      "line": 3122
+    },
+    {
+      "name": "finaleReaderKeepsake",
+      "line": 3128
+    },
+    {
+      "name": "finaleReaderProduce",
+      "line": 3129
+    },
+    {
+      "name": "finaleImageLayouts",
+      "line": 3143
+    },
+    {
+      "name": "finaleDrawPage",
+      "line": 3158
+    },
+    {
+      "name": "text",
+      "line": 3173
+    },
+    {
+      "name": "stroke",
+      "line": 3176
+    },
+    {
+      "name": "finaleExportPNG",
+      "line": 3219
+    },
+    {
+      "name": "finaleDownloadData",
+      "line": 3231
+    },
+    {
+      "name": "chapter3Intro",
+      "line": 3237
+    },
+    {
+      "name": "chapter3After",
+      "line": 3253
+    },
+    {
+      "name": "chapter3Complete",
+      "line": 3281
+    },
+    {
+      "name": "beginAfterChapter3",
+      "line": 3293
+    },
+    {
+      "name": "chapter4Intro",
+      "line": 3303
+    },
+    {
+      "name": "chapter4After",
+      "line": 3310
+    },
+    {
+      "name": "chapter4Complete",
+      "line": 3319
+    },
+    {
+      "name": "beginAfterChapter4",
+      "line": 3326
+    }
+  ]
+}

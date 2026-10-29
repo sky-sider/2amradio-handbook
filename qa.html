@@ -1,0 +1,93 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#142538"><meta name="robots" content="noindex,nofollow"><meta name="description" content="新旧比較、500夜長期検証、Android、品質ゲート"><title>テスト計画・受け入れ条件｜午前二時の周波数 開発資料</title><link rel="stylesheet" href="assets/style.css"></head>
+<body data-page="qa"><a class="skip" href="#main">本文へ移動</a><div class="layout"><header class="topbar"><a href="index.html" class="brand"><span class="brand-dot"></span><span><b>午前二時の周波数</b><small>SOMEWHERE ON AIR · DEV HANDBOOK</small></span></a><div class="top-actions"><button type="button" id="themeToggle" aria-label="テーマを切り替える" title="テーマを切り替え">◐</button><button type="button" id="menuToggle" aria-expanded="false" aria-controls="sidebar">☰ <span>目次</span></button></div></header>
+<aside id="sidebar" class="sidebar"><div class="side-head"><span>SPECIFICATION / v4.9.22</span><button id="closeMenu" type="button" aria-label="目次を閉じる">×</button></div><label class="search-label" for="siteSearch">資料を横断検索</label><input id="siteSearch" type="search" placeholder="例：simReplyImpact / しおり" autocomplete="off"><div id="searchResults" class="search-results" aria-live="polite"></div><nav aria-label="ドキュメントのページ"><div class="nav-group"><div class="nav-heading">はじめに</div><a data-nav="index" href="index.html">開発資料の入口</a><a data-nav="getting-started" href="getting-started.html">開発参加・環境構築</a></div><div class="nav-group"><div class="nav-heading">物語</div><a data-nav="world" href="world.html">世界観・文体・企画哲学</a><a data-nav="chapters" href="chapters.html">第1〜4章と長期放送</a><a data-nav="specials" href="specials.html">特別放送・記念放送</a><a data-nav="finale" href="finale.html">第100夜以降の最終放送と閉局</a></div><div class="nav-group"><div class="nav-heading">人物</div><a data-nav="people" href="people.html">リスナー12人・人物設定一覧</a><a data-nav="person-cat" href="person-cat.html">夜明けの猫｜詳細人物設定</a><a data-nav="person-clock" href="person-clock.html">古時計｜詳細人物設定</a><a data-nav="person-bread" href="person-bread.html">眠れないパン屋｜詳細人物設定</a><a data-nav="person-moon" href="person-moon.html">月の裏側｜詳細人物設定</a><a data-nav="person-driver" href="person-driver.html">午前3時の配達員｜詳細人物設定</a><a data-nav="person-fish" href="person-fish.html">透明な金魚｜詳細人物設定</a><a data-nav="person-sugar" href="person-sugar.html">砂糖を三杯｜詳細人物設定</a><a data-nav="person-anon" href="person-anon.html">名前はまだありません｜詳細人物設定</a><a data-nav="person-terminal" href="person-terminal.html">終点のひとつ前｜詳細人物設定</a><a data-nav="person-umbrella" href="person-umbrella.html">逆さまの傘｜詳細人物設定</a><a data-nav="person-triangle" href="person-triangle.html">三角定規｜詳細人物設定</a><a data-nav="person-fridge" href="person-fridge.html">冷蔵庫の明かり｜詳細人物設定</a></div><div class="nav-group"><div class="nav-heading">ゲーム進行</div><a data-nav="flow" href="flow.html">夜のゲームループと画面遷移</a><a data-nav="archive" href="archive.html">放送日誌・人物録・しおり</a></div><div class="nav-group"><div class="nav-heading">内部システム</div><a data-nav="state" href="state.html">内部状態とパラメーターの全体像</a><a data-nav="choices" href="choices.html">返答と内部パラメーターの変化</a><a data-nav="simulation" href="simulation.html">12人の自律生活AI</a><a data-nav="relationships" href="relationships.html">人間関係・生活世界・記憶</a></div><div class="nav-group"><div class="nav-heading">放送システム</div><a data-nav="modes" href="modes.html">3つの楽しみ方・操作範囲</a><a data-nav="auto-dj" href="auto-dj.html">聴くだけの夜：自動DJの詳細</a><a data-nav="station" href="station.html">放送演出・曲・DJの雰囲気</a></div><div class="nav-group"><div class="nav-heading">実装</div><a data-nav="architecture" href="architecture.html">アーキテクチャ・依存関係</a><a data-nav="letters" href="letters.html">お便り・返答・候補生成</a><a data-nav="save" href="save.html">セーブ・バックアップ・互換性</a></div><div class="nav-group"><div class="nav-heading">開発</div><a data-nav="qa" href="qa.html">テスト計画・受け入れ条件</a></div><div class="nav-group"><div class="nav-heading">運用</div><a data-nav="deploy" href="deploy.html">GitHub Pagesへの公開・保守</a></div><div class="nav-group"><div class="nav-heading">参考資料</div><a data-nav="glossary" href="glossary.html">用語集・キー一覧</a><a data-nav="changelog" href="changelog.html">開発資料の変更履歴</a><a data-nav="source-index" href="source-index.html">ソースコード関数索引</a></div></nav><p class="side-note">基準コード v4.9.22<br>資料初版 2026-10-29<br>GitHub Pages 対応</p></aside><div id="veil" class="veil"></div>
+<main id="main" class="main"><div class="kicker">開発 <span>/ 開発者向け資料</span></div><article class="prose"><h1>テスト計画・受け入れ条件</h1>
+<blockquote>
+<p><strong>資料基準:</strong> ゲーム v4.9.22 ／ <strong>資料状態:</strong> 実装コードを基準にした開発者向け整理。未検証・提案は明記。</p>
+</blockquote>
+<h2 id="標準回帰テスト">標準回帰テスト<a class="heading-anchor" href="#標準回帰テスト" aria-label="見出しへリンク">#</a></h2>
+<table>
+<thead>
+<tr>
+  <th>分類</th>
+  <th>入力条件</th>
+  <th>受け入れ条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>起動</td>
+  <td>第1夜・新規</td>
+  <td>JSエラーなし。案内と手紙が見える。</td>
+</tr>
+<tr>
+  <td>初期章</td>
+  <td>第1〜14夜</td>
+  <td>分岐が選択に応じ、未紹介を既読扱いしない。</td>
+</tr>
+<tr>
+  <td>章移行</td>
+  <td>14→15、28→29、50→51、64→65、78→79、92→93、99→100</td>
+  <td>夜数と表示が自然。</td>
+</tr>
+<tr>
+  <td>予約企画</td>
+  <td>第4章と特別放送が重なる夜</td>
+  <td>企画を潰さず、章便箋は保留。</td>
+</tr>
+<tr>
+  <td>モード</td>
+  <td>manual／letters／reader</td>
+  <td>本編と読書の操作・保存境界を保持。</td>
+</tr>
+<tr>
+  <td>自動DJ</td>
+  <td>第1〜500夜の複数初期条件</td>
+  <td>出番の偏り、誤推定、重複返答を監査。</td>
+</tr>
+<tr>
+  <td>長期</td>
+  <td>第500→501夜</td>
+  <td>1,500通規模の履歴でも読書・保存できる。</td>
+</tr>
+<tr>
+  <td>閉局</td>
+  <td>第130→132夜など</td>
+  <td>予告、3通、証明書、再開不可。</td>
+</tr>
+<tr>
+  <td>復元</td>
+  <td>JSON／圧縮／保存失敗</td>
+  <td>旧データを壊さない。</td>
+</tr>
+<tr>
+  <td>表示</td>
+  <td>320・390・1280px</td>
+  <td>横はみ出しやボタンの欠落なし。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="改修タイプ別に必要な比較">改修タイプ別に必要な比較<a class="heading-anchor" href="#改修タイプ別に必要な比較" aria-label="見出しへリンク">#</a></h2>
+<ul>
+<li><strong>文面のみ</strong>：新旧で紹介ID・順序・返答タグ・人物状態が一致。既読本文は保持。</li>
+<li><strong>選出ロジック</strong>：人数分布だけでなく、第4章の特別放送・最終放送まで検証。</li>
+<li><strong>UIだけ</strong>：s.rng・s.played・生活状態が操作前後で変わらない。</li>
+<li><strong>保存系</strong>：通常JSON、圧縮、旧版復元、容量不足、リセット、再起動を試す。</li>
+</ul>
+<h2 id="性能基準-参考">性能基準（参考）<a class="heading-anchor" href="#性能基準-参考" aria-label="見出しへリンク">#</a></h2>
+<p>v4.9.20〜22の修正では、500夜相当のデータでしおり200通の表示が約135ms→13ms、日誌しおり操作が約45ms→9msになったというPC上の検証記録があります。<strong>数字を保証値として扱わない</strong>でください。端末、ブラウザ、データによって変わります。</p>
+<h2 id="android実機確認">Android実機確認<a class="heading-anchor" href="#android実機確認" aria-label="見出しへリンク">#</a></h2>
+<p>Chrome等で第100・130・300・500夜のテストセーブを開き、スクロール、日誌、しおり、バックアップ、再起動、最終放送PNG保存を検証。実機未確認の場合は、検証済みとは書かない。</p>
+<h2 id="不具合報告のテンプレート">不具合報告のテンプレート<a class="heading-anchor" href="#不具合報告のテンプレート" aria-label="見出しへリンク">#</a></h2>
+<pre><code class="language-text">バージョン: v4.9.22
+端末/ブラウザ:
+モード: いつもの放送 / おたより中心 / 聴くだけの夜
+現在の夜・phase:
+再現手順:
+期待した動作:
+実際の動作:
+コンソールエラー:
+バックアップの有無:
+</code></pre>
+</article><div class="page-foot"><p>このサイトは実装コードを調査して作成した仕様スナップショットです。最新コードとの照合と実機検証は別途必要です。</p><div class="footlinks"><a href="index.html">資料トップへ</a><a href="source-index.html">関数索引へ</a><a href="deploy.html">公開・更新手順</a></div></div></main>
+<aside class="toc" aria-label="このページの目次"><div class="toc-heading">ON THIS PAGE</div><a class="toc-lv-2" href="#標準回帰テスト">標準回帰テスト</a><a class="toc-lv-2" href="#改修タイプ別に必要な比較">改修タイプ別に必要な比較</a><a class="toc-lv-2" href="#性能基準-参考">性能基準（参考）</a><a class="toc-lv-2" href="#android実機確認">Android実機確認</a><a class="toc-lv-2" href="#不具合報告のテンプレート">不具合報告のテンプレート</a><div class="toc-foot">v4.9.22 を基準に編集</div></aside></div><script src="assets/search-data.js" defer></script><script src="assets/app.js" defer></script></body></html>

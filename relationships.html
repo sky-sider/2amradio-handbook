@@ -1,0 +1,65 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#142538"><meta name="robots" content="noindex,nofollow"><meta name="description" content="交流結果、関係値、局に知られる情報／知られない情報"><title>人間関係・生活世界・記憶｜午前二時の周波数 開発資料</title><link rel="stylesheet" href="assets/style.css"></head>
+<body data-page="relationships"><a class="skip" href="#main">本文へ移動</a><div class="layout"><header class="topbar"><a href="index.html" class="brand"><span class="brand-dot"></span><span><b>午前二時の周波数</b><small>SOMEWHERE ON AIR · DEV HANDBOOK</small></span></a><div class="top-actions"><button type="button" id="themeToggle" aria-label="テーマを切り替える" title="テーマを切り替え">◐</button><button type="button" id="menuToggle" aria-expanded="false" aria-controls="sidebar">☰ <span>目次</span></button></div></header>
+<aside id="sidebar" class="sidebar"><div class="side-head"><span>SPECIFICATION / v4.9.22</span><button id="closeMenu" type="button" aria-label="目次を閉じる">×</button></div><label class="search-label" for="siteSearch">資料を横断検索</label><input id="siteSearch" type="search" placeholder="例：simReplyImpact / しおり" autocomplete="off"><div id="searchResults" class="search-results" aria-live="polite"></div><nav aria-label="ドキュメントのページ"><div class="nav-group"><div class="nav-heading">はじめに</div><a data-nav="index" href="index.html">開発資料の入口</a><a data-nav="getting-started" href="getting-started.html">開発参加・環境構築</a></div><div class="nav-group"><div class="nav-heading">物語</div><a data-nav="world" href="world.html">世界観・文体・企画哲学</a><a data-nav="chapters" href="chapters.html">第1〜4章と長期放送</a><a data-nav="specials" href="specials.html">特別放送・記念放送</a><a data-nav="finale" href="finale.html">第100夜以降の最終放送と閉局</a></div><div class="nav-group"><div class="nav-heading">人物</div><a data-nav="people" href="people.html">リスナー12人・人物設定一覧</a><a data-nav="person-cat" href="person-cat.html">夜明けの猫｜詳細人物設定</a><a data-nav="person-clock" href="person-clock.html">古時計｜詳細人物設定</a><a data-nav="person-bread" href="person-bread.html">眠れないパン屋｜詳細人物設定</a><a data-nav="person-moon" href="person-moon.html">月の裏側｜詳細人物設定</a><a data-nav="person-driver" href="person-driver.html">午前3時の配達員｜詳細人物設定</a><a data-nav="person-fish" href="person-fish.html">透明な金魚｜詳細人物設定</a><a data-nav="person-sugar" href="person-sugar.html">砂糖を三杯｜詳細人物設定</a><a data-nav="person-anon" href="person-anon.html">名前はまだありません｜詳細人物設定</a><a data-nav="person-terminal" href="person-terminal.html">終点のひとつ前｜詳細人物設定</a><a data-nav="person-umbrella" href="person-umbrella.html">逆さまの傘｜詳細人物設定</a><a data-nav="person-triangle" href="person-triangle.html">三角定規｜詳細人物設定</a><a data-nav="person-fridge" href="person-fridge.html">冷蔵庫の明かり｜詳細人物設定</a></div><div class="nav-group"><div class="nav-heading">ゲーム進行</div><a data-nav="flow" href="flow.html">夜のゲームループと画面遷移</a><a data-nav="archive" href="archive.html">放送日誌・人物録・しおり</a></div><div class="nav-group"><div class="nav-heading">内部システム</div><a data-nav="state" href="state.html">内部状態とパラメーターの全体像</a><a data-nav="choices" href="choices.html">返答と内部パラメーターの変化</a><a data-nav="simulation" href="simulation.html">12人の自律生活AI</a><a data-nav="relationships" href="relationships.html">人間関係・生活世界・記憶</a></div><div class="nav-group"><div class="nav-heading">放送システム</div><a data-nav="modes" href="modes.html">3つの楽しみ方・操作範囲</a><a data-nav="auto-dj" href="auto-dj.html">聴くだけの夜：自動DJの詳細</a><a data-nav="station" href="station.html">放送演出・曲・DJの雰囲気</a></div><div class="nav-group"><div class="nav-heading">実装</div><a data-nav="architecture" href="architecture.html">アーキテクチャ・依存関係</a><a data-nav="letters" href="letters.html">お便り・返答・候補生成</a><a data-nav="save" href="save.html">セーブ・バックアップ・互換性</a></div><div class="nav-group"><div class="nav-heading">開発</div><a data-nav="qa" href="qa.html">テスト計画・受け入れ条件</a></div><div class="nav-group"><div class="nav-heading">運用</div><a data-nav="deploy" href="deploy.html">GitHub Pagesへの公開・保守</a></div><div class="nav-group"><div class="nav-heading">参考資料</div><a data-nav="glossary" href="glossary.html">用語集・キー一覧</a><a data-nav="changelog" href="changelog.html">開発資料の変更履歴</a><a data-nav="source-index" href="source-index.html">ソースコード関数索引</a></div></nav><p class="side-note">基準コード v4.9.22<br>資料初版 2026-10-29<br>GitHub Pages 対応</p></aside><div id="veil" class="veil"></div>
+<main id="main" class="main"><div class="kicker">内部システム <span>/ 開発者向け資料</span></div><article class="prose"><h1>人間関係・生活世界・記憶</h1>
+<blockquote>
+<p><strong>資料基準:</strong> ゲーム v4.9.22 ／ <strong>資料状態:</strong> 実装コードを基準にした開発者向け整理。未検証・提案は明記。</p>
+</blockquote>
+<h2 id="相手ごとの関係データ">相手ごとの関係データ<a class="heading-anchor" href="#相手ごとの関係データ" aria-label="見出しへリンク">#</a></h2>
+<pre><code class="language-js">relationships: {
+  boss: {
+    name: '職場の上司', closeness: 54, trust: 58, tension: 35,
+    personKey: null, contactCount: 0, lastContactNight: 0, history: []
+  }
+}
+</code></pre>
+<p><code>simMeet()</code> は実際に対人行動が選ばれたときに実行。評価値は</p>
+<pre><code class="language-text">score = 関係信頼 − 緊張×0.62 + (希望−不安)×0.12
+        + (社交性−50)×0.08 + 決定的揺らぎ
+</code></pre>
+<table>
+<thead>
+<tr>
+  <th>評価値</th>
+  <th>結果</th>
+  <th>関係値の変化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>64以上</td>
+  <td>warm</td>
+  <td>親密さ+2、信頼+2、緊張−2</td>
+</tr>
+<tr>
+  <td>40以上</td>
+  <td>ordinary</td>
+  <td>親密さ+1</td>
+</tr>
+<tr>
+  <td>17以上</td>
+  <td>guarded</td>
+  <td>緊張+1</td>
+</tr>
+<tr>
+  <td>17未満</td>
+  <td>awkward</td>
+  <td>信頼−1、緊張+2</td>
+</tr>
+</tbody>
+</table>
+<p>さらに交流回数・最後に会った夜・履歴（直近12件）を記録。気まずい会話も、解決せずに記憶として残ります。</p>
+<h2 id="同じ世界に住む人">同じ世界に住む人々<a class="heading-anchor" href="#同じ世界に住む人" aria-label="見出しへリンク">#</a></h2>
+<p><code>socialWorld</code>・<code>microWorld</code>・<code>relationThreads</code> などは、複数の暮らしが偶然に交差する仕組みです。<strong>同じ日に互いの場所を同時に訪れたことにしない</strong>、接触がなければ会った事実を作らない、という不変条件を守ります。</p>
+<h2 id="記憶の公開境界">記憶の公開境界<a class="heading-anchor" href="#記憶の公開境界" aria-label="見出しへリンク">#</a></h2>
+<ul>
+<li><code>privateMemories</code> と <code>simState.people[id].memories</code>：<strong>本人が実際に経験した内部記録</strong>。</li>
+<li><code>listeners[id].memories</code> と <code>played</code>：<strong>放送で知り得た事実</strong>の根拠。</li>
+<li><code>radioMemory</code>・<code>longEcho43</code>：以前紹介した手紙を後で思い返す材料（使う場合は既読条件を確認）。</li>
+</ul>
+<p>「昨日読まなかったお便り」は、翌夜の候補に残ることがあっても、放送で紹介した履歴には入りません。<strong>未紹介＝DJが知った</strong>という判定をしてはいけません。</p>
+<h2 id="変更時の確認">変更時の確認<a class="heading-anchor" href="#変更時の確認" aria-label="見出しへリンク">#</a></h2>
+<p>交流や回想を増やすときは、実行した行動の夜・相手・条件と、そのイベントが局へ公開されたかを別々に監査してください。</p>
+<p><strong>主要関数</strong>：<code>simMeet</code>（listeners.js:299）、<code>socialPairContact</code>（events.js:874）、<code>simulateMicroWorld</code>（events.js:666）、<code>simulateSocialWorld</code>（events.js:1007）、<code>privateRemember</code>（events.js:11）、<code>remember</code>（events.js:4）、<code>radioMemoryAfterBroadcast39</code>（events.js:1641）</p>
+</article><div class="page-foot"><p>このサイトは実装コードを調査して作成した仕様スナップショットです。最新コードとの照合と実機検証は別途必要です。</p><div class="footlinks"><a href="index.html">資料トップへ</a><a href="source-index.html">関数索引へ</a><a href="deploy.html">公開・更新手順</a></div></div></main>
+<aside class="toc" aria-label="このページの目次"><div class="toc-heading">ON THIS PAGE</div><a class="toc-lv-2" href="#相手ごとの関係データ">相手ごとの関係データ</a><a class="toc-lv-2" href="#同じ世界に住む人">同じ世界に住む人々</a><a class="toc-lv-2" href="#記憶の公開境界">記憶の公開境界</a><a class="toc-lv-2" href="#変更時の確認">変更時の確認</a><div class="toc-foot">v4.9.22 を基準に編集</div></aside></div><script src="assets/search-data.js" defer></script><script src="assets/app.js" defer></script></body></html>
