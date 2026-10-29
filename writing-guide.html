@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<html lang="ja"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="#142538" name="theme-color"/><meta content="noindex,nofollow" name="robots"/><meta content="12人の声を守るための原稿作成、未確定設定と公式設定の分類、分岐チェックと監修手順" name="description"/><title>シナリオ執筆ガイド｜午前二時の周波数 開発資料</title><link href="assets/style.css" rel="stylesheet"/></head>
+<body data-page="writing-guide"><a class="skip" href="#main">本文へ移動</a><div class="layout"><header class="topbar"><a class="brand" href="index.html"><span class="brand-dot"></span><span><b>午前二時の周波数</b><small>SOMEWHERE ON AIR · DEV HANDBOOK</small></span></a><div class="top-actions"><button aria-label="テーマを切り替える" id="themeToggle" title="テーマを切り替え" type="button">◐</button><button aria-controls="sidebar" aria-expanded="false" id="menuToggle" type="button">☰ <span>目次</span></button></div></header>
+<aside class="sidebar" id="sidebar"><div class="side-head"><span>SPECIFICATION / v4.9.22</span><button aria-label="目次を閉じる" id="closeMenu" type="button">×</button></div><label class="search-label" for="siteSearch">資料を横断検索</label><input autocomplete="off" id="siteSearch" placeholder="例：simReplyImpact / しおり" type="search"/><div aria-live="polite" class="search-results" id="searchResults"></div><nav aria-label="ドキュメントのページ"><div class="nav-group"><div class="nav-heading">はじめに</div><a data-nav="index" href="index.html">開発資料の入口</a><a data-nav="getting-started" href="getting-started.html">開発参加・環境構築</a></div><div class="nav-group"><div class="nav-heading">物語</div><a data-nav="world" href="world.html">世界観・文体・企画哲学</a><a data-nav="chapters" href="chapters.html">第1〜4章と長期放送</a><a data-nav="specials" href="specials.html">特別放送・記念放送</a><a data-nav="finale" href="finale.html">第100夜以降の最終放送と閉局</a></div><div class="nav-group"><div class="nav-heading">人物</div><a data-nav="people" href="people.html">リスナー12人・人物設定一覧</a><a data-nav="writing-guide" href="writing-guide.html">シナリオ執筆ガイド</a><a data-nav="person-cat" href="person-cat.html">夜明けの猫｜詳細人物設定</a><a data-nav="person-clock" href="person-clock.html">古時計｜詳細人物設定</a><a data-nav="person-bread" href="person-bread.html">眠れないパン屋｜詳細人物設定</a><a data-nav="person-moon" href="person-moon.html">月の裏側｜詳細人物設定</a><a data-nav="person-driver" href="person-driver.html">午前3時の配達員｜詳細人物設定</a><a data-nav="person-fish" href="person-fish.html">透明な金魚｜詳細人物設定</a><a data-nav="person-sugar" href="person-sugar.html">砂糖を三杯｜詳細人物設定</a><a data-nav="person-anon" href="person-anon.html">名前はまだありません｜詳細人物設定</a><a data-nav="person-terminal" href="person-terminal.html">終点のひとつ前｜詳細人物設定</a><a data-nav="person-umbrella" href="person-umbrella.html">逆さまの傘｜詳細人物設定</a><a data-nav="person-triangle" href="person-triangle.html">三角定規｜詳細人物設定</a><a data-nav="person-fridge" href="person-fridge.html">冷蔵庫の明かり｜詳細人物設定</a></div><div class="nav-group"><div class="nav-heading">ゲーム進行</div><a data-nav="flow" href="flow.html">夜のゲームループと画面遷移</a><a data-nav="archive" href="archive.html">放送日誌・人物録・しおり</a></div><div class="nav-group"><div class="nav-heading">内部システム</div><a data-nav="state" href="state.html">内部状態とパラメーターの全体像</a><a data-nav="choices" href="choices.html">返答と内部パラメーターの変化</a><a data-nav="simulation" href="simulation.html">12人の自律生活AI</a><a data-nav="relationships" href="relationships.html">人間関係・生活世界・記憶</a></div><div class="nav-group"><div class="nav-heading">放送システム</div><a data-nav="modes" href="modes.html">3つの楽しみ方・操作範囲</a><a data-nav="auto-dj" href="auto-dj.html">聴くだけの夜：自動DJの詳細</a><a data-nav="station" href="station.html">放送演出・曲・DJの雰囲気</a></div><div class="nav-group"><div class="nav-heading">実装</div><a data-nav="architecture" href="architecture.html">アーキテクチャ・依存関係</a><a data-nav="letters" href="letters.html">お便り・返答・候補生成</a><a data-nav="save" href="save.html">セーブ・バックアップ・互換性</a></div><div class="nav-group"><div class="nav-heading">開発</div><a data-nav="qa" href="qa.html">テスト計画・受け入れ条件</a></div><div class="nav-group"><div class="nav-heading">運用</div><a data-nav="deploy" href="deploy.html">GitHub Pagesへの公開・保守</a></div><div class="nav-group"><div class="nav-heading">参考資料</div><a data-nav="glossary" href="glossary.html">用語集・キー一覧</a><a data-nav="changelog" href="changelog.html">開発資料の変更履歴</a><a data-nav="source-index" href="source-index.html">ソースコード関数索引</a></div></nav><p class="side-note">基準ゲーム v4.9.22 · 開発資料 v1.1</p></aside><div class="veil" id="veil"></div>
+<main class="main" id="main"><div class="kicker">人物 / シナリオ執筆</div><article class="prose"><h1>シナリオライターのための執筆・設定管理ガイド</h1>
+<blockquote>
+<p><strong>基準</strong>：ゲーム v4.9.22。人物ごとの追加解釈は<strong>採用前の編集案</strong>。人物バイブルは既存の実装と物語を変更せずにライターを支援するためのものです。</p>
+</blockquote>
+<h2 id="確定-と-未確定-を混ぜない">「確定」と「未確定」を混ぜない<a class="heading-anchor" href="#確定-と-未確定-を混ぜない">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>区分</th>
+<th>具体例</th>
+<th>執筆時の取り扱い</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>実装で確認済み</td>
+<td>古時計は元時計修理業、午前3時の配達員は夜間配送に従事</td>
+<td>原則尊重。新たな変更はコードと記録を照合</td>
+</tr>
+<tr>
+<td>実装上の可変事実</td>
+<td>夜明けの猫が仕事を離れたか、配達員と妹との関係がどうなったか</td>
+<td>保存された選択や <code>flags</code> を判定したときだけ断定</td>
+</tr>
+<tr>
+<td>既存作品からの解釈</td>
+<td>古時計が人の予定を嬉しく感じる、金魚が感情を言葉にするのに時間がかかる</td>
+<td>人物の方向性として参考にするが、本人の確定告白にしない</td>
+</tr>
+<tr>
+<td>新しい由来・内面の仮説</td>
+<td>なぜそのラジオネームを付けたか、幼少期の具体的な出来事</td>
+<td><strong>未確定</strong>。採用決定までは公式設定として公開・参照しない</td>
+</tr>
+</tbody>
+</table>
+<p><strong>原則</strong>：人を詳しくするために過去を確定させすぎない。書かなかった部分が、プレイヤーとリスナーの間の余白にもなる。</p>
+<h2 id="新しいお便りを作る7段階">新しいお便りを作る7段階<a class="heading-anchor" href="#新しいお便りを作る7段階">#</a></h2>
+<ol>
+<li><strong>差出人</strong>：人物ページで主題と「同じ人が使いそうな声」を確認する。</li>
+<li><strong>着地点</strong>：大きな転機、何気ない一日、笑える出来事、語らない余白のどれを描くか決める。</li>
+<li><strong>事実の階層</strong>：書きたい出来事が実装確定／条件付き／新規提案のどれかに分類する。</li>
+<li><strong>行動の根拠</strong>：人物の <code>SIM_PROFILES</code> の日常行動候補、時刻、生活関係を参照。何も起きない日も認める。</li>
+<li><strong>件名＋本文</strong>：まず具体物1点を選ぶ。本人の事情を長く説明しすぎず、手紙を1通として読める長さでまとめる。</li>
+<li><strong>DJの返答</strong>：本文に書かれた範囲だけに答える。3方向を用意し、選択ごとに無理な事実を加えない。</li>
+<li><strong>分岐とテスト</strong>：直前の手紙が未紹介、特別放送で後送り、最終放送を選ばず第500夜まで進行、の各ケースで矛盾しないか試す。</li>
+</ol>
+<h2 id="お便りの構成テンプレート">お便りの構成テンプレート<a class="heading-anchor" href="#お便りの構成テンプレート">#</a></h2>
+<pre><code class="language-text">差出人: 既存の listener ID
+件名: 具体物・行動・小さな疑問から
+本文: 挨拶（任意）→ 今日の出来事 → 一瞬の感情/観察 → 余韻
+返答A: 受け止める（勝手に励ましきらない）
+返答B: 具体的に尋ねる（既存事実の範囲）
+返答C: 軽いユーモア／余白を残す（人物に合う場合のみ）
+既読依存: 無/有（有ならキーと分岐を記述）
+セーブ影響: 関係する flags / trust / reflection / agency / stress など
+時系列: 届く夜と、遅延・持ち越し時の成立範囲
+採用状態: 草稿 → 監修 → 実装 → 全モードQA → 確定
+</code></pre>
+<h2 id="声を書き分ける">声を書き分ける<a class="heading-anchor" href="#声を書き分ける">#</a></h2>
+<ul>
+<li><strong>夜明けの猫</strong>：迷いを押し切らない。「うれしい。でも…」という両立。</li>
+<li><strong>古時計</strong>：道具と記憶。落ち着いていて説教にならない。</li>
+<li><strong>眠れないパン屋</strong>：仕事の細部と自分へのツッコミ。温かい笑い。</li>
+<li><strong>月の裏側</strong>：架空のルールを大真面目に構築し、台所へ戻る。</li>
+<li><strong>午前3時の配達員</strong>：業務報告の冗談。その奥に短い本音。</li>
+<li><strong>透明な金魚</strong>：感情に名前を付けるまでのためらい。</li>
+<li><strong>砂糖を三杯</strong>：味、空、短い会話。押しつけない観察。</li>
+<li><strong>名前はまだありません</strong>：説明しない勇気。短い文章と空白。</li>
+<li><strong>終点のひとつ前</strong>：時刻、場所、一行の気持ち。余韻。</li>
+<li><strong>逆さまの傘</strong>：花屋の具体性と、花ではない趣味。</li>
+<li><strong>三角定規</strong>：図面や予定の余白。素直な質問と好奇心。</li>
+<li><strong>冷蔵庫の明かり</strong>：工程、器、休息。大仰な感情表現を避ける。</li>
+</ul>
+<h2 id="長期プレイと世界観の絶対ルール">長期プレイと世界観の絶対ルール<a class="heading-anchor" href="#長期プレイと世界観の絶対ルール">#</a></h2>
+<ul>
+<li><strong>未紹介のお便りはDJの既知情報にしない。</strong> リスナー本人が経験した出来事と番組が知った出来事を分離。</li>
+<li><strong>近況を過去の大事件の続きに固定しない。</strong> 後年の手紙は、以前の手紙を読んでいない場合にも成立する。</li>
+<li><strong>誰も100夜で人生を終えない。</strong> 任意閉局は番組の終わりであり、12人の生活は続く。</li>
+<li><strong>全員を同じ成長曲線にしない。</strong> 変わらない楽しみ、仕事の失敗、冗談の夜があってよい。</li>
+<li><strong>返答で「無理に解決」しない。</strong> DJは人生を管理せず、今夜届いた声を聴く。</li>
+<li><strong>長期で繰り返す本文は具体物を入れ替えただけにしない。</strong> 話題の焦点と関係の角度を変える。</li>
+<li><strong>ラジオネームの由来を採用する場合は、既存の全登場箇所と衝突しないか監修する。</strong> 今回の案を現時点で公式の過去とみなさない。</li>
+</ul>
+<h2 id="監修時にチェックする質問">監修時にチェックする質問<a class="heading-anchor" href="#監修時にチェックする質問">#</a></h2>
+<ul>
+<li>[ ] その名前を別のリスナーに入れ替えても成立する文になっていないか。</li>
+<li>[ ] 本文にない性格や過去を、DJが勝手に説明していないか。</li>
+<li>[ ] 前回未紹介・長期不在・モード別の履歴を考慮しているか。</li>
+<li>[ ] 既存の人生分岐や関係に勝手に決着をつけていないか。</li>
+<li>[ ] セーブ差分・実際に読んだ手紙のみで回想しているか。</li>
+<li>[ ] その人物らしい日常の面白さが残っているか。</li>
+</ul>
+<p><a href="people.html">12人の設定一覧へ</a> ｜ <a href="state.html">内部パラメーターへ</a> ｜ <a href="letters.html">お便り実装仕様へ</a></p>
+</article><div class="page-foot"><p>このサイトは実装コードを調査して作成した仕様スナップショットです。最新コードとの照合と実機検証は別途必要です。</p><div class="footlinks"><a href="index.html">資料トップへ</a><a href="source-index.html">関数索引へ</a><a href="deploy.html">公開・更新手順</a></div></div></main>
+<aside aria-label="このページの目次" class="toc"><div class="toc-heading">ON THIS PAGE</div><a href="#確定-と-未確定-を混ぜない">「確定」と「未確定」を混ぜない</a><a href="#新しいお便りを作る7段階">新しいお便りを作る7段階</a><a href="#お便りの構成テンプレート">お便りの構成テンプレート</a><a href="#声を書き分ける">声を書き分ける</a><a href="#長期プレイと世界観の絶対ルール">長期プレイと世界観の絶対ルール</a><a href="#監修時にチェックする質問">監修時にチェックする質問</a><div class="toc-foot">v4.9.22 を基準に編集</div></aside></div><script defer="" src="assets/search-data.js"></script><script defer="" src="assets/app.js"></script></body></html>

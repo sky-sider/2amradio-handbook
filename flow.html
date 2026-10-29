@@ -1,11 +1,12 @@
-<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#142538"><meta name="robots" content="noindex,nofollow"><meta name="description" content="夜の準備から放送後、章終端・最終放送の状態機械"><title>夜のゲームループと画面遷移｜午前二時の周波数 開発資料</title><link rel="stylesheet" href="assets/style.css"></head>
-<body data-page="flow"><a class="skip" href="#main">本文へ移動</a><div class="layout"><header class="topbar"><a href="index.html" class="brand"><span class="brand-dot"></span><span><b>午前二時の周波数</b><small>SOMEWHERE ON AIR · DEV HANDBOOK</small></span></a><div class="top-actions"><button type="button" id="themeToggle" aria-label="テーマを切り替える" title="テーマを切り替え">◐</button><button type="button" id="menuToggle" aria-expanded="false" aria-controls="sidebar">☰ <span>目次</span></button></div></header>
-<aside id="sidebar" class="sidebar"><div class="side-head"><span>SPECIFICATION / v4.9.22</span><button id="closeMenu" type="button" aria-label="目次を閉じる">×</button></div><label class="search-label" for="siteSearch">資料を横断検索</label><input id="siteSearch" type="search" placeholder="例：simReplyImpact / しおり" autocomplete="off"><div id="searchResults" class="search-results" aria-live="polite"></div><nav aria-label="ドキュメントのページ"><div class="nav-group"><div class="nav-heading">はじめに</div><a data-nav="index" href="index.html">開発資料の入口</a><a data-nav="getting-started" href="getting-started.html">開発参加・環境構築</a></div><div class="nav-group"><div class="nav-heading">物語</div><a data-nav="world" href="world.html">世界観・文体・企画哲学</a><a data-nav="chapters" href="chapters.html">第1〜4章と長期放送</a><a data-nav="specials" href="specials.html">特別放送・記念放送</a><a data-nav="finale" href="finale.html">第100夜以降の最終放送と閉局</a></div><div class="nav-group"><div class="nav-heading">人物</div><a data-nav="people" href="people.html">リスナー12人・人物設定一覧</a><a data-nav="person-cat" href="person-cat.html">夜明けの猫｜詳細人物設定</a><a data-nav="person-clock" href="person-clock.html">古時計｜詳細人物設定</a><a data-nav="person-bread" href="person-bread.html">眠れないパン屋｜詳細人物設定</a><a data-nav="person-moon" href="person-moon.html">月の裏側｜詳細人物設定</a><a data-nav="person-driver" href="person-driver.html">午前3時の配達員｜詳細人物設定</a><a data-nav="person-fish" href="person-fish.html">透明な金魚｜詳細人物設定</a><a data-nav="person-sugar" href="person-sugar.html">砂糖を三杯｜詳細人物設定</a><a data-nav="person-anon" href="person-anon.html">名前はまだありません｜詳細人物設定</a><a data-nav="person-terminal" href="person-terminal.html">終点のひとつ前｜詳細人物設定</a><a data-nav="person-umbrella" href="person-umbrella.html">逆さまの傘｜詳細人物設定</a><a data-nav="person-triangle" href="person-triangle.html">三角定規｜詳細人物設定</a><a data-nav="person-fridge" href="person-fridge.html">冷蔵庫の明かり｜詳細人物設定</a></div><div class="nav-group"><div class="nav-heading">ゲーム進行</div><a data-nav="flow" href="flow.html">夜のゲームループと画面遷移</a><a data-nav="archive" href="archive.html">放送日誌・人物録・しおり</a></div><div class="nav-group"><div class="nav-heading">内部システム</div><a data-nav="state" href="state.html">内部状態とパラメーターの全体像</a><a data-nav="choices" href="choices.html">返答と内部パラメーターの変化</a><a data-nav="simulation" href="simulation.html">12人の自律生活AI</a><a data-nav="relationships" href="relationships.html">人間関係・生活世界・記憶</a></div><div class="nav-group"><div class="nav-heading">放送システム</div><a data-nav="modes" href="modes.html">3つの楽しみ方・操作範囲</a><a data-nav="auto-dj" href="auto-dj.html">聴くだけの夜：自動DJの詳細</a><a data-nav="station" href="station.html">放送演出・曲・DJの雰囲気</a></div><div class="nav-group"><div class="nav-heading">実装</div><a data-nav="architecture" href="architecture.html">アーキテクチャ・依存関係</a><a data-nav="letters" href="letters.html">お便り・返答・候補生成</a><a data-nav="save" href="save.html">セーブ・バックアップ・互換性</a></div><div class="nav-group"><div class="nav-heading">開発</div><a data-nav="qa" href="qa.html">テスト計画・受け入れ条件</a></div><div class="nav-group"><div class="nav-heading">運用</div><a data-nav="deploy" href="deploy.html">GitHub Pagesへの公開・保守</a></div><div class="nav-group"><div class="nav-heading">参考資料</div><a data-nav="glossary" href="glossary.html">用語集・キー一覧</a><a data-nav="changelog" href="changelog.html">開発資料の変更履歴</a><a data-nav="source-index" href="source-index.html">ソースコード関数索引</a></div></nav><p class="side-note">基準コード v4.9.22<br>資料初版 2026-10-29<br>GitHub Pages 対応</p></aside><div id="veil" class="veil"></div>
-<main id="main" class="main"><div class="kicker">ゲーム進行 <span>/ 開発者向け資料</span></div><article class="prose"><h1>夜のゲームループと画面遷移</h1>
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="#142538" name="theme-color"/><meta content="noindex,nofollow" name="robots"/><meta content="夜の準備から放送後、章終端・最終放送の状態機械" name="description"/><title>夜のゲームループと画面遷移｜午前二時の周波数 開発資料</title><link href="assets/style.css" rel="stylesheet"/></head>
+<body data-page="flow"><a class="skip" href="#main">本文へ移動</a><div class="layout"><header class="topbar"><a class="brand" href="index.html"><span class="brand-dot"></span><span><b>午前二時の周波数</b><small>SOMEWHERE ON AIR · DEV HANDBOOK</small></span></a><div class="top-actions"><button aria-label="テーマを切り替える" id="themeToggle" title="テーマを切り替え" type="button">◐</button><button aria-controls="sidebar" aria-expanded="false" id="menuToggle" type="button">☰ <span>目次</span></button></div></header>
+<aside class="sidebar" id="sidebar"><div class="side-head"><span>SPECIFICATION / v4.9.22</span><button aria-label="目次を閉じる" id="closeMenu" type="button">×</button></div><label class="search-label" for="siteSearch">資料を横断検索</label><input autocomplete="off" id="siteSearch" placeholder="例：simReplyImpact / しおり" type="search"/><div aria-live="polite" class="search-results" id="searchResults"></div><nav aria-label="ドキュメントのページ"><div class="nav-group"><div class="nav-heading">はじめに</div><a data-nav="index" href="index.html">開発資料の入口</a><a data-nav="getting-started" href="getting-started.html">開発参加・環境構築</a></div><div class="nav-group"><div class="nav-heading">物語</div><a data-nav="world" href="world.html">世界観・文体・企画哲学</a><a data-nav="chapters" href="chapters.html">第1〜4章と長期放送</a><a data-nav="specials" href="specials.html">特別放送・記念放送</a><a data-nav="finale" href="finale.html">第100夜以降の最終放送と閉局</a></div><div class="nav-group"><div class="nav-heading">人物</div><a data-nav="people" href="people.html">リスナー12人・人物設定一覧</a><a data-nav="writing-guide" href="writing-guide.html">シナリオ執筆ガイド</a><a data-nav="person-cat" href="person-cat.html">夜明けの猫｜詳細人物設定</a><a data-nav="person-clock" href="person-clock.html">古時計｜詳細人物設定</a><a data-nav="person-bread" href="person-bread.html">眠れないパン屋｜詳細人物設定</a><a data-nav="person-moon" href="person-moon.html">月の裏側｜詳細人物設定</a><a data-nav="person-driver" href="person-driver.html">午前3時の配達員｜詳細人物設定</a><a data-nav="person-fish" href="person-fish.html">透明な金魚｜詳細人物設定</a><a data-nav="person-sugar" href="person-sugar.html">砂糖を三杯｜詳細人物設定</a><a data-nav="person-anon" href="person-anon.html">名前はまだありません｜詳細人物設定</a><a data-nav="person-terminal" href="person-terminal.html">終点のひとつ前｜詳細人物設定</a><a data-nav="person-umbrella" href="person-umbrella.html">逆さまの傘｜詳細人物設定</a><a data-nav="person-triangle" href="person-triangle.html">三角定規｜詳細人物設定</a><a data-nav="person-fridge" href="person-fridge.html">冷蔵庫の明かり｜詳細人物設定</a></div><div class="nav-group"><div class="nav-heading">ゲーム進行</div><a data-nav="flow" href="flow.html">夜のゲームループと画面遷移</a><a data-nav="archive" href="archive.html">放送日誌・人物録・しおり</a></div><div class="nav-group"><div class="nav-heading">内部システム</div><a data-nav="state" href="state.html">内部状態とパラメーターの全体像</a><a data-nav="choices" href="choices.html">返答と内部パラメーターの変化</a><a data-nav="simulation" href="simulation.html">12人の自律生活AI</a><a data-nav="relationships" href="relationships.html">人間関係・生活世界・記憶</a></div><div class="nav-group"><div class="nav-heading">放送システム</div><a data-nav="modes" href="modes.html">3つの楽しみ方・操作範囲</a><a data-nav="auto-dj" href="auto-dj.html">聴くだけの夜：自動DJの詳細</a><a data-nav="station" href="station.html">放送演出・曲・DJの雰囲気</a></div><div class="nav-group"><div class="nav-heading">実装</div><a data-nav="architecture" href="architecture.html">アーキテクチャ・依存関係</a><a data-nav="letters" href="letters.html">お便り・返答・候補生成</a><a data-nav="save" href="save.html">セーブ・バックアップ・互換性</a></div><div class="nav-group"><div class="nav-heading">開発</div><a data-nav="qa" href="qa.html">テスト計画・受け入れ条件</a></div><div class="nav-group"><div class="nav-heading">運用</div><a data-nav="deploy" href="deploy.html">GitHub Pagesへの公開・保守</a></div><div class="nav-group"><div class="nav-heading">参考資料</div><a data-nav="glossary" href="glossary.html">用語集・キー一覧</a><a data-nav="changelog" href="changelog.html">開発資料の変更履歴</a><a data-nav="source-index" href="source-index.html">ソースコード関数索引</a></div></nav><p class="side-note">基準ゲーム v4.9.22 · 開発資料 v1.1</p></aside><div class="veil" id="veil"></div>
+<main class="main" id="main"><div class="kicker">ゲーム進行 <span>/ 開発者向け資料</span></div><article class="prose"><h1>夜のゲームループと画面遷移</h1>
 <blockquote>
 <p><strong>資料基準:</strong> ゲーム v4.9.22 ／ <strong>資料状態:</strong> 実装コードを基準にした開発者向け整理。未検証・提案は明記。</p>
 </blockquote>
-<h2 id="基本の1夜">基本の1夜<a class="heading-anchor" href="#基本の1夜" aria-label="見出しへリンク">#</a></h2>
+<h2 id="基本の1夜">基本の1夜<a aria-label="見出しへリンク" class="heading-anchor" href="#基本の1夜">#</a></h2>
 <ol>
 <li><code>intro</code>：夜の導入。天気・章の案内、特別放送の予告等。</li>
 <li><code>prepare</code>：届いたお便り候補を確認し、最大3通を選択。モードと挨拶等を準備。</li>
@@ -13,7 +14,7 @@
 <li><code>after</code>：未紹介便箋・世界の行動・人間関係・生活AIを更新して放送後を表示。</li>
 <li><code>nextNight()</code>：通常なら翌夜の <code>intro</code>。章末・最終放送の場合は特別な <code>phase</code> に移る。</li>
 </ol>
-<h3 id="お便り選択">お便り選択<a class="heading-anchor" href="#お便り選択" aria-label="見出しへリンク">#</a></h3>
+<h3 id="お便り選択">お便り選択<a aria-label="見出しへリンク" class="heading-anchor" href="#お便り選択">#</a></h3>
 <ul>
 <li><code>s.chosen</code>: 紹介予定のID配列（最大3）。<code>selectLetter()</code>が更新。</li>
 <li><code>s.played</code>: 実際に読んだ記録。<code>id</code>, <code>who</code>, <code>subject</code>, <code>body</code>, <code>response</code>, <code>night</code> を格納。</li>
@@ -21,49 +22,49 @@
 <li><code>s.pending</code>: 持ち越し対象のみを最大2通保持。対象外のお便りは翌夜に自動再登場しない。</li>
 <li><code>NIGHTLY_LETTER_LIMITS</code>: 同夜の差出人別制限（パン屋2通、逆さまの傘・三角定規・冷蔵庫の明かりは各1通）。</li>
 </ul>
-<h3 id="返答時のイベント順">返答時のイベント順<a class="heading-anchor" href="#返答時のイベント順" aria-label="見出しへリンク">#</a></h3>
+<h3 id="返答時のイベント順">返答時のイベント順<a aria-label="見出しへリンク" class="heading-anchor" href="#返答時のイベント順">#</a></h3>
 <p><code>applyReply(l, choice, assembled)</code> によって、既知フラグ・個別イベント・数値変化・物語拡張・生活AIへの反映・紹介履歴への記録を行います。<strong>紹介されなかった手紙ではこの関数は実行されません。</strong></p>
-<h3 id="放送後に進むもの">放送後に進むもの<a class="heading-anchor" href="#放送後に進むもの" aria-label="見出しへリンク">#</a></h3>
+<h3 id="放送後に進むもの">放送後に進むもの<a aria-label="見出しへリンク" class="heading-anchor" href="#放送後に進むもの">#</a></h3>
 <p><code>finishBroadcast()</code> は、曲の効果→放送文化→長期記憶→持ち越し→初期章イベント→12人の自律生活→新リスナー・交流・章の後日談→特別放送などの順で更新します。個別の処理は <code>processedNights</code> を用いる二重実行防止がある場合があります。</p>
-<h3 id="章の境目">章の境目<a class="heading-anchor" href="#章の境目" aria-label="見出しへリンク">#</a></h3>
+<h3 id="章の境目">章の境目<a aria-label="見出しへリンク" class="heading-anchor" href="#章の境目">#</a></h3>
 <table>
 <thead>
 <tr>
-  <th style="text-align:right">夜</th>
-  <th>遷移</th>
-  <th>実装の扱い</th>
+<th style="text-align:right">夜</th>
+<th>遷移</th>
+<th>実装の扱い</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-  <td style="text-align:right">14</td>
-  <td><code>complete</code> → 第15夜へ</td>
-  <td>第1章の終了画面</td>
+<td style="text-align:right">14</td>
+<td><code>complete</code> → 第15夜へ</td>
+<td>第1章の終了画面</td>
 </tr>
 <tr>
-  <td style="text-align:right">28</td>
-  <td><code>chapter2_complete</code></td>
-  <td>第2章の終了画面</td>
+<td style="text-align:right">28</td>
+<td><code>chapter2_complete</code></td>
+<td>第2章の終了画面</td>
 </tr>
 <tr>
-  <td style="text-align:right">51〜64</td>
-  <td>第3章</td>
-  <td>章末後 <code>chapter3_complete</code></td>
+<td style="text-align:right">51〜64</td>
+<td>第3章</td>
+<td>章末後 <code>chapter3_complete</code></td>
 </tr>
 <tr>
-  <td style="text-align:right">79〜92</td>
-  <td>第4章</td>
-  <td>92夜後 <code>chapter4_complete</code></td>
+<td style="text-align:right">79〜92</td>
+<td>第4章</td>
+<td>92夜後 <code>chapter4_complete</code></td>
 </tr>
 <tr>
-  <td style="text-align:right">100</td>
-  <td>記念放送／閉局が選択可能になる</td>
-  <td>必ず閉局ではない</td>
+<td style="text-align:right">100</td>
+<td>記念放送／閉局が選択可能になる</td>
+<td>必ず閉局ではない</td>
 </tr>
 </tbody>
 </table>
 <p>特殊フェーズは <a href="chapters.html">章</a>・<a href="finale.html">最終放送</a>へ。</p>
-<h2 id="開発上の落とし穴">開発上の落とし穴<a class="heading-anchor" href="#開発上の落とし穴" aria-label="見出しへリンク">#</a></h2>
+<h2 id="開発上の落とし穴">開発上の落とし穴<a aria-label="見出しへリンク" class="heading-anchor" href="#開発上の落とし穴">#</a></h2>
 <ul>
 <li><code>s.phase</code> だけを変えて <code>chosen</code> や <code>replyParts</code> をリセットし忘れない。</li>
 <li><code>nightLetters()</code> は生成済みのスナップショットを再利用する設計。再生成しない。</li>
@@ -71,4 +72,4 @@
 </ul>
 <p><strong>主要関数</strong>：<code>startNight</code>（script.js:484）、<code>selectLetter</code>（script.js:483）、<code>beginBroadcast</code>（script.js:485）、<code>applyReply</code>（events.js:5）、<code>finishBroadcast</code>（script.js:496）、<code>nextNight</code>（script.js:508）、<code>updatePendingLetters</code>（events.js:153）</p>
 </article><div class="page-foot"><p>このサイトは実装コードを調査して作成した仕様スナップショットです。最新コードとの照合と実機検証は別途必要です。</p><div class="footlinks"><a href="index.html">資料トップへ</a><a href="source-index.html">関数索引へ</a><a href="deploy.html">公開・更新手順</a></div></div></main>
-<aside class="toc" aria-label="このページの目次"><div class="toc-heading">ON THIS PAGE</div><a class="toc-lv-2" href="#基本の1夜">基本の1夜</a><a class="toc-lv-3" href="#お便り選択">お便り選択</a><a class="toc-lv-3" href="#返答時のイベント順">返答時のイベント順</a><a class="toc-lv-3" href="#放送後に進むもの">放送後に進むもの</a><a class="toc-lv-3" href="#章の境目">章の境目</a><a class="toc-lv-2" href="#開発上の落とし穴">開発上の落とし穴</a><div class="toc-foot">v4.9.22 を基準に編集</div></aside></div><script src="assets/search-data.js" defer></script><script src="assets/app.js" defer></script></body></html>
+<aside aria-label="このページの目次" class="toc"><div class="toc-heading">ON THIS PAGE</div><a class="toc-lv-2" href="#基本の1夜">基本の1夜</a><a class="toc-lv-3" href="#お便り選択">お便り選択</a><a class="toc-lv-3" href="#返答時のイベント順">返答時のイベント順</a><a class="toc-lv-3" href="#放送後に進むもの">放送後に進むもの</a><a class="toc-lv-3" href="#章の境目">章の境目</a><a class="toc-lv-2" href="#開発上の落とし穴">開発上の落とし穴</a><div class="toc-foot">v4.9.22 を基準に編集</div></aside></div><script defer="" src="assets/search-data.js"></script><script defer="" src="assets/app.js"></script></body></html>

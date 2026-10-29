@@ -1,13 +1,14 @@
-<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#142538"><meta name="robots" content="noindex,nofollow"><meta name="description" content="手紙選出の採点・返答評価・事実整合・記録・再現性"><title>聴くだけの夜：自動DJの詳細｜午前二時の周波数 開発資料</title><link rel="stylesheet" href="assets/style.css"></head>
-<body data-page="auto-dj"><a class="skip" href="#main">本文へ移動</a><div class="layout"><header class="topbar"><a href="index.html" class="brand"><span class="brand-dot"></span><span><b>午前二時の周波数</b><small>SOMEWHERE ON AIR · DEV HANDBOOK</small></span></a><div class="top-actions"><button type="button" id="themeToggle" aria-label="テーマを切り替える" title="テーマを切り替え">◐</button><button type="button" id="menuToggle" aria-expanded="false" aria-controls="sidebar">☰ <span>目次</span></button></div></header>
-<aside id="sidebar" class="sidebar"><div class="side-head"><span>SPECIFICATION / v4.9.22</span><button id="closeMenu" type="button" aria-label="目次を閉じる">×</button></div><label class="search-label" for="siteSearch">資料を横断検索</label><input id="siteSearch" type="search" placeholder="例：simReplyImpact / しおり" autocomplete="off"><div id="searchResults" class="search-results" aria-live="polite"></div><nav aria-label="ドキュメントのページ"><div class="nav-group"><div class="nav-heading">はじめに</div><a data-nav="index" href="index.html">開発資料の入口</a><a data-nav="getting-started" href="getting-started.html">開発参加・環境構築</a></div><div class="nav-group"><div class="nav-heading">物語</div><a data-nav="world" href="world.html">世界観・文体・企画哲学</a><a data-nav="chapters" href="chapters.html">第1〜4章と長期放送</a><a data-nav="specials" href="specials.html">特別放送・記念放送</a><a data-nav="finale" href="finale.html">第100夜以降の最終放送と閉局</a></div><div class="nav-group"><div class="nav-heading">人物</div><a data-nav="people" href="people.html">リスナー12人・人物設定一覧</a><a data-nav="person-cat" href="person-cat.html">夜明けの猫｜詳細人物設定</a><a data-nav="person-clock" href="person-clock.html">古時計｜詳細人物設定</a><a data-nav="person-bread" href="person-bread.html">眠れないパン屋｜詳細人物設定</a><a data-nav="person-moon" href="person-moon.html">月の裏側｜詳細人物設定</a><a data-nav="person-driver" href="person-driver.html">午前3時の配達員｜詳細人物設定</a><a data-nav="person-fish" href="person-fish.html">透明な金魚｜詳細人物設定</a><a data-nav="person-sugar" href="person-sugar.html">砂糖を三杯｜詳細人物設定</a><a data-nav="person-anon" href="person-anon.html">名前はまだありません｜詳細人物設定</a><a data-nav="person-terminal" href="person-terminal.html">終点のひとつ前｜詳細人物設定</a><a data-nav="person-umbrella" href="person-umbrella.html">逆さまの傘｜詳細人物設定</a><a data-nav="person-triangle" href="person-triangle.html">三角定規｜詳細人物設定</a><a data-nav="person-fridge" href="person-fridge.html">冷蔵庫の明かり｜詳細人物設定</a></div><div class="nav-group"><div class="nav-heading">ゲーム進行</div><a data-nav="flow" href="flow.html">夜のゲームループと画面遷移</a><a data-nav="archive" href="archive.html">放送日誌・人物録・しおり</a></div><div class="nav-group"><div class="nav-heading">内部システム</div><a data-nav="state" href="state.html">内部状態とパラメーターの全体像</a><a data-nav="choices" href="choices.html">返答と内部パラメーターの変化</a><a data-nav="simulation" href="simulation.html">12人の自律生活AI</a><a data-nav="relationships" href="relationships.html">人間関係・生活世界・記憶</a></div><div class="nav-group"><div class="nav-heading">放送システム</div><a data-nav="modes" href="modes.html">3つの楽しみ方・操作範囲</a><a data-nav="auto-dj" href="auto-dj.html">聴くだけの夜：自動DJの詳細</a><a data-nav="station" href="station.html">放送演出・曲・DJの雰囲気</a></div><div class="nav-group"><div class="nav-heading">実装</div><a data-nav="architecture" href="architecture.html">アーキテクチャ・依存関係</a><a data-nav="letters" href="letters.html">お便り・返答・候補生成</a><a data-nav="save" href="save.html">セーブ・バックアップ・互換性</a></div><div class="nav-group"><div class="nav-heading">開発</div><a data-nav="qa" href="qa.html">テスト計画・受け入れ条件</a></div><div class="nav-group"><div class="nav-heading">運用</div><a data-nav="deploy" href="deploy.html">GitHub Pagesへの公開・保守</a></div><div class="nav-group"><div class="nav-heading">参考資料</div><a data-nav="glossary" href="glossary.html">用語集・キー一覧</a><a data-nav="changelog" href="changelog.html">開発資料の変更履歴</a><a data-nav="source-index" href="source-index.html">ソースコード関数索引</a></div></nav><p class="side-note">基準コード v4.9.22<br>資料初版 2026-10-29<br>GitHub Pages 対応</p></aside><div id="veil" class="veil"></div>
-<main id="main" class="main"><div class="kicker">放送システム <span>/ 開発者向け資料</span></div><article class="prose"><h1>聴くだけの夜：自動DJの詳細</h1>
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="#142538" name="theme-color"/><meta content="noindex,nofollow" name="robots"/><meta content="手紙選出の採点・返答評価・事実整合・記録・再現性" name="description"/><title>聴くだけの夜：自動DJの詳細｜午前二時の周波数 開発資料</title><link href="assets/style.css" rel="stylesheet"/></head>
+<body data-page="auto-dj"><a class="skip" href="#main">本文へ移動</a><div class="layout"><header class="topbar"><a class="brand" href="index.html"><span class="brand-dot"></span><span><b>午前二時の周波数</b><small>SOMEWHERE ON AIR · DEV HANDBOOK</small></span></a><div class="top-actions"><button aria-label="テーマを切り替える" id="themeToggle" title="テーマを切り替え" type="button">◐</button><button aria-controls="sidebar" aria-expanded="false" id="menuToggle" type="button">☰ <span>目次</span></button></div></header>
+<aside class="sidebar" id="sidebar"><div class="side-head"><span>SPECIFICATION / v4.9.22</span><button aria-label="目次を閉じる" id="closeMenu" type="button">×</button></div><label class="search-label" for="siteSearch">資料を横断検索</label><input autocomplete="off" id="siteSearch" placeholder="例：simReplyImpact / しおり" type="search"/><div aria-live="polite" class="search-results" id="searchResults"></div><nav aria-label="ドキュメントのページ"><div class="nav-group"><div class="nav-heading">はじめに</div><a data-nav="index" href="index.html">開発資料の入口</a><a data-nav="getting-started" href="getting-started.html">開発参加・環境構築</a></div><div class="nav-group"><div class="nav-heading">物語</div><a data-nav="world" href="world.html">世界観・文体・企画哲学</a><a data-nav="chapters" href="chapters.html">第1〜4章と長期放送</a><a data-nav="specials" href="specials.html">特別放送・記念放送</a><a data-nav="finale" href="finale.html">第100夜以降の最終放送と閉局</a></div><div class="nav-group"><div class="nav-heading">人物</div><a data-nav="people" href="people.html">リスナー12人・人物設定一覧</a><a data-nav="writing-guide" href="writing-guide.html">シナリオ執筆ガイド</a><a data-nav="person-cat" href="person-cat.html">夜明けの猫｜詳細人物設定</a><a data-nav="person-clock" href="person-clock.html">古時計｜詳細人物設定</a><a data-nav="person-bread" href="person-bread.html">眠れないパン屋｜詳細人物設定</a><a data-nav="person-moon" href="person-moon.html">月の裏側｜詳細人物設定</a><a data-nav="person-driver" href="person-driver.html">午前3時の配達員｜詳細人物設定</a><a data-nav="person-fish" href="person-fish.html">透明な金魚｜詳細人物設定</a><a data-nav="person-sugar" href="person-sugar.html">砂糖を三杯｜詳細人物設定</a><a data-nav="person-anon" href="person-anon.html">名前はまだありません｜詳細人物設定</a><a data-nav="person-terminal" href="person-terminal.html">終点のひとつ前｜詳細人物設定</a><a data-nav="person-umbrella" href="person-umbrella.html">逆さまの傘｜詳細人物設定</a><a data-nav="person-triangle" href="person-triangle.html">三角定規｜詳細人物設定</a><a data-nav="person-fridge" href="person-fridge.html">冷蔵庫の明かり｜詳細人物設定</a></div><div class="nav-group"><div class="nav-heading">ゲーム進行</div><a data-nav="flow" href="flow.html">夜のゲームループと画面遷移</a><a data-nav="archive" href="archive.html">放送日誌・人物録・しおり</a></div><div class="nav-group"><div class="nav-heading">内部システム</div><a data-nav="state" href="state.html">内部状態とパラメーターの全体像</a><a data-nav="choices" href="choices.html">返答と内部パラメーターの変化</a><a data-nav="simulation" href="simulation.html">12人の自律生活AI</a><a data-nav="relationships" href="relationships.html">人間関係・生活世界・記憶</a></div><div class="nav-group"><div class="nav-heading">放送システム</div><a data-nav="modes" href="modes.html">3つの楽しみ方・操作範囲</a><a data-nav="auto-dj" href="auto-dj.html">聴くだけの夜：自動DJの詳細</a><a data-nav="station" href="station.html">放送演出・曲・DJの雰囲気</a></div><div class="nav-group"><div class="nav-heading">実装</div><a data-nav="architecture" href="architecture.html">アーキテクチャ・依存関係</a><a data-nav="letters" href="letters.html">お便り・返答・候補生成</a><a data-nav="save" href="save.html">セーブ・バックアップ・互換性</a></div><div class="nav-group"><div class="nav-heading">開発</div><a data-nav="qa" href="qa.html">テスト計画・受け入れ条件</a></div><div class="nav-group"><div class="nav-heading">運用</div><a data-nav="deploy" href="deploy.html">GitHub Pagesへの公開・保守</a></div><div class="nav-group"><div class="nav-heading">参考資料</div><a data-nav="glossary" href="glossary.html">用語集・キー一覧</a><a data-nav="changelog" href="changelog.html">開発資料の変更履歴</a><a data-nav="source-index" href="source-index.html">ソースコード関数索引</a></div></nav><p class="side-note">基準ゲーム v4.9.22 · 開発資料 v1.1</p></aside><div class="veil" id="veil"></div>
+<main class="main" id="main"><div class="kicker">放送システム <span>/ 開発者向け資料</span></div><article class="prose"><h1>聴くだけの夜：自動DJの詳細</h1>
 <blockquote>
 <p><strong>資料基準:</strong> ゲーム v4.9.22 ／ <strong>資料状態:</strong> 実装コードを基準にした開発者向け整理。未検証・提案は明記。</p>
 </blockquote>
-<h2 id="何をする仕組みか">何をする仕組みか<a class="heading-anchor" href="#何をする仕組みか" aria-label="見出しへリンク">#</a></h2>
+<h2 id="何をする仕組みか">何をする仕組みか<a aria-label="見出しへリンク" class="heading-anchor" href="#何をする仕組みか">#</a></h2>
 <p><strong>実装確認</strong>：自由文生成AIではありません。候補のお便りを数値評価し、既存／状況別に用意された返答から最も適切なものを選び、放送用の文章を整えて<strong>一夜の読書ページとして保存</strong>します。</p>
-<h2 id="自動で1夜を作る流れ">自動で1夜を作る流れ<a class="heading-anchor" href="#自動で1夜を作る流れ" aria-label="見出しへリンク">#</a></h2>
+<h2 id="自動で1夜を作る流れ">自動で1夜を作る流れ<a aria-label="見出しへリンク" class="heading-anchor" href="#自動で1夜を作る流れ">#</a></h2>
 <pre><code class="language-text">readerProduceNight()
  ├─ 配達された候補を取得
  ├─ autoDJPickLetters() → 紹介する最大3通を選択
@@ -26,72 +27,72 @@
  ├─ played／人物の状態を通常と同じシステムで更新
  └─ reader.pages に保存して再表示に使う
 </code></pre>
-<h2 id="紹介する手紙のスコア-autodjpickletters">紹介する手紙のスコア：<code>autoDJPickLetters</code><a class="heading-anchor" href="#紹介する手紙のスコア-autodjpickletters" aria-label="見出しへリンク">#</a></h2>
+<h2 id="紹介する手紙のスコア-autodjpickletters">紹介する手紙のスコア：<code>autoDJPickLetters</code><a aria-label="見出しへリンク" class="heading-anchor" href="#紹介する手紙のスコア-autodjpickletters">#</a></h2>
 <p>採点は候補ごとの合算です。下記はv4.9.22の<strong>コードにある係数</strong>です。</p>
 <table>
 <thead>
 <tr>
-  <th>要因</th>
-  <th>加点／減点</th>
+<th>要因</th>
+<th>加点／減点</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-  <td>ベース</td>
-  <td>+2.0</td>
+<td>ベース</td>
+<td>+2.0</td>
 </tr>
 <tr>
-  <td>最近42夜以内に同じ人の声を紹介した</td>
-  <td>+1.65</td>
+<td>最近42夜以内に同じ人の声を紹介した</td>
+<td>+1.65</td>
 </tr>
 <tr>
-  <td>前回紹介からの間隔</td>
-  <td><code>min(1.45, timeGap/15)</code></td>
+<td>前回紹介からの間隔</td>
+<td><code>min(1.45, timeGap/15)</code></td>
 </tr>
 <tr>
-  <td>同じ夜に同じ差出人がもういる</td>
-  <td>−5</td>
+<td>同じ夜に同じ差出人がもういる</td>
+<td>−5</td>
 </tr>
 <tr>
-  <td>先に選ばれた手紙と雰囲気が異なる</td>
-  <td>+1.1</td>
+<td>先に選ばれた手紙と雰囲気が異なる</td>
+<td>+1.1</td>
 </tr>
 <tr>
-  <td>どちらも内省的</td>
-  <td>+0.35</td>
+<td>どちらも内省的</td>
+<td>+0.35</td>
 </tr>
 <tr>
-  <td>特別放送投稿</td>
-  <td>+1.0</td>
+<td>特別放送投稿</td>
+<td>+1.0</td>
 </tr>
 <tr>
-  <td>長期新作 <code>laterlife4914</code></td>
-  <td>+1.25</td>
+<td>長期新作 <code>laterlife4914</code></td>
+<td>+1.25</td>
 </tr>
 <tr>
-  <td>リスナー同士の交流便り</td>
-  <td>+2.4</td>
+<td>リスナー同士の交流便り</td>
+<td>+2.4</td>
 </tr>
 <tr>
-  <td>同一本文の最近10夜以内の再選出</td>
-  <td>−5.5</td>
+<td>同一本文の最近10夜以内の再選出</td>
+<td>−5.5</td>
 </tr>
 <tr>
-  <td>最近の紹介の少なさ</td>
-  <td><code>clamp((直近27夜の平均−当該人の回数)×0.045, −1.4, 2.0)</code></td>
+<td>最近の紹介の少なさ</td>
+<td><code>clamp((直近27夜の平均−当該人の回数)×0.045, −1.4, 2.0)</code></td>
 </tr>
 <tr>
-  <td>通算の紹介の少なさ</td>
-  <td><code>clamp((通算平均−当該人の回数)×0.007, −0.5, 0.8)</code></td>
+<td>通算の紹介の少なさ</td>
+<td><code>clamp((通算平均−当該人の回数)×0.007, −0.5, 0.8)</code></td>
 </tr>
 <tr>
-  <td>同点付近のゆらぎ</td>
-  <td>ハッシュから0〜約1.65</td>
+<td>同点付近のゆらぎ</td>
+<td>ハッシュから0〜約1.65</td>
 </tr>
 </tbody>
 </table>
 <p><strong>必須注意</strong>：記念放送の先行確保があり、すべての候補が同一スコアで競うわけではありません。第50夜と長期記念回でも先行枠数が異なります。</p>
-<h2 id="返答の選び方">返答の選び方<a class="heading-anchor" href="#返答の選び方" aria-label="見出しへリンク">#</a></h2>
+<h2 id="返答の選び方">返答の選び方<a aria-label="見出しへリンク" class="heading-anchor" href="#返答の選び方">#</a></h2>
 <p><code>autoDJReplyScore</code> は手紙の <code>heavy</code>（重さ）、<code>reflective</code>（内省）、<code>bright</code>（明るさ）、<code>playful</code>（遊び心）を判定し、返答タグと文面から得点を付けます。</p>
 <ul>
 <li>深刻な手紙には <code>empathy</code>／<code>space</code>／<code>caution</code> を優遇、<code>humor</code> を大幅減点。</li>
@@ -101,11 +102,11 @@
 <li>同じ人物の既知の背景との整合や、前の放送への言及も採点する。</li>
 <li>候補が不適切な場合は、より具体的で事実に沿った候補が選ばれるようにする。</li>
 </ul>
-<h2 id="自動djの声と文章の多様性">自動DJの声と文章の多様性<a class="heading-anchor" href="#自動djの声と文章の多様性" aria-label="見出しへリンク">#</a></h2>
+<h2 id="自動djの声と文章の多様性">自動DJの声と文章の多様性<a aria-label="見出しへリンク" class="heading-anchor" href="#自動djの声と文章の多様性">#</a></h2>
 <p><code>READER_DJ_VOICE</code> や <code>READER_RADIO_PHRASING_4915</code> に従って、口調・オープニング・つなぎ・締めを構成。v4.9.15ではオープニング29種類、締め30種類、つなぎ20種類の実績が検証されましたが、<strong>実際の候補や数値はソースが正</strong>です。</p>
-<h2 id="読書用データの基本">読書用データの基本<a class="heading-anchor" href="#読書用データの基本" aria-label="見出しへリンク">#</a></h2>
+<h2 id="読書用データの基本">読書用データの基本<a aria-label="見出しへリンク" class="heading-anchor" href="#読書用データの基本">#</a></h2>
 <p><code>reader:{schema:1,pages:[],viewIndex:-1,scrollY:0,dj:{tags:[],lastPlanNight:-999}}</code> を基礎にページを追記。<code>pages</code> に当夜の <code>night</code>、<code>letterIds</code>、<code>interludes</code>、<code>song</code> 等を保存。再度ページを開いたときに再抽選しません。</p>
-<h2 id="デバッグすべきこと">デバッグすべきこと<a class="heading-anchor" href="#デバッグすべきこと" aria-label="見出しへリンク">#</a></h2>
+<h2 id="デバッグすべきこと">デバッグすべきこと<a aria-label="見出しへリンク" class="heading-anchor" href="#デバッグすべきこと">#</a></h2>
 <ul>
 <li>「冷蔵庫の明かり」など出番の少ない人が再び1通程度になっていないか。</li>
 <li>未読の手紙の内容を自動DJが知っているように話していないか。</li>
@@ -114,4 +115,4 @@
 </ul>
 <p><strong>参照</strong>：<code>readerProduceNight</code>（script.js:2589）、<code>autoDJPickLetters</code>（script.js:1605）、<code>autoDJOrderNightLetters</code>（script.js:1664）、<code>autoDJReplyScore</code>（script.js:2039）、<code>autoDJConversationalFit</code>（script.js:1982）、<code>autoDJRankChoices</code>（script.js:1930）、<code>readerRadioPhrase4915</code>（script.js:2491）、<code>validateReaderState</code>（script.js:219）</p>
 </article><div class="page-foot"><p>このサイトは実装コードを調査して作成した仕様スナップショットです。最新コードとの照合と実機検証は別途必要です。</p><div class="footlinks"><a href="index.html">資料トップへ</a><a href="source-index.html">関数索引へ</a><a href="deploy.html">公開・更新手順</a></div></div></main>
-<aside class="toc" aria-label="このページの目次"><div class="toc-heading">ON THIS PAGE</div><a class="toc-lv-2" href="#何をする仕組みか">何をする仕組みか</a><a class="toc-lv-2" href="#自動で1夜を作る流れ">自動で1夜を作る流れ</a><a class="toc-lv-2" href="#紹介する手紙のスコア-autodjpickletters">紹介する手紙のスコア：autoDJPickLetters</a><a class="toc-lv-2" href="#返答の選び方">返答の選び方</a><a class="toc-lv-2" href="#自動djの声と文章の多様性">自動DJの声と文章の多様性</a><a class="toc-lv-2" href="#読書用データの基本">読書用データの基本</a><a class="toc-lv-2" href="#デバッグすべきこと">デバッグすべきこと</a><div class="toc-foot">v4.9.22 を基準に編集</div></aside></div><script src="assets/search-data.js" defer></script><script src="assets/app.js" defer></script></body></html>
+<aside aria-label="このページの目次" class="toc"><div class="toc-heading">ON THIS PAGE</div><a class="toc-lv-2" href="#何をする仕組みか">何をする仕組みか</a><a class="toc-lv-2" href="#自動で1夜を作る流れ">自動で1夜を作る流れ</a><a class="toc-lv-2" href="#紹介する手紙のスコア-autodjpickletters">紹介する手紙のスコア：autoDJPickLetters</a><a class="toc-lv-2" href="#返答の選び方">返答の選び方</a><a class="toc-lv-2" href="#自動djの声と文章の多様性">自動DJの声と文章の多様性</a><a class="toc-lv-2" href="#読書用データの基本">読書用データの基本</a><a class="toc-lv-2" href="#デバッグすべきこと">デバッグすべきこと</a><div class="toc-foot">v4.9.22 を基準に編集</div></aside></div><script defer="" src="assets/search-data.js"></script><script defer="" src="assets/app.js"></script></body></html>
