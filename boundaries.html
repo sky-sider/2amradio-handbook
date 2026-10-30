@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+
+<html lang="ja"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="#142538" name="theme-color"/><meta content="noindex,nofollow" name="robots"/><meta content="12人のリスナーが親しくなっても話さないこと、後日談の分岐と返答の書き方をまとめたライター向け資料。" name="description"/><title>心の境界線・シナリオ制作ガイド｜午前二時の周波数 開発資料</title><link href="assets/style.css" rel="stylesheet"/></head>
+<body data-page="boundaries"><a class="skip" href="#main">本文へ移動</a><div class="layout"><header class="topbar"><a class="brand" href="index.html"><span class="brand-dot"></span><span><b>午前二時の周波数</b><small>SOMEWHERE ON AIR · DEV HANDBOOK</small></span></a><div class="top-actions"><button aria-label="テーマを切り替える" id="themeToggle" title="テーマを切り替え" type="button">◐</button><button aria-controls="sidebar" aria-expanded="false" id="menuToggle" type="button">☰ <span>目次</span></button></div></header>
+<aside class="sidebar" id="sidebar"><div class="side-head"><span>SPECIFICATION / BASE v4.9.22 + v4.9.32</span><button aria-label="目次を閉じる" id="closeMenu" type="button">×</button></div><label class="search-label" for="siteSearch">資料を横断検索</label><input autocomplete="off" id="siteSearch" placeholder="例：simReplyImpact / しおり" type="search"/><div aria-live="polite" class="search-results" id="searchResults"></div><nav aria-label="ドキュメントのページ"><div class="nav-group"><div class="nav-heading">はじめに</div><a data-nav="index" href="index.html">開発資料の入口</a><a data-nav="getting-started" href="getting-started.html">開発参加・環境構築</a></div><div class="nav-group"><div class="nav-heading">物語</div><a data-nav="world" href="world.html">世界観・文体・企画哲学</a><a data-nav="chapters" href="chapters.html">第1〜4章と長期放送</a><a data-nav="specials" href="specials.html">特別放送・記念放送</a><a data-nav="special-writing" href="special-writing.html">特別放送 企画・お便り制作ガイド</a><a data-nav="finale" href="finale.html">第100夜以降の最終放送と閉局</a></div><div class="nav-group"><div class="nav-heading">人物</div><a data-nav="people" href="people.html">リスナー12人・人物設定一覧</a><a data-nav="writing-guide" href="writing-guide.html">シナリオ執筆ガイド</a><a data-nav="scenarios" href="scenarios.html">物語のシチュエーション図鑑</a><a data-nav="boundaries" class="active" aria-current="page" href="boundaries.html">心の境界線・ライター向け制作ガイド</a><a data-nav="person-cat" href="person-cat.html">夜明けの猫｜詳細人物設定</a><a data-nav="person-clock" href="person-clock.html">古時計｜詳細人物設定</a><a data-nav="person-bread" href="person-bread.html">眠れないパン屋｜詳細人物設定</a><a data-nav="person-moon" href="person-moon.html">月の裏側｜詳細人物設定</a><a data-nav="person-driver" href="person-driver.html">午前3時の配達員｜詳細人物設定</a><a data-nav="person-fish" href="person-fish.html">透明な金魚｜詳細人物設定</a><a data-nav="person-sugar" href="person-sugar.html">砂糖を三杯｜詳細人物設定</a><a data-nav="person-anon" href="person-anon.html">名前はまだありません｜詳細人物設定</a><a data-nav="person-terminal" href="person-terminal.html">終点のひとつ前｜詳細人物設定</a><a data-nav="person-umbrella" href="person-umbrella.html">逆さまの傘｜詳細人物設定</a><a data-nav="person-triangle" href="person-triangle.html">三角定規｜詳細人物設定</a><a data-nav="person-fridge" href="person-fridge.html">冷蔵庫の明かり｜詳細人物設定</a></div><div class="nav-group"><div class="nav-heading">ゲーム進行</div><a data-nav="flow" href="flow.html">夜のゲームループと画面遷移</a><a data-nav="archive" href="archive.html">放送日誌・人物録・しおり</a></div><div class="nav-group"><div class="nav-heading">内部システム</div><a data-nav="state" href="state.html">内部状態とパラメーターの全体像</a><a data-nav="choices" href="choices.html">返答と内部パラメーターの変化</a><a data-nav="simulation" href="simulation.html">12人の自律生活AI</a><a data-nav="relationships" href="relationships.html">人間関係・生活世界・記憶</a></div><div class="nav-group"><div class="nav-heading">放送システム</div><a data-nav="modes" href="modes.html">3つの楽しみ方・操作範囲</a><a data-nav="auto-dj" href="auto-dj.html">聴くだけの夜：自動DJの詳細</a><a data-nav="station" href="station.html">放送演出・曲・DJの雰囲気</a></div><div class="nav-group"><div class="nav-heading">実装</div><a data-nav="architecture" href="architecture.html">アーキテクチャ・依存関係</a><a data-nav="letters" href="letters.html">お便り・返答・候補生成</a><a data-nav="save" href="save.html">セーブ・バックアップ・互換性</a></div><div class="nav-group"><div class="nav-heading">開発</div><a data-nav="qa" href="qa.html">テスト計画・受け入れ条件</a></div><div class="nav-group"><div class="nav-heading">運用</div><a data-nav="deploy" href="deploy.html">GitHub Pagesへの公開・保守</a></div><div class="nav-group"><div class="nav-heading">参考資料</div><a data-nav="glossary" href="glossary.html">用語集・キー一覧</a><a data-nav="changelog" href="changelog.html">開発資料の変更履歴</a><a data-nav="source-index" href="source-index.html">ソースコード関数索引</a></div></nav><p class="side-note">基礎資料 v4.9.22 · 増補 v4.9.32 · 開発資料 v1.4</p></aside><div class="veil" id="veil"></div>
+<main class="main" id="main"><div class="kicker">人物 / シナリオライター向け</div><article class="prose"><h1>関係が深まっても、話さないことがある — 心の境界線 制作ガイド</h1>
+<blockquote>
+<p><strong>開発者ハンドブック v1.4／ゲーム本体 v4.9.32</strong>。シナリオライター・プランナー向け。<strong>既存実装</strong>と<strong>執筆上の提案</strong>を区別します。</p>
+</blockquote>
+<h2>この仕組みの考え方</h2>
+<p>「信頼が100になったら秘密が明かされる」仕組みではありません。リスナーにはラジオに書きたい日と、書かないほうが自然な日があり、どちらも関係が失敗した結果ではありません。<strong>受信した／放送で紹介された／相手が放送を聴いていた</strong>は別の事実です。</p>
+<h2>v4.9.32で実際に可能になったこと</h2>
+<ul>
+<li>12人それぞれに「今夜はここまで」と言える固有のお便りと、後日の続き（少し話す／まだ話さない）の2段階を追加。</li>
+<li>第100夜以降の通常継続放送で、本人のお便りが実際に4通以上紹介されていると前半の候補が生まれます。各人の初登場時期には差があり、候補になっても毎夜必ず届くわけではありません。</li>
+<li>後半は、前半の便りが<strong>実際に配達された後</strong>65夜以上経ち、本人のお便りの紹介が8通以上あると候補になります。その時点の不安・ストレスと小さな揺らぎで、詳しく触れるか、なお話さないかが変わります。<strong>DJの信頼値だけで解放されません。</strong></li>
+<li>番組で紹介しなくても手紙が届くことはあります。「本人が前に書いた」記憶と、「DJが知る」事実は一致しません。DJの専用返答は、その夜の本文の範囲を越えて推測しません。</li>
+<li>原稿は未来の進路、家族事情、他のリスナーの内面を確定しません。第1〜4章、特別放送、最終放送の固定原稿には介入しません。</li>
+</ul>
+<h2>ライターが守る5つのルール</h2>
+<ol>
+<li><strong>黙っているのは罰ではない。</strong> 信頼や親密さの不足を意味する文章にしない。</li>
+<li><strong>境界は個人固有。</strong> 名前を明かしたくない人と、仕事をうまく語れない人を同じ「秘密」にしない。</li>
+<li><strong>少し話す＝問題解決ではない。</strong> 変化があっても必ずしも決断・和解・成功にはつながらない。</li>
+<li><strong>聞き返す権利と答えない権利は別。</strong> DJの返答に説明の要求や告白の催促を入れない。</li>
+<li><strong>本人の記録と他人の推測を混同しない。</strong> ラジオネームや過去の設定を勝手に確定しない。</li>
+</ol>
+<h2>12人の境界と原稿実例</h2>
+<table>
+<thead>
+<tr>
+<th>リスナー</th>
+<th>何を大切に守っているか</th>
+<th>最初のお便り</th>
+<th>後日の候補</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>夜明けの猫</td>
+<td>絵と仕事を、同じ一通で説明すること</td>
+<td>「描かなかった理由」</td>
+<td>「余白を一つだけ」または「まだ閉じない紙」</td>
+</tr>
+<tr>
+<td>古時計</td>
+<td>古い店と今の暮らしの間にある時間</td>
+<td>「箱を閉じたまま」</td>
+<td>「時計の外側の話」または「鍵のない箱」</td>
+</tr>
+<tr>
+<td>眠れないパン屋</td>
+<td>忙しい店のなかで言わずに済ませている気持ち</td>
+<td>「焼き上がり以外」</td>
+<td>「粉のついていない手」または「今日の売れ残りではない」</td>
+</tr>
+<tr>
+<td>月の裏側</td>
+<td>空想の向こうにある個人的な心配</td>
+<td>「月への提出書類」</td>
+<td>「月の欄外」または「未提出の書類」</td>
+</tr>
+<tr>
+<td>午前3時の配達員</td>
+<td>仕事の報告からこぼれる私生活の不安</td>
+<td>「主任にも未報告」</td>
+<td>「帰宅したあとの道」または「本日の報告は以上」</td>
+</tr>
+<tr>
+<td>透明な金魚</td>
+<td>友達のことを笑顔だけで説明しないこと</td>
+<td>「ノートの余白」</td>
+<td>「消さなかった一行」または「折ったページ」</td>
+</tr>
+<tr>
+<td>終点のひとつ前</td>
+<td>昔の行き先をすべて説明しないこと</td>
+<td>「駅名を書かない」</td>
+<td>「消した行き先」または「宛先のない切符」</td>
+</tr>
+<tr>
+<td>名前はまだありません</td>
+<td>名前や正体を明かさない選択</td>
+<td>「名乗らないまま」</td>
+<td>「今の呼び名」または「空欄のまま」</td>
+</tr>
+<tr>
+<td>砂糖を三杯</td>
+<td>気持ちを観察の言葉で包むこと</td>
+<td>「甘さとは別の話」</td>
+<td>「温度が変わるまで」または「角砂糖の包み紙」</td>
+</tr>
+<tr>
+<td>逆さまの傘</td>
+<td>店で見せる顔と閉店後の気持ち</td>
+<td>「花瓶の外側」</td>
+<td>「閉店後の手」または「水替えの先」</td>
+</tr>
+<tr>
+<td>三角定規</td>
+<td>正しい答えだけではない自分の迷い</td>
+<td>「答えのない欄」</td>
+<td>「途中の答え」または「鉛筆を置く」</td>
+</tr>
+<tr>
+<td>冷蔵庫の明かり</td>
+<td>人に料理を出す仕事と自分の食事の間</td>
+<td>「自分の皿」</td>
+<td>「洗い終えた皿」または「メニューにないもの」</td>
+</tr>
+</tbody>
+</table>
+<h3>12人の具体的な書き分け</h3>
+<h4>夜明けの猫</h4>
+<p><strong>守っているもの：</strong> 絵と仕事を、同じ一通で説明すること</p>
+<p><strong>最初の便り「描かなかった理由」</strong></p>
+<p>こんばんは。</p>
+<p>机に紙を出したのに、絵は描かずに片づけました。理由はいくつかありますが、どれが一番なのかは自分でもまだわかりません。</p>
+<p>仕事の話も、絵の話も、今夜はそこまでにしておきます。何も決めていない時間のことだけ、書きたくなりました。</p>
+<p><strong>少し触れる日「余白を一つだけ」</strong></p>
+<p>こんばんは。</p>
+<p>あのとき書かなかったことを、少しだけ書きます。絵を描かない日があると、好きだったことまで失くしたような気がするんです。</p>
+<p>でも昨日は、紙を捨てずに置いておけました。今は、そのことまでで十分です。</p>
+<p><strong>今日も話さない日「まだ閉じない紙」</strong></p>
+<p>こんばんは。</p>
+<p>絵の話をもう少し書こうと思って、やめました。今の仕事のことと一緒に説明すると、どちらの気持ちも違うものになってしまいそうです。</p>
+<p>紙は机に残しています。続きは、まだ私の中に置いておきます。</p>
+<p><strong>DJの返答で大切なこと：</strong> 描かなかった日も、その人の時間であること。話さない部分を推測しない。</p>
+<h4>古時計</h4>
+<p><strong>守っているもの：</strong> 古い店と今の暮らしの間にある時間</p>
+<p><strong>最初の便り「箱を閉じたまま」</strong></p>
+<p>こんばんは。</p>
+<p>引き出しから、店で使っていた小さな箱を出しました。中のものを確かめる前に、今日はまた閉じました。</p>
+<p>思い出を語ることと、全部を取り出すことは違いますね。箱の手触りだけ、今夜は書いておきます。</p>
+<p><strong>少し触れる日「時計の外側の話」</strong></p>
+<p>こんばんは。</p>
+<p>あの箱のことを、もう少し。昔の店の道具を見ると、使い方だけでなく、店を閉めたあとの静けさも思い出すのです。</p>
+<p>今は箱を棚に戻しました。詳しい話はまた別の機会にいたしましょう。</p>
+<p><strong>今日も話さない日「鍵のない箱」</strong></p>
+<p>こんばんは。</p>
+<p>以前書いた箱を、今日も開けませんでした。懐かしさだけでは片づかない気持ちも、あるようです。</p>
+<p>いつか話せるかどうかはわかりませんが、今日は散歩に出ました。その報告だけにしておきます。</p>
+<p><strong>DJの返答で大切なこと：</strong> 箱を開けない選択も思い出の一部であること。話さない部分を推測しない。</p>
+<h4>眠れないパン屋</h4>
+<p><strong>守っているもの：</strong> 忙しい店のなかで言わずに済ませている気持ち</p>
+<p><strong>最初の便り「焼き上がり以外」</strong></p>
+<p>こんばんは。</p>
+<p>パンの焼き上がりについてなら、いくらでも書けるのに、働いている自分の気持ちとなると手が止まります。</p>
+<p>今日は何か特別なことがあったわけではありません。ただ、店の話を全部笑い話にしなくてもいいのかな、と思いました。</p>
+<p><strong>少し触れる日「粉のついていない手」</strong></p>
+<p>こんばんは。</p>
+<p>仕事のことを書くとき、つい焼き上がりの話に逃げていました。今日は閉店後、粉のついていない手を見て、ようやくほっとしたんです。</p>
+<p>店長には言っていません。ラジオにも、今日はここまでです。</p>
+<p><strong>今日も話さない日「今日の売れ残りではない」</strong></p>
+<p>こんばんは。</p>
+<p>店で考えたことを送ろうとして、またパンの話に直しました。話しやすいほうの話を選ぶ日もありますね。</p>
+<p>そういえば今日は、きれいに焼けたパンがありました。その報告を先にします。</p>
+<p><strong>DJの返答で大切なこと：</strong> 仕事の愚痴を無理に笑い話にしなくてよいこと。話さない部分を推測しない。</p>
+<h4>月の裏側</h4>
+<p><strong>守っているもの：</strong> 空想の向こうにある個人的な心配</p>
+<p><strong>最初の便り「月への提出書類」</strong></p>
+<p>こんばんは。</p>
+<p>月の裏側に提出する書類を考えました。題名は「言わなかったことの保管願い」です。</p>
+<p>もちろん、そんな役所はありません。現実の話をまっすぐ書くより、月の職員に預けたほうが気楽な日もあります。今夜は書類の題名だけお知らせします。</p>
+<p><strong>少し触れる日「月の欄外」</strong></p>
+<p>こんばんは。</p>
+<p>前に書いた「保管願い」の続報です。冗談にしておくと、誰かに心配されずに済むことがあるんですよね。</p>
+<p>でも、その冗談を考える時間は嫌いじゃありません。月の欄外に、この一文だけ書き足しておきます。</p>
+<p><strong>今日も話さない日「未提出の書類」</strong></p>
+<p>こんばんは。</p>
+<p>月の保管願いは、まだ未提出です。詳しい理由は、審査委員会にすら秘密ということでお願いします。</p>
+<p>今日は窓の雲がきれいでした。こちらは無事、公開情報です。</p>
+<p><strong>DJの返答で大切なこと：</strong> 空想で包むことで守っている気持ちがあること。話さない部分を推測しない。</p>
+<h4>午前3時の配達員</h4>
+<p><strong>守っているもの：</strong> 仕事の報告からこぼれる私生活の不安</p>
+<p><strong>最初の便り「主任にも未報告」</strong></p>
+<p>こんばんは。</p>
+<p>仕事の報告なら、時間と場所を書けばだいたい済むんです。でも自分の気持ちを説明するには、欄が足りません。</p>
+<p>猫主任にも報告していないことが一つあります。たいした秘密というわけじゃなくて、まだ言葉にできないだけです。</p>
+<p><strong>少し触れる日「帰宅したあとの道」</strong></p>
+<p>こんばんは。</p>
+<p>最近、運転を終えてからの時間の使い方を考えています。走っているあいだは次の目的地が決まっていますが、帰宅したら自分で決めなくちゃいけません。</p>
+<p>ちょっと苦手です。主任には、まだ内緒にしておきます。</p>
+<p><strong>今日も話さない日「本日の報告は以上」</strong></p>
+<p>こんばんは。</p>
+<p>自分の話を書こうとして、途中でやめました。配送の話にしておいたほうが、今日はしっくりきます。</p>
+<p>主任の勤務態度は相変わらず自由です。報告は以上。</p>
+<p><strong>DJの返答で大切なこと：</strong> 報告書に書かない時間を本人が持っていること。話さない部分を推測しない。</p>
+<h4>透明な金魚</h4>
+<p><strong>守っているもの：</strong> 友達のことを笑顔だけで説明しないこと</p>
+<p><strong>最初の便り「ノートの余白」</strong></p>
+<p>こんばんは。</p>
+<p>友達のことを日記に書きました。楽しかったこともあったのに、一行だけどうしても消せないところがあります。</p>
+<p>何を書いたかは、まだ送りません。友達が悪い人だと言いたいわけでもないんです。消せない一行があった、とだけ書いておきます。</p>
+<p><strong>少し触れる日「消さなかった一行」</strong></p>
+<p>こんばんは。</p>
+<p>前に書いたノートの一行は、まだ消していません。今なら、あのとき少し困っていたんだと思えます。</p>
+<p>友達に何か言うかは別の話です。自分の気持ちを一つわかった、というところまで聞いてください。</p>
+<p><strong>今日も話さない日「折ったページ」</strong></p>
+<p>こんばんは。</p>
+<p>あのノートのことを、もう少し説明しようとしてやめました。友達の言葉を勝手にラジオで話したくはありません。</p>
+<p>今日はページを折って、別の本を読みました。続きを急がないことにします。</p>
+<p><strong>DJの返答で大切なこと：</strong> 本人と友達の両方に境界があること。話さない部分を推測しない。</p>
+<h4>終点のひとつ前</h4>
+<p><strong>守っているもの：</strong> 昔の行き先をすべて説明しないこと</p>
+<p><strong>最初の便り「駅名を書かない」</strong></p>
+<p>こんばんは。</p>
+<p>昔の切符のことを書こうとして、駅名を消しました。その場所が特別だからではなく、今はまだ名前を書きたくなかったのです。</p>
+<p>消したあとの紙のほうが、少し読みやすくなりました。そんな報告です。</p>
+<p><strong>少し触れる日「消した行き先」</strong></p>
+<p>こんばんは。</p>
+<p>前に駅名を消した話をしましたね。行き先よりも、そこへ向かおうとしていた時間を覚えていたのかもしれません。</p>
+<p>どこの駅だったかは、まだ書きません。今夜は、そこまでです。</p>
+<p><strong>今日も話さない日「宛先のない切符」</strong></p>
+<p>こんばんは。</p>
+<p>切符の話の続きは、まだ書けませんでした。駅名を知ってもらうことが、今の私に必要なことではないようです。</p>
+<p>代わりに、帰り道で見た空の話を考えています。</p>
+<p><strong>DJの返答で大切なこと：</strong> 地名を明かさなくても気持ちが届くこと。話さない部分を推測しない。</p>
+<h4>名前はまだありません</h4>
+<p><strong>守っているもの：</strong> 名前や正体を明かさない選択</p>
+<p><strong>最初の便り「名乗らないまま」</strong></p>
+<p>こんばんは。</p>
+<p>何通も送っているのに、名前のことを何も書いていないなと思いました。名乗れないわけではありません。</p>
+<p>ただ、ここでは今のラジオネームのまま書いていたいです。名前よりも先に、今日の出来事を選びたい夜があります。</p>
+<p><strong>少し触れる日「今の呼び名」</strong></p>
+<p>こんばんは。</p>
+<p>このラジオネームで届く手紙を、少し不思議に思うことがあります。名乗らずにいることで、かえって書けることもあるんですね。</p>
+<p>だから今日も、この名前で送ります。いつか変えるかどうかは、まだ決めていません。</p>
+<p><strong>今日も話さない日「空欄のまま」</strong></p>
+<p>こんばんは。</p>
+<p>名前の話をもう少し書こうとして、やめました。今のままでも、伝えられることがあります。</p>
+<p>今日は窓辺の音の話を書こうと思います。名前の欄は空白のままにしておきます。</p>
+<p><strong>DJの返答で大切なこと：</strong> 名乗らないことが信頼不足を意味しないこと。話さない部分を推測しない。</p>
+<h4>砂糖を三杯</h4>
+<p><strong>守っているもの：</strong> 気持ちを観察の言葉で包むこと</p>
+<p><strong>最初の便り「甘さとは別の話」</strong></p>
+<p>こんばんは。</p>
+<p>コーヒーの味なら、甘いとか苦いとか、すぐ言葉にできますね。でも、今日感じたことには、ちょうどいい言葉がありませんでした。</p>
+<p>何があったかは書きません。カップを洗いながら、まだ考えています。</p>
+<p><strong>少し触れる日「温度が変わるまで」</strong></p>
+<p>こんばんは。</p>
+<p>あのとき言葉にできなかった気持ちを、冷めていくコーヒーに似ていると思いました。薄くなるというより、違うところがわかってくるんですね。</p>
+<p>何の話だったかはまだ秘密です。今日は比喩だけで失礼します。</p>
+<p><strong>今日も話さない日「角砂糖の包み紙」</strong></p>
+<p>こんばんは。</p>
+<p>コーヒーの話にすると説明できそうで、やっぱりできませんでした。何でも飲み物に例えればいいというわけではありませんね。</p>
+<p>包み紙を一枚、机の端に置きました。今日はその話だけ。</p>
+<p><strong>DJの返答で大切なこと：</strong> 観察の比喩が答えの代わりになること。話さない部分を推測しない。</p>
+<h4>逆さまの傘</h4>
+<p><strong>守っているもの：</strong> 店で見せる顔と閉店後の気持ち</p>
+<p><strong>最初の便り「花瓶の外側」</strong></p>
+<p>こんばんは。</p>
+<p>花の状態なら毎日よく見ています。でも、店を閉めたあとの自分の気分は、案外見落とします。</p>
+<p>今日は店の話をしようとして、途中で手を止めました。水を替えて帰ったことだけ、書いておきます。</p>
+<p><strong>少し触れる日「閉店後の手」</strong></p>
+<p>こんばんは。</p>
+<p>花を並べるときは迷いませんが、仕事が終わってから何をしたいのか、すぐには浮かびません。</p>
+<p>今日はそれに気づいて、少し早めに帰りました。大げさな決心ではなく、小さな報告です。</p>
+<p><strong>今日も話さない日「水替えの先」</strong></p>
+<p>こんばんは。</p>
+<p>閉店後の話を、もう少し書くつもりでした。でも今日は、店の花のことを書いているほうが落ち着きます。</p>
+<p>水替えは済ませました。自分の話はまた別の日にします。</p>
+<p><strong>DJの返答で大切なこと：</strong> 仕事を離れた自分の気持ちを急いで言わないこと。話さない部分を推測しない。</p>
+<h4>三角定規</h4>
+<p><strong>守っているもの：</strong> 正しい答えだけではない自分の迷い</p>
+<p><strong>最初の便り「答えのない欄」</strong></p>
+<p>こんばんは。</p>
+<p>ノートに「どう思う？」と書いて、答えの欄を空けました。誰かに見せるための問題ではありません。</p>
+<p>答えを書いたら、今の気持ちまで固定してしまいそうなんです。今日は空欄のまま閉じます。</p>
+<p><strong>少し触れる日「途中の答え」</strong></p>
+<p>こんばんは。</p>
+<p>空けておいた欄に、ひとことだけ書きました。「わからない」です。前なら答えとして認めなかったかもしれません。</p>
+<p>でも、いまはこれも途中の答えにしておこうと思います。</p>
+<p><strong>今日も話さない日「鉛筆を置く」</strong></p>
+<p>こんばんは。</p>
+<p>空欄の続きを考えましたが、今日は書きませんでした。正解を決めると、ほかの可能性が消えるようで。</p>
+<p>ノートは閉じておきます。また違う日に見ます。</p>
+<p><strong>DJの返答で大切なこと：</strong> 正解を急がないことが思考を止めることではないこと。話さない部分を推測しない。</p>
+<h4>冷蔵庫の明かり</h4>
+<p><strong>守っているもの：</strong> 人に料理を出す仕事と自分の食事の間</p>
+<p><strong>最初の便り「自分の皿」</strong></p>
+<p>こんばんは。</p>
+<p>仕事では人の皿をよく見ます。でも、自分の食事の話になると、何を言えばいいのか迷います。</p>
+<p>今日は誰に何を作ったかを書こうとして、やめました。自分の皿のことは、まだうまく話せません。</p>
+<p><strong>少し触れる日「洗い終えた皿」</strong></p>
+<p>こんばんは。</p>
+<p>帰宅して、使った皿を一枚洗いました。きれいに盛りつけたわけでも、特別なものを食べたわけでもありません。</p>
+<p>でも、自分の食事をしたことだけ、今日は書けます。それ以上の説明は、まだいりません。</p>
+<p><strong>今日も話さない日「メニューにないもの」</strong></p>
+<p>こんばんは。</p>
+<p>自分の食事について書こうとして、また仕事の献立を考え始めていました。今日はまだ、人に出す料理の話のほうが書きやすいです。</p>
+<p>食事はしました。それで十分、ということにします。</p>
+<p><strong>DJの返答で大切なこと：</strong> 自分の食卓を見せる義務はないこと。話さない部分を推測しない。</p>
+<h2>企画・執筆用チェックシート</h2>
+<ul>
+<li>書きたい出来事は何か：</li>
+<li>お便りに書かれる「確かな事実」は何か：</li>
+<li>今夜は何をあえて書かないか：</li>
+<li>その境界が人物の性格に根ざしているか：</li>
+<li>後日、同じ話題が出ても「必ず打ち明ける」展開にしていないか：</li>
+<li>DJの返答は今夜書かれた情報だけで成立するか：</li>
+<li>以前に「放送で紹介された」事実がある場合、それは誰がどこまで知っているか：</li>
+</ul>
+<h2>改修上の注意</h2>
+<p>このページの各お便りは<strong>v4.9.32で実装された原稿</strong>です。ただし特定の時刻の必着ではありません。人物の私生活を一度に解明する「秘密解放システム」は実装していません。新しい大きな秘密や家族の詳細を導入したい場合は、企画と条件の別途設計・確認が必要です。</p>
+</article></main>
+<aside aria-label="このページの目次" class="toc"><div class="toc-heading">ON THIS PAGE</div><a href="#program-flow">特別放送の流れ</a><a href="#theme-catalog">既存21企画一覧</a><a href="#patterns">シチュエーション図鑑</a><a href="#sp-01">01｜企画が生まれるきっかけ</a><a href="#sp-02">02｜募集を聴いた人と、届く／届かない便箋</a><a href="#sp-03">03｜同じ募集テーマでも、12人は違う答えを書く</a><a href="#sp-04">04｜放送で3通を読むと、どんな夜になるか</a><a href="#sp-05">05｜放送を聴いたあとに生まれる余韻</a><a href="#sp-06">06｜企画とリスナーの生活・関係が交わる</a><a href="#sp-07">07｜季節・雨・記念日の特別な条件</a><a href="#sp-08">08｜新規企画を形にする際の追加設計</a><a href="#pitch-bank">新企画10案</a><a href="#pitch-sheet">企画カード</a><a href="#letter-sheet">お便りカード</a><div class="toc-foot">ライター向け v1.3 ／ 基準 v4.9.22</div></aside></div><script defer="" src="assets/search-data.js"></script><script defer="" src="assets/app.js"></script></body></html>

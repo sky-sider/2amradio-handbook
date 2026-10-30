@@ -1,7 +1,7 @@
 {
-  "basis": "v4.9.22",
-  "generated": "2026-10-29",
-  "pages": 39,
+  "basis": "v4.9.22 (core reference) + v4.9.32 (boundary supplement)",
+  "generated": "2026-10-30",
+  "pages": 40,
   "scope": "public-deployable-development-documentation",
-  "handbookVersion": "v1.3"
+  "handbookVersion": "v1.4"
 }
